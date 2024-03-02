@@ -1,7 +1,6 @@
 @extends('site.layouts.app')
 @section('content')
     <!-- Fetch Sliders Data -->
-
     @php
         $Sliders = Illuminate\Support\Facades\DB::table('sliders')->where('page', 'home' )->where('screen', 'Desktop' )->orderBy('order_no', 'ASC')->get();
     @endphp
@@ -164,7 +163,7 @@
         <section class="mb-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-12 mb-2">
+                    <div class="col-12 mb-2">
                         <div class="row ltn__no-gutter">
                             <div class="col-9 col-md-10">
                                 <h2 class="section-title text-custom-primary mb-0 fs-large w-100 pl-2 pl-md-0">
@@ -182,23 +181,23 @@
                                     $CompareUrl = route('CompareRoute', ['slug' => $category->slug]) . '?sub='. $SubCategoryId .'&subSub=&range=1_1000000&brands=';
                                     ?>
                                     <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
-                                           class="form-check-input compareCheckBox"
+                                           class="form-check-input compareCheckBox ml-3"
                                            onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
-                                    <label for="compare{{$i}}" class="form-check-label small pt-1">Compare</label>
+                                    <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
                                 </h2>
                             </div>
                             <div class="col-3 col-md-2">
                                 <a href="{{route('CheckSlugRoute', ['slug' => $category->slug]) }}">
                                     <label for=""
-                                           class="form-check-label text-custom-primary cursor-pointer small pt-1 float-right pr-2 pr-md-0">See
+                                           class="form-check-label text-custom-primary cursor-pointer fs-14 pt-1 float-right pr-2 pr-md-0">See
                                         all deals <i class="fa fa-arrow-right" aria-hidden="true"></i></label>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <div class="row products-category-slider ltn__category-products-slider slick-arrow-1">
+                    <div class="col-12">
+                        <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
                         @php
                             $Products = Illuminate\Support\Facades\DB::table('products')
                                         ->where('category', $category->id)
@@ -218,9 +217,5 @@
             </div>
         </section>
     @endforeach
-
     {{--Category With Products--}}
-    
-
 @endsection
-

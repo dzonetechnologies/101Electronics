@@ -1,0 +1,152 @@
+/* ====================================================
+    Responsive
+==================================================== */
+/* Desktop 1200 - up */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Normal desktop :992px. (Laptop 14") */
+@media (min-width: 992px) and (max-width: 1199px) {
+    /* Global */
+    h1 {
+        font-size: 30px;
+    }
+    h2 {
+        font-size: 26px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 20px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    h6 {
+        font-size: 16px;
+    }
+
+}
+
+
+/* Tablet device :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Global */
+    body {
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 26px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+    h5 {
+        font-size: 16px;
+    }
+    h6 {
+        font-size: 15px;
+    }
+    p {
+        font-size: 14px;
+    }
+
+}
+
+
+/* small mobile :320px. */
+@media (max-width: 767px) {
+    /* Global */
+    body {
+        font-size: 12px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    h4 {
+        font-size: 17px;
+    }
+    h5 {
+        font-size: 16px;
+    }
+    h6 {
+        font-size: 14px;
+    }
+    p {
+        font-size: 11px;
+    }
+
+    .ltn__header-4 .ltn__header-middle-area, .ltn__header-5 .ltn__header-middle-area {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+/* XS Devices */
+@media (max-width: 575px) {
+    .fs-11 {
+        font-size: 10px !important;
+    }
+
+    .fs-12 {
+        font-size: 11px !important;
+    }
+
+    .fs-13 {
+        font-size: 12px !important;
+    }
+
+    .fs-14 {
+        font-size: 13px !important;
+    }
+
+    .fs-15 {
+        font-size: 14px !important;
+    }
+
+    .product-card-difference {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+/* SM Devices */
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+/* MD Devices */
+@media (min-width: 768px) and (max-width: 991px)  {
+
+}
+
+/* LG Devices */
+@media (min-width: 992px) and (max-width: 1024px)  {
+
+}
+
+/* XL Devices */
+@media (min-width: 1025px) and (max-width: 1399px)  {
+
+}
+
+/* XXL Devices */
+@media (min-width: 1400px) {
+
+}

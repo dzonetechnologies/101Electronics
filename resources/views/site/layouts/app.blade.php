@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Google Site Verification-->
     <meta name="google-site-verification" content="Ywrakd0TgZKp0SOQgNrHBYY5XL3oebM8E-Kdv79ZBOY" />
-    
+
     {{--Fonts--}}
     {{--<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,10 +29,10 @@
     <link rel="stylesheet" href="{{asset('public/assets/css/plugins.css')}}">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{asset('public/assets/css/style.css')}}">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/responsive.css')}}">
     <!-- Custom css -->
     <link rel="stylesheet" href="{{asset('public/assets/css/custom.css')}}">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="{{asset('public/assets/css/responsive.css')}}">
     {{--Font Awesome Icons--}}
     <link rel="stylesheet" href="{{asset('public/dashboard-assets/vendors/fontawesome-free/css/all.min.css')}}" type="text/css">
     <!-- Switch -->
@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{asset('public/assets/css/snackbar.css')}}">
     {{--Datatable--}}
     <link rel="stylesheet" href="{{asset('public/dashboard-assets/vendors/datatables/dataTables.bootstrap4.css')}}" type="text/css">
-    
+
     <?php
       $GeneralSettings = Illuminate\Support\Facades\DB::table('general_settings')->get();
     ?>
@@ -53,14 +53,14 @@
     @if($GeneralSettings[0]->google_analytics != "")
       {!! $GeneralSettings[0]->google_analytics !!}
     @endif
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BCKGFMG964"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
+
       gtag('config', 'G-BCKGFMG964');
     </script>
 </head>

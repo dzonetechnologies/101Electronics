@@ -1,5 +1,13 @@
 /node_modules
-/public
+/public/storage
+/public/css
+/public/js
+/public/assets/fonts
+/public/assets/images
+/public/assets/logo
+/public/assets/webfonts
+/public/dashboard-assets
+/public/mix-manifest.json
 /storage
 /vendor
 .env
