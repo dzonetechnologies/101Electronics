@@ -310,25 +310,25 @@ class HomeController extends Controller
         $subcategoryslug = "all";
         $html = "";
         foreach($__SubSubCategories as $index => $sub_subcategory) {
-            $html .= ''.
-            '<div class="row">'.
-                '<div class="col-md-12 mb-2">'.
-                    '<div class="row">'.
-                        '<div class="col-md-9">'.
-                            '<h2 class="section-title text-custom-primary mb-0 fs-large w-100">'. $sub_subcategory->title .'</h2>'.
-                        '</div>'.
-                        '<div class="col-md-2">';
-                        $URL = url('/'. $Category[0]->slug .'/'. $SubCategory[0]->slug .'/'. $sub_subcategory->slug);
-                        $html .= ''.
-                            '<a href ="'. $URL .'" class="float-end">'.
-                                '<label for="" class="form-check-label text-custom-primary cursor-pointer small pt-1 float-end">See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i></label>'.
-                            '</a>'.
-                        '</div>'.
-                    '</div>'.
-                '</div>'.
-                '<div class="col-md-11">'.
-                    '<div class="row products-category-slider ltn__product-gallery-slider-compare slick-arrow-1">';
-                    $Products = array();
+            $html .=
+            '<div class="row line-height-1-3 mb-2">
+                <div class="col-7 col-sm-8">
+                    <h2 class="section-title text-custom-primary fs-15 mb-2">
+                        ' . $sub_subcategory->title . '
+                    </h2>
+                </div>
+                <div class="col-5 col-sm-4">
+                    <a href="' . url('/'. $Category[0]->slug .'/'. $subcategoryslug .'/'. $sub_subcategory->slug) . '" class="float-end">
+                        <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
+                            See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </label>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="products-category-slider ltn__product-gallery-slider-compare slick-arrow-1">';
+                    $Products = [];
                     if ($StartPrice != 0 && $EndPrice != 0) {
                         $Products = DB::table('products')
                             ->where('deleted_at', '=', null)
@@ -358,92 +358,13 @@ class HomeController extends Controller
                             ->get();
                     }
                     $List = SiteHelper::GetUserList();
-                    $ComparePage = true;
-
                     foreach($Products as $index1 => $product){
-                        $URL = route('CheckSlugRoute', ['slug' => $product->slug]);
-                        $html .= ''.
-                        '<div class="col-md-3 mt-2 mb-2 product-card-difference">'.
-                            '<a href="'. $URL .'">'.
-                                '<div class="product-category-square text-center">';
-                                    if($product->rating != null && $product->rating != 0){
-                                        $html .= ''.
-                                        '<span class="product-category-square-rating"><i class="fa fa-star text-warning"></i>&nbsp;'. $product->rating .'</span>';
-                                    }
-                                    if(floatval($product->discount) != 0){
-                                        $html .= '<span class="product-category-square-discount bg-custom-primary text-white">'. $product->discount .'% OFF</span>';
-                                    }
-                                    $ImagePath = asset('public/storage/products/' . $product->primary_img);
-                                    $html .= ''.
-                                    '<span class="product-category-square-img mt-3 mb-3">'.
-                                        '<img src="'. $ImagePath .'" alt="Product Image" class="img-fluid"/>'.
-                                    '</span>'.
-                                    '<p class="mb-2 pt-2 pl-1 pr-1 fs-13 fw-500 primary-color productNameLineHeight mt-4">'. $product->name .'</p>'.
-                                    '<p class="mb-2 pt-2 pl-1 pr-1 text-black fs-13 fw-500" style="line-height: 1.3;">'. $product->code .'</p>'.
-                                    '<p class="mb-1 pt-2 text-black fs-14">' . $product->compare_description . '</p>'.
-                                    '<table class="mt-1 mb-1 w-100 fs-12">'.
-                                        '<tr>'.
-                                            '<td style="width: 40%;font-size:11px;">';
-                                                if($product->quantity > 0){
-                                                  $html .= '<i class="fa fa-circle text-success"></i>&nbsp;In stock';
-                                                }
-                                                else{
-                                                  $html .= '<i class="fa fa-circle text-danger"></i>&nbsp;Stock out';
-                                                }
-                                            $html .= ''.
-                                            '</td>'.
-                                            '<td class="text-end text-black fw-500" style="width: 60%;">';
-                                                if(floatval($product->discount) != 0){
-                                                    $Discount = SiteHelper::CalculatePrice($product->total_price);
-                                                    $html .= $Discount;
-                                                }
-                                                else{
-                                                    $Discount = SiteHelper::CalculatePrice($product->total_price);
-                                                    $html .= $Discount;
-                                                }
-                                            $html .= ''.
-                                            '</td>'.
-                                        '</tr>'.
-                                    '</table>';
-                                    if(floatval($product->discount) != 0){
-                                      $UnitPrice = SiteHelper::CalculatePrice($product->total_price_without_discount);
-                                      $html .= ''.
-                                      '<p class="mb-2 mt-1 fs-11 text-end">'.
-                                          '<span class="text-decoration-line-through">'. $UnitPrice .'</span>'.
-                                      '</p>';
-                                    }
-                                    else{
-                                        $html .= '<p class="mb-2 mt-1 fs-11 text-end">&nbsp;</p>';
-                                    }
-                                    $html .= ''.
-                                    '<div class="product-category-square-bottom" onclick="return event.preventDefault();">'.
-                                        '<div class="row fs-12">'.
-                                            '<div class="col-6 text-center px-1 py-2 product-category-square-btn border-right" id="addToCartDiv_'. $index . $index1 .'" style="display: none; cursor: not-allowed;">Adding...</div>'.
-                                            '<div class="col-6 text-center px-1 py-2 product-category-square-btn border-right cursor-pointer" onclick="AddToCart(this, \'' . $product->id . '\', \'' . $index . $index1 . '\');">Add to cart</div>'.
-                                            '<div class="col-6 text-center px-1 py-2 product-category-square-btn cursor-pointer';
-                                            if (in_array($product->id, $List)) {
-                                              $html .= 'bg-custom-primary text-white';
-                                            }
-                                            $LoginText = 'Please login first to add product in your list';
-                                            $html .= ''.
-                                            '" onclick="AddToWishlist(\''. $LoginText .'\', \'' . $product->id . '\', this);">';
-                                            if (in_array($product->id, $List)) {
-                                                $html .= 'Wishlisted';
-                                            } else {
-                                                $html .= 'Wishlist';
-                                            }
-                                            $html .= ''.
-                                            '</div>'.
-                                        '</div>'.
-                                    '</div>'.
-                                '</div>'.
-                            '</a>'.
-                        '</div>';
+                        $html .= SiteHelper::GetProductTemplate($product, $index, $index1, $List);
                     }
-                    $html .= ''.
-                    '</div>'.
-                '</div>'.
-            '</div>';
+                    $html .=
+                    '</div>
+                </div>
+            </div>';
         }
         echo json_encode($html);
         /* INNER HTML - END */

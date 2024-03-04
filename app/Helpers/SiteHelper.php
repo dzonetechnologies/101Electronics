@@ -134,4 +134,44 @@ class SiteHelper
             ->where('id', '=', $Id)
             ->get();
     }
+
+    static function GetProductTemplate($product, $index, $index1, $List)
+    {
+        return '<div class="product-card-difference my-3">
+            <a href="' . route('CheckSlugRoute', ['slug' => $product->slug]) . '">
+                <div class="product-category-square text-center">' .
+                    (($product->rating != null && $product->rating != 0) ? '<span class="product-category-square-rating"><i class="fa fa-star text-warning"></i>&nbsp;' . $product->rating . '</span>' : '') .
+                    (floatval($product->discount) != 0 ? '<span class="product-category-square-discount bg-custom-primary text-white">' . $product->discount . '% OFF</span>' : '') .
+                    '<div class="product-category-square-img">
+                        <img src="' . asset('public/storage/products/' . $product->primary_img) . '" alt="Phones" class="img-fluid">
+                    </div>
+                    <p class="mb-2 px-2 fs-13 fw-500 primary-color">' . $product->name . '</p>
+                    <p class="mb-2 px-2 text-black fs-13 fw-500">' . $product->code . '</p>
+                    <div class="product-description">' . $product->short_description . '</div>
+                    <div class="mx-2 fs-12">
+                        <p class="text-start mb-0">' .
+                            ($product->quantity > 0 ? '<i class="fa fa-circle text-success"></i>&nbsp;In stock' : '<i class="fa fa-circle text-danger"></i>&nbsp;Stock out') .
+                            '<span class="text-end text-black fw-500 float-end">' . SiteHelper::CalculatePrice($product->total_price) . '</span>
+                        </p>' .
+                        (floatval($product->discount) != 0 ? '<p class="my-1 fs-11 text-decoration-line-through text-end">'. SiteHelper::CalculatePrice($product->total_price_without_discount) . '</p>' : '<p class="my-1 fs-11 text-end">&nbsp;</p>') .
+                    '</div>
+                    <div class="product-category-square-bottom" onclick="return event.preventDefault();">
+                        <div class="row fs-12">
+                            <div class="col-6 text-center py-2 product-category-square-btn border-right"
+                                 id="addToCartDiv_' . $index . $index1 . '" style="display: none; cursor: not-allowed;">
+                                Adding...
+                            </div>
+                            <div class="col-6 text-center py-2 product-category-square-btn border-right cursor-pointer"
+                                 onclick="AddToCart(this, \'' . $product->id . '\', \'' . $index . $index1 . '\');">
+                                Add to cart
+                            </div>
+                            <div class="col-6 text-center py-2 product-category-square-btn cursor-pointer ' . ((in_array($product->id, $List)) ? 'bg-custom-primary text-white' : '') . '" onclick="AddToWishlist(\'Please login first to add product in your list.\', \''. $product->id . '\', this);">' .
+                                ((in_array($product->id, $List)) ? 'Wishlisted' : 'Wishlist') .
+                            '</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>';
+    }
 }

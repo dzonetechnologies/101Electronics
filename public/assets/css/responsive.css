@@ -63,6 +63,11 @@
 
 }
 
+@media (max-width: 399px) {
+    .product-card-difference.slick-slide {
+        padding: 0 45px;
+    }
+}
 
 /* small mobile :320px. */
 @media (max-width: 767px) {

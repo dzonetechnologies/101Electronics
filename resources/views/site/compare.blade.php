@@ -1,7 +1,7 @@
 @extends('site.layouts.app')
 @section('content')
     <style media="screen">
-        .product-category-square {
+        /*.product-category-square {
             padding: 0 5px;
             border-radius: 0;
             overflow: hidden;
@@ -10,8 +10,8 @@
             margin: auto;
         }
         .product-card-difference {
-            /*padding-left: 2.5px;*/
-            /*padding-right: 2.5px;*/
+            !*padding-left: 2.5px;*!
+            !*padding-right: 2.5px;*!
             padding-left: 0;
             padding-right: 0;
         }
@@ -21,7 +21,7 @@
 
         .product-category-square-discount {
             left: 0;
-        }
+        }*/
 
         .quick-contact {
             background-color: #ffffff;
@@ -52,7 +52,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!--<div class="col-md-1"></div>-->
-                <div class="col-md-2 mb-2">
+                <div class="col-12 col-md-4 col-lg-3 col-xxl-2 mb-2">
                     <div class="quick-contact mb-3">
                         <p class="fs-large fw-600 text-custom-primary mb-2">
                             Sub Category
@@ -92,7 +92,8 @@
                             <div class="d-flex align-items-center">
                                 <span class="fs-14">All</span>
                                 <label class="switch-sm" for="checkboxSubSubCat" style="margin-left: auto;">
-                                    <input type="checkbox" id="checkboxSubSubCat" class="checkboxForSubSubCategory" name="subSubCatFilter[]"
+                                    <input type="checkbox" id="checkboxSubSubCat" class="checkboxForSubSubCategory"
+                                           name="subSubCatFilter[]"
                                            onchange="CheckForAllSubSubCategory(this.checked);ApplyRunTimeFilters();"
                                            value="0" <?php
                                         $SubSubCategoryCheck = true;
@@ -112,9 +113,18 @@
                                     <div class="m-auto mb-2">
                                         <div class="d-flex align-items-center">
                                             <span class="fs-14">{{$subSubCat->title}}</span>
-                                            <label class="switch-sm" for="subSubCatFilter{{$index}}" style="margin-left: auto;">
-                                                <input type="checkbox" class="checkboxForSubSubCategory" name="subSubCatFilter[]" id="subSubCatFilter{{$index}}"
-                                                       value="{{$subSubCat->id}}" onchange="document.getElementById('checkboxSubSubCat').checked = false; AllSubSubCategoryChecker();ApplyRunTimeFilters();" <?php if ($SubSubCategoryCheck) { if(in_array($subSubCat->id, explode(',', $SelectedSubSubCategory))) { echo 'checked'; } } else { echo 'checked'; } ?> />
+                                            <label class="switch-sm" for="subSubCatFilter{{$index}}"
+                                                   style="margin-left: auto;">
+                                                <input type="checkbox" class="checkboxForSubSubCategory"
+                                                       name="subSubCatFilter[]" id="subSubCatFilter{{$index}}"
+                                                       value="{{$subSubCat->id}}"
+                                                       onchange="document.getElementById('checkboxSubSubCat').checked = false; AllSubSubCategoryChecker();ApplyRunTimeFilters();" <?php if ($SubSubCategoryCheck) {
+                                                    if (in_array($subSubCat->id, explode(',', $SelectedSubSubCategory))) {
+                                                        echo 'checked';
+                                                    }
+                                                } else {
+                                                    echo 'checked';
+                                                } ?> />
                                                 <div class="slider-sm round"></div>
                                             </label>
                                         </div>
@@ -139,7 +149,8 @@
                             <div class="d-flex align-items-center">
                                 <span class="fs-14">All ({{\App\Helpers\SiteHelper::GetProductsCountByBrand()}})</span>
                                 <label class="switch-sm" for="checkboxBrands" style="margin-left: auto;">
-                                    <input type="checkbox" id="checkboxBrands" class="checkboxForBrands" name="CheckboxBrands[]" value="0"
+                                    <input type="checkbox" id="checkboxBrands" class="checkboxForBrands"
+                                           name="CheckboxBrands[]" value="0"
                                            <?php if ($SelectedBrands != '') {
                                                if (sizeof($_Brands) == 0) {
                                                    echo 'checked';
@@ -185,21 +196,24 @@
                         <div class="row ltn__no-gutter mb-2">
                             <div class="col-1"></div>
                             <div class="col-4">
-                                <input type="text" class="form-control product-quantity-input mb-0 p-1" name="startRange"
-                                       id="startRange" placeholder="From" onkeyup="ApplyRunTimeFilters();" value="<?php if ($StartPrice == 0) {
-                                    echo '1';
-                                } else {
-                                    echo $StartPrice;
-                                } ?>" onkeypress="CheckNumberInputForQty(this, event, this.value);"/>
+                                <input type="text" class="form-control product-quantity-input mb-0 p-1"
+                                       name="startRange"
+                                       id="startRange" placeholder="From" onkeyup="ApplyRunTimeFilters();"
+                                       value="<?php if ($StartPrice == 0) {
+                                           echo '1';
+                                       } else {
+                                           echo $StartPrice;
+                                       } ?>" onkeypress="CheckNumberInputForQty(this, event, this.value);"/>
                             </div>
                             <div class="col-2 text-center d-flex align-items-center"><span class="w-100">-</span></div>
                             <div class="col-4">
                                 <input type="text" class="form-control product-quantity-input mb-0 p-1" name="endRange"
-                                       id="endRange" placeholder="To" onkeyup="ApplyRunTimeFilters();" value="<?php if ($EndPrice == 0) {
-                                    echo '1000000';
-                                } else {
-                                    echo $EndPrice;
-                                } ?>" onkeypress="CheckNumberInputForQty(this, event, this.value);"/>
+                                       id="endRange" placeholder="To" onkeyup="ApplyRunTimeFilters();"
+                                       value="<?php if ($EndPrice == 0) {
+                                           echo '1000000';
+                                       } else {
+                                           echo $EndPrice;
+                                       } ?>" onkeypress="CheckNumberInputForQty(this, event, this.value);"/>
                             </div>
                             <div class="col-1"></div>
                         </div>
@@ -211,28 +225,25 @@
                     </button>--}}
                 </div>
 
-                <div class="col-md-10" id="RecordSections">
+                <div class="col-12 col-md-8 col-lg-9 col-xxl-10" id="RecordSections">
                     @foreach($SubSubCategories as $index => $sub_subcategory)
-                        <div class="row">
-                            <div class="col-md-12 mb-2">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <h2 class="section-title text-custom-primary mb-0 fs-large w-100">
-                                            {{$sub_subcategory->title}}
-                                        </h2>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <a href="{{url('/'. $Category[0]->slug .'/'. $subcategoryslug .'/'. $sub_subcategory->slug)}}" class="float-end">
-                                            <label for=""
-                                                   class="form-check-label text-custom-primary cursor-pointer small pt-1 float-end">See
-                                                all deals <i class="fa fa-arrow-right" aria-hidden="true"></i></label>
-                                        </a>
-                                    </div>
-                                </div>
+                        <div class="row line-height-1-3 mb-2">
+                            <div class="col-7 col-sm-8">
+                                <h2 class="section-title text-custom-primary fs-15 mb-2">
+                                    {{$sub_subcategory->title}}
+                                </h2>
                             </div>
-
-                            <div class="col-md-11">
-                                  <div class="row products-category-slider ltn__product-gallery-slider-compare slick-arrow-1">
+                            <div class="col-5 col-sm-4">
+                                <a href="{{url('/'. $Category[0]->slug .'/'. $subcategoryslug .'/'. $sub_subcategory->slug)}}" class="float-end">
+                                    <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
+                                        See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    </label>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="products-category-slider ltn__product-gallery-slider-compare slick-arrow-1">
                                 <?php
                                 $Products = array();
                                 if ($StartPrice != 0 && $EndPrice != 0) {
@@ -270,9 +281,9 @@
                                 $List = \App\Helpers\SiteHelper::GetUserList();
                                 $ComparePage = true;
                                 ?>
-                                <!-- Product - Start -->
-                                @include('site.partials.product-template')
-                                <!-- Product - End -->
+                                @foreach($Products as $index1 => $product)
+                                    {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                                @endforeach
                                 </div>
                             </div>
                         </div>

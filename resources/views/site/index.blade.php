@@ -160,58 +160,113 @@
 
     {{--Category With Products--}}
     @foreach($Categories as $i => $category)
+        <?php
+        $SubCategoryId = 0;
+        $GetFirstSubCategory = \Illuminate\Support\Facades\DB::table('subcategories')
+            ->where('category', '=', $category->id)
+            ->where('deleted_at', '=', null)
+            ->orderBy('order_no', 'ASC')
+            ->get();
+        if (count($GetFirstSubCategory) > 0) {
+            $SubCategoryId = $GetFirstSubCategory[0]->id;
+        }
+        $CompareUrl = route('CompareRoute', ['slug' => $category->slug]) . '?sub=' . $SubCategoryId . '&subSub=&range=1_1000000&brands=';
+        ?>
         <section class="mb-5">
             <div class="container">
-                <div class="row">
-                    <div class="col-12 mb-2">
-                        <div class="row ltn__no-gutter">
-                            <div class="col-9 col-md-10">
-                                <h2 class="section-title text-custom-primary mb-0 fs-large w-100 pl-2 pl-md-0">
-                                    {{$category->homepage_selling_tagline}} {{$category->title}}
-                                    <?php
-                                    $SubCategoryId = 0;
-                                    $GetFirstSubCategory = DB::table('subcategories')
-                                        ->where('category', '=', $category->id)
-                                        ->where('deleted_at', '=', null)
-                                        ->orderBy('order_no', 'ASC')
-                                        ->get();
-                                    if (count($GetFirstSubCategory) > 0) {
-                                        $SubCategoryId = $GetFirstSubCategory[0]->id;
-                                    }
-                                    $CompareUrl = route('CompareRoute', ['slug' => $category->slug]) . '?sub='. $SubCategoryId .'&subSub=&range=1_1000000&brands=';
-                                    ?>
-                                    <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
-                                           class="form-check-input compareCheckBox ml-3"
-                                           onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
-                                    <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
-                                </h2>
-                            </div>
-                            <div class="col-3 col-md-2">
-                                <a href="{{route('CheckSlugRoute', ['slug' => $category->slug]) }}">
-                                    <label for=""
-                                           class="form-check-label text-custom-primary cursor-pointer fs-14 pt-1 float-right pr-2 pr-md-0">See
-                                        all deals <i class="fa fa-arrow-right" aria-hidden="true"></i></label>
-                                </a>
-                            </div>
+                <div class="row line-height-1-3 mb-2">
+                    <div class="col-7 col-sm-8">
+                        <h2 class="section-title text-custom-primary fs-15 mb-2">
+                            {{$category->homepage_selling_tagline}} {{$category->title}}
+                        </h2>
+                    </div>
+                    <div class="col-5 col-sm-4">
+                        <a href="{{route('CheckSlugRoute', ['slug' => $category->slug]) }}">
+                            <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
+                                See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </label>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center">
+                            <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
+                                   class="form-check-input compareCheckBox mt-0 mr-2"
+                                   onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
+                            <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
-                        @php
-                            $Products = Illuminate\Support\Facades\DB::table('products')
-                                        ->where('category', $category->id)
-                                        ->where('homepage_status', 1)
-                                        ->where('deleted_at', null)
-                                        ->orderBy('order_no', 'ASC')
-                                        ->get();
-                            $List = \App\Helpers\SiteHelper::GetUserList();
-                            $index = $i;
-                        @endphp
-                        <!-- Product - Start -->
-                        @include('site.partials.product-template')
-                        <!-- Product - End -->
+                    {{--<div class="col-12 mb-2">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <h2 class="section-title text-custom-primary fs-15 mb-0">
+                                {{$category->homepage_selling_tagline}} {{$category->title}}
+                            </h2>
+
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
+                                       class="form-check-input compareCheckBox mt-0 mr-2"
+                                       onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
+                                <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
+                            </div>
+                            <div>
+                                <a href="{{route('CheckSlugRoute', ['slug' => $category->slug]) }}">
+                                    <label for=""
+                                           class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
+                                        See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    </label>
+                                </a>
+                            </div>
+                        </div>--}}
+                    <div class="row">
+                        {{--<div class="col-9 col-md-10">
+                            <h2 class="section-title text-custom-primary mb-0 fs-large w-100 pl-2 pl-md-0">
+                                {{$category->homepage_selling_tagline}} {{$category->title}}
+                                <?php
+                                $SubCategoryId = 0;
+                                $GetFirstSubCategory = DB::table('subcategories')
+                                    ->where('category', '=', $category->id)
+                                    ->where('deleted_at', '=', null)
+                                    ->orderBy('order_no', 'ASC')
+                                    ->get();
+                                if (count($GetFirstSubCategory) > 0) {
+                                    $SubCategoryId = $GetFirstSubCategory[0]->id;
+                                }
+                                $CompareUrl = route('CompareRoute', ['slug' => $category->slug]) . '?sub='. $SubCategoryId .'&subSub=&range=1_1000000&brands=';
+                                ?>
+                                <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
+                                       class="form-check-input compareCheckBox ml-3"
+                                       onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
+                                <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
+                            </h2>
                         </div>
+                        <div class="col-3 col-md-2">
+                            <a href="{{route('CheckSlugRoute', ['slug' => $category->slug]) }}">
+                                <label for=""
+                                       class="form-check-label text-custom-primary cursor-pointer fs-14 pt-1 float-right pr-2 pr-md-0">See
+                                    all deals <i class="fa fa-arrow-right" aria-hidden="true"></i></label>
+                            </a>
+                        </div>--}}
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
+                    @php
+                        $Products = Illuminate\Support\Facades\DB::table('products')
+                                    ->where('category', $category->id)
+                                    ->where('homepage_status', 1)
+                                    ->where('deleted_at', null)
+                                    ->orderBy('order_no', 'ASC')
+                                    ->get();
+                        $List = \App\Helpers\SiteHelper::GetUserList();
+                        $index = $i;
+                    @endphp
+                    @foreach($Products as $index1 => $product)
+                        {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                    @endforeach
+                    <!-- Product - Start -->
+                    {{--@include('site.partials.product-template')--}}
+                    <!-- Product - End -->
                     </div>
                 </div>
             </div>

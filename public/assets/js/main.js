@@ -2043,7 +2043,7 @@
         nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right"></i></a>',
         responsive: [
             {
-                breakpoint: 374,
+                breakpoint: 399,
                 settings: {
                     arrows: false,
                     dots: true,
@@ -2098,6 +2098,9 @@
         ]
     });
 
+    /*Compare Page Slider*/
+    sliderInit();
+
     /*Product Gallery Slider*/
     $('.ltn__product-gallery-slider').slick({
         arrows: false,
@@ -2110,9 +2113,95 @@
         prevArrow: '<a class="slick-prev"><i class="fas fa-arrow-left" alt="Arrow Icon"></i></a>',
         nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right float-end" alt="Arrow Icon"></i></a>',
     });
+})(jQuery);
 
-    /*Compare Page Slider*/
+function sliderInit() {
     $('.ltn__product-gallery-slider-compare').slick({
+        centerMode: false,
+        centerPadding: '80px',
+        infinite: false,
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        mobileFirst:true,
+        prevArrow: '<a class="slick-prev"><i class="fas fa-arrow-left"></i></a>',
+        nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right"></i></a>',
+        responsive: [
+            {
+                breakpoint: 399,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    centerMode: false,
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }, {
+                breakpoint: 619,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    centerMode: false,
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            }, {
+                breakpoint: 767,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    centerMode: false,
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }, {
+                breakpoint: 991,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    centerMode: false,
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            }, {
+                breakpoint: 1024,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    centerMode: false,
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            }, {
+                breakpoint: 1079,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            }, {
+                breakpoint: 1349,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 1
+                }
+            }, {
+                breakpoint: 1439,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    slidesToShow: 6,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+    /*$('.ltn__product-gallery-slider-compare').slick({
         arrows: true,
         centerMode: false,
         centerPadding: '80px',
@@ -2162,5 +2251,5 @@
                 }
             }
         ]
-    });
-})(jQuery);
+    });*/
+}
