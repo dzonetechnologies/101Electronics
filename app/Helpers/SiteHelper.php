@@ -157,15 +157,15 @@ class SiteHelper
                     '</div>
                     <div class="product-category-square-bottom" onclick="return event.preventDefault();">
                         <div class="row fs-12">
-                            <div class="col-6 text-center py-2 product-category-square-btn border-right"
+                            <div class="col-6 text-center py-2 px-2 product-category-square-btn border-right"
                                  id="addToCartDiv_' . $index . $index1 . '" style="display: none; cursor: not-allowed;">
                                 Adding...
                             </div>
-                            <div class="col-6 text-center py-2 product-category-square-btn border-right cursor-pointer"
+                            <div class="col-6 text-center py-2 px-2 product-category-square-btn border-right cursor-pointer"
                                  onclick="AddToCart(this, \'' . $product->id . '\', \'' . $index . $index1 . '\');">
                                 Add to cart
                             </div>
-                            <div class="col-6 text-center py-2 product-category-square-btn cursor-pointer ' . ((in_array($product->id, $List)) ? 'bg-custom-primary text-white' : '') . '" onclick="AddToWishlist(\'Please login first to add product in your list.\', \''. $product->id . '\', this);">' .
+                            <div class="col-6 text-center py-2 px-2 product-category-square-btn cursor-pointer ' . ((in_array($product->id, $List)) ? 'bg-custom-primary text-white' : '') . '" onclick="AddToWishlist(\'Please login first to add product in your list.\', \''. $product->id . '\', this);">' .
                                 ((in_array($product->id, $List)) ? 'Wishlisted' : 'Wishlist') .
                             '</div>
                         </div>

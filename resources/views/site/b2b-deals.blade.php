@@ -15,9 +15,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4 d-flex align-items-center">
-                                        <div class="mt-5 mb-5" style="padding-top: 270px;">
-
-                                        </div>
+                                        <div class="mt-5 mb-5" style="padding-top: 270px;"></div>
                                     </div>
                                     <div class="col-md-8"></div>
                                 </div>
@@ -32,7 +30,6 @@
                             </video>
                         </div>
                     @endif
-
                 @endforeach
             </div>
         </div>
@@ -44,7 +41,6 @@
     <section class="mb-0 d-md-none">
         <div class="container-fluid">
             <div class="row main-slider">
-                Slide
                 @foreach($Sliders as $slider)
                     @if($slider->type == "image")
                         <img src="{{asset('public/storage/sliders/' . $slider->slide)}}"/>
@@ -65,16 +61,29 @@
 
     <section class="mt-5 mb-5">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-12 mb-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-12 mb-4 text-center">
                     <span class="section-title text-custom-primary text-center mb-0 heading-underline">
                         {{ucwords($Type)}} Appliances
                     </span>
                 </div>
-                <!-- Product - Start -->
-                @include('site.partials.product-template')
-                <!-- Product - End -->
+                {{-- Products --}}
+                @foreach($Products as $index1 => $product)
+                    {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                @endforeach
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+        let ProductCard = document.getElementsByClassName("product-card-difference");
+        if (typeof ProductCard !== "undefined") {
+            for (let i = 0; i < ProductCard.length; i++) {
+                ProductCard[i].classList.add("col-8");
+                ProductCard[i].classList.add("col-sm-4");
+                ProductCard[i].classList.add("col-md-4");
+                ProductCard[i].classList.add("col-lg-3");
+                ProductCard[i].classList.add("col-xl-2");
+            }
+        }
+    </script>
 @endsection

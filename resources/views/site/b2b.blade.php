@@ -31,17 +31,16 @@
             font-size: 13px;
         }
 
-        @media (min-width: 992px){
+        @media (min-width: 992px) {
             .btn-centre {
             }
         }
 
-        @media (max-width: 767px){
+        @media (max-width: 767px) {
             .btn-centre {
                 text-align: center;
             }
         }
-
     </style>
 
     {{--Slider Section--}}
@@ -111,11 +110,11 @@
     {{--Slider Section--}}
 
     @php
-    $B2BTree = \Illuminate\Support\Facades\DB::table('b2b_trees')
-        ->get();
-    $__Categories = '';
-    $__SubCategories = '';
-    $__SubSubCategories = '';
+        $B2BTree = \Illuminate\Support\Facades\DB::table('b2b_trees')
+            ->get();
+        $__Categories = '';
+        $__SubCategories = '';
+        $__SubSubCategories = '';
     @endphp
 
     <div class="container mt-5 mb-5"
@@ -142,7 +141,8 @@
                     }
                 @endphp
                 <div class="col-md-4 ">
-                    <a class="btn btn-custom-primary-b2b fs-15 fw-600 w-75 d-none d-md-block btn-centre " href="{{$DealsPageUrl}}">
+                    <a class="btn btn-custom-primary-b2b fs-15 fw-600 w-75 d-none d-md-block btn-centre "
+                       href="{{$DealsPageUrl}}">
                         {{ucwords($b2bTree->tree_type)}} Appliances
                     </a>
                     {{--Mobile Btn--}}
@@ -155,17 +155,20 @@
                     <div class="mt-4">
                         <ul class="StepProgress mb-0 mb-4 mt-4">
                             @foreach($Categories as $category)
-                                <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2" onclick="window.location.href='{{route('CheckSlugRoute', ['slug' => \App\Helpers\SiteHelper::GetCategoryFromId($category)[0]->slug])}}';"> {{--is-active--}}
+                                <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2"
+                                    onclick="window.location.href='{{route('CheckSlugRoute', ['slug' => \App\Helpers\SiteHelper::GetCategoryFromId($category)[0]->slug])}}';"> {{--is-active--}}
                                     <strong>{{\App\Helpers\SiteHelper::GetCategoryFromId($category)[0]->title}}</strong>
                                 </li>
                             @endforeach
                             @foreach($SubCategories as $subCategory)
-                                <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2" onclick="window.location.href='{{$DealsPageUrl}}';"> {{--is-active--}}
+                                <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2"
+                                    onclick="window.location.href='{{$DealsPageUrl}}';"> {{--is-active--}}
                                     <strong>{{\App\Helpers\SiteHelper::GetSubCategoryFromId($subCategory)[0]->title}}</strong>
                                 </li>
                             @endforeach
                             @foreach($SubSubCategories as $subSubCategory)
-                                <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2" onclick="window.location.href='{{$DealsPageUrl}}';"> {{--is-active--}}
+                                <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2"
+                                    onclick="window.location.href='{{$DealsPageUrl}}';"> {{--is-active--}}
                                     <strong>{{\App\Helpers\SiteHelper::GetSubSubCategoryFromId($subSubCategory)[0]->title}}</strong>
                                 </li>
                             @endforeach
@@ -185,32 +188,27 @@
         @endphp
         <section class="mb-5">
             <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-12 mb-2">
-                        <div class="row ltn__no-gutter">
-                            <div class="col-9 col-md-10">
-                                <h2 class="section-title text-custom-primary mb-0 fs-large w-100 pl-2 pl-md-0">
-                                    @if($index == 0)
-                                        Find the best large appliance.
-                                    @elseif($index == 1)
-                                        Quickly find your best product.
-                                    @elseif($index == 2)
-                                        Find the Best Built-In Appliances at  Discounts.
-                                    @endif
-                                </h2>
-                            </div>
-                            <div class="col-3 col-md-2">
-                                <a href="{{route('B2BRoute.deals', array($b2bTree->tree_type))}}">
-                                    <label for=""
-                                           class="form-check-label text-custom-primary cursor-pointer small pt-1 float-right pr-2 pr-md-0">See
-                                        all deals <i class="fa fa-arrow-right" aria-hidden="true"></i></label>
-                                </a>
-                            </div>
-                        </div>
+                <div class="row line-height-1-3 mb-2">
+                    <div class="col-7 col-sm-8">
+                        <h2 class="section-title text-custom-primary fs-15 mb-2">
+                            @if($index == 0)
+                                Find the best large appliance.
+                            @elseif($index == 1)
+                                Quickly find your best product.
+                            @elseif($index == 2)
+                                Find the Best Built-In Appliances at  Discounts.
+                            @endif
+                        </h2>
                     </div>
-
-                    <div class="col-md-12">
-                        <div class="row products-category-slider ltn__category-products-slider slick-arrow-1">
+                    <div class="col-5 col-sm-4">
+                        <a href="{{ route('B2BRoute.deals', array($b2bTree->tree_type)) }}">
+                            <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
+                                See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </label>
+                        </a>
+                    </div>
+                    {{--Products--}}
+                    <div class="col-12">
                         @php
                             $Products = Illuminate\Support\Facades\DB::table('products')
                                 ->where('deleted_at', null)
@@ -224,9 +222,10 @@
                                 ->get();
                             $List = \App\Helpers\SiteHelper::GetUserList();
                         @endphp
-                        <!-- Product - Start -->
-                        @include('site.partials.product-template')
-                        <!-- Product - End -->
+                        <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
+                            @foreach($Products as $index1 => $product)
+                                {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -293,7 +292,8 @@
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label class="form-title fw-500" for="products">Products</label>
-                                    <select class="form-control niceSelect-select2" name="products[]" id="products" multiple required>
+                                    <select class="form-control niceSelect-select2" name="products[]" id="products"
+                                            multiple required>
                                         <option value="" disabled="disabled">Select</option>
                                         @foreach($Products as $index => $product)
                                             <option value="{{$product->id}}">{{$product->name}}</option>
@@ -340,9 +340,10 @@
                             ->get();
                     @endphp
                     @if($GeneralSettings[0]->b2b != '')
-                        <img src="{{asset('public/storage/b2b') . '/' . $GeneralSettings[0]->b2b}}" class="img-fluid" style="width: 400px;" />
+                        <img src="{{asset('public/storage/b2b') . '/' . $GeneralSettings[0]->b2b}}" class="img-fluid"
+                             style="width: 400px;"/>
                     @else
-                        <img src="{{asset('public/storage/logo/b2b.png')}}" class="img-fluid" />
+                        <img src="{{asset('public/storage/logo/b2b.png')}}" class="img-fluid"/>
                     @endif
                 </div>
             </div>

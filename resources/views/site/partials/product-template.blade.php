@@ -219,7 +219,7 @@
     @endforeach
 @else
     @foreach($Products as $index1 => $product)
-        <div class="product-card-difference my-3">
+        <div class="col-md-3 product-card-difference my-3">
             <a href="{{route('CheckSlugRoute', ['slug' => $product->slug])}}">
                 <div class="product-category-square text-center">
                     @if($product->rating != null && $product->rating != 0)

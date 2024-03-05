@@ -1,48 +1,12 @@
 @extends('site.layouts.app')
 @section('content')
-    <style media="screen">
-        /*.product-category-square {
-            padding: 0 5px;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: none;
-            border: 1px solid #e2e2e2;
-            margin: auto;
-        }
-        .product-card-difference {
-            !*padding-left: 2.5px;*!
-            !*padding-right: 2.5px;*!
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .product-category-square-rating {
-            right: 0.5rem;
-        }
-
-        .product-category-square-discount {
-            left: 0;
-        }*/
-
-        .quick-contact {
-            background-color: #ffffff;
-            -webkit-box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
-            box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
-            padding: 12px;
+    <style type="text/css">
+        input:checked + .slider-sm {
+            background-color: #C71738;
         }
 
         input:checked + .slider-sm:before {
             background-color: white;
-            bottom: 4px;
-            content: "";
-            height: 10px;
-            left: 4px;
-            position: absolute;
-            transition: .4s;
-            width: 10px;
-        }
-
-        input:checked + .slider-sm {
-            background-color: #C71738;
         }
     </style>
     <input type="hidden" id="UrlSlug" value="{{$slug}}">
@@ -59,12 +23,14 @@
                         </p>
                         <hr class="mt-0 mb-2 opacity-75">
                         @foreach($SubCategories as $i => $sub)
-                            <div class="m-auto mb-2">
-                                <div class="d-flex align-items-center">
-                                    <span class="fs-14">{{$sub->title}}</span>
-                                    <label class="switch-sm" for="checkboxSubCat{{$i}}" style="margin-left: auto;">
+                            <div class="row align-items-center line-height-1-3 mb-2">
+                                <div class="col-8">
+                                    <div class="fs-13">{{$sub->title}}</div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <label class="switch-sm" for="checkboxSubCat{{$i}}">
                                         <input type="radio" name="subCatFilter" id="checkboxSubCat{{$i}}"
-                                               onchange="LoadSubSubCategory();ApplySubCategoryRunTimeFilters();"
+                                               onchange="LoadSubSubCategory(); ApplySubCategoryRunTimeFilters();"
                                                value="{{$sub->id}}" <?php if ($SelectedSubCategory != '') {
                                             if (intval($SelectedSubCategory) == $sub->id) {
                                                 echo 'checked';
@@ -76,25 +42,26 @@
                                             echo 'checked';
                                             $subcategoryslug = $sub->slug;
                                         } ?> />
-                                        <div class="slider-sm round"></div>
+                                        <span class="slider-sm round"></span>
                                     </label>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-
                     <div class="quick-contact mb-3">
                         <p class="fs-large fw-600 text-custom-primary mb-2">
                             Sub SubCategory
                         </p>
                         <hr class="mt-0 mb-2 opacity-75">
-                        <div class="m-auto mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="fs-14">All</span>
-                                <label class="switch-sm" for="checkboxSubSubCat" style="margin-left: auto;">
+                        <div class="row align-items-center line-height-1-3 mb-2">
+                            <div class="col-8">
+                                <div class="fs-13">All</div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <label class="switch-sm" for="checkboxSubSubCat">
                                     <input type="checkbox" id="checkboxSubSubCat" class="checkboxForSubSubCategory"
                                            name="subSubCatFilter[]"
-                                           onchange="CheckForAllSubSubCategory(this.checked);ApplyRunTimeFilters();"
+                                           onchange="CheckForAllSubSubCategory(this.checked); ApplyRunTimeFilters();"
                                            value="0" <?php
                                         $SubSubCategoryCheck = true;
                                         if ($SelectedSubSubCategory == '') {
@@ -102,7 +69,7 @@
                                             echo 'checked';
                                         } ?>
                                     />
-                                    <div class="slider-sm round"></div>
+                                    <span class="slider-sm round"></span>
                                 </label>
                             </div>
                         </div>
@@ -110,11 +77,12 @@
                         <div class="w-100" id="subSubCategoryDiv">
                             @if($__SubSubCategories != null)
                                 @foreach($__SubSubCategories as $index => $subSubCat)
-                                    <div class="m-auto mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <span class="fs-14">{{$subSubCat->title}}</span>
-                                            <label class="switch-sm" for="subSubCatFilter{{$index}}"
-                                                   style="margin-left: auto;">
+                                    <div class="row align-items-center line-height-1-3 mb-2">
+                                        <div class="col-8">
+                                            <div class="fs-13">{{$subSubCat->title}}</div>
+                                        </div>
+                                        <div class="col-4 text-end">
+                                            <label class="switch-sm" for="subSubCatFilter{{$index}}">
                                                 <input type="checkbox" class="checkboxForSubSubCategory"
                                                        name="subSubCatFilter[]" id="subSubCatFilter{{$index}}"
                                                        value="{{$subSubCat->id}}"
@@ -125,7 +93,7 @@
                                                 } else {
                                                     echo 'checked';
                                                 } ?> />
-                                                <div class="slider-sm round"></div>
+                                                <span class="slider-sm round"></span>
                                             </label>
                                         </div>
                                     </div>
@@ -133,7 +101,6 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="quick-contact mb-3">
                         <p class="fs-large fw-600 text-custom-primary mb-2">
                             Brands
@@ -145,10 +112,12 @@
                             $_Brands = json_decode(base64_decode($SelectedBrands));
                         }
                         ?>
-                        <div class="m-auto mb-2">
-                            <div class="d-flex align-items-center">
-                                <span class="fs-14">All ({{\App\Helpers\SiteHelper::GetProductsCountByBrand()}})</span>
-                                <label class="switch-sm" for="checkboxBrands" style="margin-left: auto;">
+                        <div class="row align-items-center line-height-1-3 mb-2">
+                            <div class="col-8">
+                                <div class="fs-13">All ({{\App\Helpers\SiteHelper::GetProductsCountByBrand()}})</div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <label class="switch-sm" for="checkboxBrands">
                                     <input type="checkbox" id="checkboxBrands" class="checkboxForBrands"
                                            name="CheckboxBrands[]" value="0"
                                            <?php if ($SelectedBrands != '') {
@@ -160,16 +129,18 @@
                                            } else {
                                                echo 'checked';
                                            } ?> onchange="CheckForAllBrands(this.checked);ApplyRunTimeFilters();"/>
-                                    <div class="slider-sm round"></div>
+                                    <span class="slider-sm round"></span>
                                 </label>
                             </div>
                         </div>
                         <input type="hidden" id="TotalBrandsCount" value="{{sizeof($Brands)}}">
                         @foreach($Brands as $i => $brand)
-                            <div class="m-auto mb-2">
-                                <div class="d-flex align-items-center">
-                                    <span class="fs-14">{{$brand->title}} ({{\App\Helpers\SiteHelper::GetProductsCountByBrand($brand->id)}})</span>
-                                    <label class="switch-sm" for="checkboxBrands{{$i}}" style="margin-left: auto;">
+                            <div class="row align-items-center line-height-1-3 mb-2">
+                                <div class="col-8">
+                                    <div class="fs-13">{{$brand->title}} ({{\App\Helpers\SiteHelper::GetProductsCountByBrand($brand->id)}})</div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <label class="switch-sm" for="checkboxBrands{{$i}}">
                                         <input type="checkbox" class="checkboxForBrands" name="CheckboxBrands[]"
                                                id="checkboxBrands{{$i}}" value="{{$brand->id}}"
                                                <?php if ($SelectedBrands != '') {
@@ -181,13 +152,12 @@
                                                } else {
                                                    echo 'checked';
                                                } ?> onchange="document.getElementById('checkboxBrands').checked = false; AllBrandsChecker();ApplyRunTimeFilters();"/>
-                                        <div class="slider-sm round"></div>
+                                        <span class="slider-sm round"></span>
                                     </label>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-
                     <div class="quick-contact mb-3">
                         <p class="fs-large fw-600 text-custom-primary mb-2">
                             Price Range ({{\App\Helpers\SiteHelper::$Currency}})
@@ -218,13 +188,11 @@
                             <div class="col-1"></div>
                         </div>
                     </div>
-
                     {{--<button class="btn btn-custom-primary w-100 fs-13 mt-2" type="button" onclick="ApplyFilters();">
                         <i class="fas fa-check"></i>&nbsp;
                         Apply
                     </button>--}}
                 </div>
-
                 <div class="col-12 col-md-8 col-lg-9 col-xxl-10" id="RecordSections">
                     @foreach($SubSubCategories as $index => $sub_subcategory)
                         <div class="row line-height-1-3 mb-2">
@@ -240,50 +208,49 @@
                                     </label>
                                 </a>
                             </div>
-                        </div>
-                        <div class="row">
+                            {{-- Products --}}
                             <div class="col-12">
                                 <div class="products-category-slider ltn__product-gallery-slider-compare slick-arrow-1">
-                                <?php
-                                $Products = array();
-                                if ($StartPrice != 0 && $EndPrice != 0) {
-                                    $Products = Illuminate\Support\Facades\DB::table('products')
-                                        ->where('deleted_at', '=', null)
-                                        ->where('category', '=', $Category[0]->id)
-                                        ->where('sub_subcategory', '=', $sub_subcategory->id)
-                                        ->where(function ($query) use ($_Brands, $SelectedSubCategory) {
-                                            if (sizeof($_Brands) > 0) {
-                                                $query->whereIn('products.brand', $_Brands);
-                                            }
-                                            if (intval($SelectedSubCategory) != 0) {
-                                                $query->where('products.sub_category', $SelectedSubCategory);
-                                            }
-                                        })
-                                        ->whereRaw(\Illuminate\Support\Facades\DB::raw('total_price >= ? AND total_price <= ?'), array($StartPrice, $EndPrice))
-                                        ->orderBy('order_no', 'ASC')
-                                        ->get();
-                                } else {
-                                    $Products = Illuminate\Support\Facades\DB::table('products')
-                                        ->where('deleted_at', null)
-                                        ->where('category', $Category[0]->id)
-                                        ->where('sub_subcategory', $sub_subcategory->id)
-                                        ->where(function ($query) use ($_Brands, $SelectedSubCategory) {
-                                            if (sizeof($_Brands) > 0) {
-                                                $query->whereIn('products.brand', $_Brands);
-                                            }
-                                            if (intval($SelectedSubCategory) != 0) {
-                                                $query->where('products.sub_category', $SelectedSubCategory);
-                                            }
-                                        })
-                                        ->orderBy('order_no', 'ASC')
-                                        ->get();
-                                }
-                                $List = \App\Helpers\SiteHelper::GetUserList();
-                                $ComparePage = true;
-                                ?>
-                                @foreach($Products as $index1 => $product)
-                                    {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
-                                @endforeach
+                                    <?php
+                                    $Products = array();
+                                    if ($StartPrice != 0 && $EndPrice != 0) {
+                                        $Products = Illuminate\Support\Facades\DB::table('products')
+                                            ->where('deleted_at', '=', null)
+                                            ->where('category', '=', $Category[0]->id)
+                                            ->where('sub_subcategory', '=', $sub_subcategory->id)
+                                            ->where(function ($query) use ($_Brands, $SelectedSubCategory) {
+                                                if (sizeof($_Brands) > 0) {
+                                                    $query->whereIn('products.brand', $_Brands);
+                                                }
+                                                if (intval($SelectedSubCategory) != 0) {
+                                                    $query->where('products.sub_category', $SelectedSubCategory);
+                                                }
+                                            })
+                                            ->whereRaw(\Illuminate\Support\Facades\DB::raw('total_price >= ? AND total_price <= ?'), array($StartPrice, $EndPrice))
+                                            ->orderBy('order_no', 'ASC')
+                                            ->get();
+                                    } else {
+                                        $Products = Illuminate\Support\Facades\DB::table('products')
+                                            ->where('deleted_at', null)
+                                            ->where('category', $Category[0]->id)
+                                            ->where('sub_subcategory', $sub_subcategory->id)
+                                            ->where(function ($query) use ($_Brands, $SelectedSubCategory) {
+                                                if (sizeof($_Brands) > 0) {
+                                                    $query->whereIn('products.brand', $_Brands);
+                                                }
+                                                if (intval($SelectedSubCategory) != 0) {
+                                                    $query->where('products.sub_category', $SelectedSubCategory);
+                                                }
+                                            })
+                                            ->orderBy('order_no', 'ASC')
+                                            ->get();
+                                    }
+                                    $List = \App\Helpers\SiteHelper::GetUserList();
+                                    $ComparePage = true;
+                                    ?>
+                                    @foreach($Products as $index1 => $product)
+                                        {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

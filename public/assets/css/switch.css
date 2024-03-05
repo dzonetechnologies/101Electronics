@@ -12,13 +12,13 @@
 .slider {
     background-color: transparent;
     border: 1px solid #C71738;
-    bottom: 0;
     cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
     transition: .4s;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .slider:before {
@@ -51,9 +51,13 @@ input:checked + .slider:before {
 /*SM*/
 .switch-sm {
     display: inline-block;
-    height: 20px;
     position: relative;
+    height: 20px;
     width: 45px;
+}
+
+.slider-sm.round {
+    border-radius: 34px;
 }
 
 .switch-sm input {
@@ -89,10 +93,6 @@ input:checked + .slider-sm {
 
 input:checked + .slider-sm:before {
     transform: translateX(26px);
-}
-
-.slider-sm.round {
-    border-radius: 34px;
 }
 
 .slider-sm.round:before {

@@ -2083,7 +2083,7 @@
                 settings: {
                     arrows: true,
                     dots: false,
-                    slidesToShow: 5,
+                    slidesToShow: 6,
                     slidesToScroll: 1
                 }
             }, {

@@ -258,14 +258,12 @@ class HomeController extends Controller
         $EndPrice = $request['EndPrice'];
         $FilterType = $request['FilterType'];
         $slug = $request['slug'];
-
         if ($StartPrice == "") {
             $StartPrice = 0;
         }
         if ($EndPrice == "") {
             $EndPrice = 0;
         }
-
         $Category = DB::table('categories')
             ->where('slug', '=', $slug)
             ->where('deleted_at', '=', null)
@@ -296,17 +294,13 @@ class HomeController extends Controller
                 ->orderBy('order_no', 'ASC')
                 ->get();
         }
-
         $PriceRange = DB::table('price_ranges')
             ->get();
-
         $Brands = DB::table('brands')
             ->where('deleted_at', '=', null)
             ->whereIn('id', explode(',', $Category[0]->brand))
             ->orderBy('order_no', 'ASC')
             ->get();
-
-        /* INNER HTML - START */
         $subcategoryslug = "all";
         $html = "";
         foreach($__SubSubCategories as $index => $sub_subcategory) {
@@ -324,8 +318,7 @@ class HomeController extends Controller
                         </label>
                     </a>
                 </div>
-            </div>
-            <div class="row">
+                <!-- Products -->
                 <div class="col-12">
                     <div class="products-category-slider ltn__product-gallery-slider-compare slick-arrow-1">';
                     $Products = [];
@@ -367,7 +360,6 @@ class HomeController extends Controller
             </div>';
         }
         echo json_encode($html);
-        /* INNER HTML - END */
     }
 
     function GetSubSubCategories(Request $request)

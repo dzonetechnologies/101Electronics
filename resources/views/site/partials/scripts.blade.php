@@ -238,7 +238,7 @@
         /*$("#SubCatDisplayText").text($(e).text());*/
     }
 
-    function LoadSubSubCategory() {
+    function LoadSubSubCategory () {
         let SubCategory = $("input[name='subCatFilter']:checked").val();
         if (SubCategory !== '0') {
             $.ajax({
@@ -251,16 +251,18 @@
                 let rows = '';
                 for (let i = 0; i < data.length; i++) {
                     rows += '' +
-                        '   <div class="m-auto mb-2">' +
-                        '       <div class="d-flex align-items-center">' +
-                        '           <span class="fs-14">' + data[i].title + '</span>' +
-                        '           <label class="switch-sm" for="subSubCatFilter' + i + '" style="margin-left: auto;">' +
-                        '               <input type="checkbox" class="checkboxForSubSubCategory" name="subSubCatFilter[]" id="subSubCatFilter' + i + '"' +
-                        '                   value="' + data[i].id + '" onchange="document.getElementById(\'checkboxSubSubCat\').checked = false; AllSubSubCategoryChecker();ApplyRunTimeFilters();" checked />' +
-                        '               <div class="slider-sm round"></div>' +
-                        '           </label>' +
-                        '       </div>' +
-                        '   </div>';
+                        '<div class="row align-items-center line-height-1-3 mb-2">' +
+                        '   <div class="col-8"><div class="fs-13">' + data[i].title + '</div></div>' +
+                        '   <div class="col-4 text-end">' +
+                        '       <label class="switch-sm" for="subSubCatFilter' + i + '">' +
+                        '           <input type="checkbox" class="checkboxForSubSubCategory" name="subSubCatFilter[]"' +
+                        '               id="subSubCatFilter' + i + '" value="' + data[i].id + '"' +
+                        '               onchange="document.getElementById(\'checkboxSubSubCat\').checked = false; AllSubSubCategoryChecker();ApplyRunTimeFilters();"' +
+                        '               checked>' +
+                        '               <span class="slider-sm round"></span>' +
+                        '       </label>' +
+                        '   </div>' +
+                        '</div>';
                 }
                 $("#subSubCategoryDiv").html(rows);
                 $("#checkboxSubSubCat").prop('checked', true);

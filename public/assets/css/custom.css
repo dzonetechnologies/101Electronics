@@ -380,6 +380,7 @@ body {
     /* background-color: #C71738; */
     color: #C71738;
     background-color: #ffffff;
+    /*padding: auto 0.8rem;*/
 }
 
 .product-category-square-btn:hover {
@@ -1389,4 +1390,11 @@ body {
         margin: 0 3px;
         white-space: nowrap;
     }
+}
+
+.quick-contact {
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
+    box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
+    padding: 12px;
 }

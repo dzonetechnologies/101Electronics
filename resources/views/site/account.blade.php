@@ -6,7 +6,7 @@
         }
 
         .account-tabs a.active {
-            background-color: {{\App\Helpers\SiteHelper::settings()['PrimaryColor']}}  !important;
+            background-color: {{\App\Helpers\SiteHelper::settings()['PrimaryColor']}}     !important;
         }
     </style>
 
@@ -98,7 +98,9 @@
                                             echo 'active show';
                                         } ?>" id="liton_tab_1_1">
                                             <div class="ltn__myaccount-tab-content-inner">
-                                                <p>Hello <strong>{{$CustomerInformation[0]->first_name . ' ' . $CustomerInformation[0]->last_name}}!</strong></p>
+                                                <p>Hello
+                                                    <strong>{{$CustomerInformation[0]->first_name . ' ' . $CustomerInformation[0]->last_name}}
+                                                        !</strong></p>
                                                 <p>From your account dashboard you can view your
                                                     <span>recent orders</span>, manage your <span>billing and shipping addresses</span>,
                                                     and <span>edit your password and account details</span>.</p>
@@ -128,7 +130,6 @@
                                             echo 'active show';
                                         } ?>" id="liton_tab_1_3">
                                             <div class="ltn__myaccount-tab-content-inner">
-                                                <div class="row">
                                                 @php
                                                     $Products = Illuminate\Support\Facades\DB::table('products')
                                                                 ->join('wish_lists', 'products.id', '=', 'wish_lists.product_id')
@@ -140,10 +141,9 @@
                                                     $AccountPage = true;
                                                     $index = 0;
                                                 @endphp
-                                                <!-- Product - Start -->
-                                                @include('site.partials.product-template')
-                                                <!-- Product - End -->
-                                                </div>
+                                                @foreach($Products as $index1 => $product)
+                                                    {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="liton_tab_1_4">
@@ -153,52 +153,62 @@
                                                 <div class="row">
                                                     <div class="col-md-6 col-12 learts-mb-30">
                                                         <h4>Billing Address
-                                                            <small class="badge-custom-danger cursor-pointer" onclick="EditAddress('Billing');">edit</small>
+                                                            <small class="badge-custom-danger cursor-pointer"
+                                                                   onclick="EditAddress('Billing');">edit
+                                                            </small>
                                                         </h4>
                                                         <address>
-                                                            <p class="mb-2"><strong>{{$CustomerInformation[0]->first_name . ' ' . $CustomerInformation[0]->last_name}}</strong></p>
+                                                            <p class="mb-2">
+                                                                <strong>{{$CustomerInformation[0]->first_name . ' ' . $CustomerInformation[0]->last_name}}</strong>
+                                                            </p>
                                                             <?php
                                                             $Address = "";
-                                                            if($CustomerInformation[0]->billing_address != ''){
+                                                            if ($CustomerInformation[0]->billing_address != '') {
                                                                 $Address .= $CustomerInformation[0]->billing_address . '<br>';
                                                             }
-                                                            if($CustomerInformation[0]->billing_city != ''){
+                                                            if ($CustomerInformation[0]->billing_city != '') {
                                                                 $Address .= $CustomerInformation[0]->billing_city;
                                                             }
-                                                            if($CustomerInformation[0]->billing_state != ''){
+                                                            if ($CustomerInformation[0]->billing_state != '') {
                                                                 $Address .= ', ' . $CustomerInformation[0]->billing_state . ' ';
                                                             }
                                                             $Address .= $CustomerInformation[0]->billing_zipcode;
-                                                            if($Address != ''){
+                                                            if ($Address != '') {
                                                                 echo '<p class="mb-2">' . $Address . '</p>';
                                                             }
                                                             ?>
-                                                            <p class="mb-0">Mobile: <b>{{$CustomerInformation[0]->phone}}</b></p>
+                                                            <p class="mb-0">Mobile:
+                                                                <b>{{$CustomerInformation[0]->phone}}</b></p>
                                                         </address>
                                                     </div>
                                                     <div class="col-md-6 col-12 learts-mb-30">
                                                         <h4>Shipping Address
-                                                            <small class="badge-custom-danger cursor-pointer" onclick="EditAddress('Shipping');">edit</small>
+                                                            <small class="badge-custom-danger cursor-pointer"
+                                                                   onclick="EditAddress('Shipping');">edit
+                                                            </small>
                                                         </h4>
                                                         <address>
-                                                            <p class="mb-2"><strong>{{$CustomerInformation[0]->first_name . ' ' . $CustomerInformation[0]->last_name}}</strong></p>
+                                                            <p class="mb-2">
+                                                                <strong>{{$CustomerInformation[0]->first_name . ' ' . $CustomerInformation[0]->last_name}}</strong>
+                                                            </p>
                                                             <?php
                                                             $Address = "";
-                                                            if($CustomerInformation[0]->shipping_address != ''){
+                                                            if ($CustomerInformation[0]->shipping_address != '') {
                                                                 $Address .= $CustomerInformation[0]->shipping_address . '<br>';
                                                             }
-                                                            if($CustomerInformation[0]->shipping_city != ''){
+                                                            if ($CustomerInformation[0]->shipping_city != '') {
                                                                 $Address .= $CustomerInformation[0]->shipping_city;
                                                             }
-                                                            if($CustomerInformation[0]->shipping_state != ''){
+                                                            if ($CustomerInformation[0]->shipping_state != '') {
                                                                 $Address .= ', ' . $CustomerInformation[0]->shipping_state . ' ';
                                                             }
                                                             $Address .= $CustomerInformation[0]->shipping_zipcode;
-                                                            if($Address != ""){
+                                                            if ($Address != "") {
                                                                 echo '<p class="mb-2">' . $Address . '</p>';
                                                             }
                                                             ?>
-                                                            <p class="mb-0">Mobile: <b>{{$CustomerInformation[0]->phone}}</b></p>
+                                                            <p class="mb-0">Mobile:
+                                                                <b>{{$CustomerInformation[0]->phone}}</b></p>
                                                         </address>
                                                     </div>
                                                 </div>
@@ -209,22 +219,31 @@
                                                 <p>The following addresses will be used on the checkout page by
                                                     default.</p>
                                                 <div class="ltn__form-box">
-                                                    <form action="{{route('home.account.details.update')}}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{route('home.account.details.update')}}"
+                                                          method="post" enctype="multipart/form-data">
                                                         @csrf
 
                                                         <div class="row mb-50">
                                                             <div class="col-md-6">
                                                                 <label for="ltn__first_name">First name:</label>
-                                                                <input type="text" id="ltn__first_name" name="ltn__first_name" value="{{$CustomerInformation[0]->first_name}}" required>
+                                                                <input type="text" id="ltn__first_name"
+                                                                       name="ltn__first_name"
+                                                                       value="{{$CustomerInformation[0]->first_name}}"
+                                                                       required>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label for="ltn__last_name">Last name:</label>
-                                                                <input type="text" id="ltn__last_name" name="ltn__last_name" value="{{$CustomerInformation[0]->last_name}}" required>
+                                                                <input type="text" id="ltn__last_name"
+                                                                       name="ltn__last_name"
+                                                                       value="{{$CustomerInformation[0]->last_name}}"
+                                                                       required>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label>Display Email:</label>
                                                                 <input type="email" name="ltn__email"
-                                                                       placeholder="example@example.com" value="{{$CustomerInformation[0]->email}}" readonly>
+                                                                       placeholder="example@example.com"
+                                                                       value="{{$CustomerInformation[0]->email}}"
+                                                                       readonly>
                                                             </div>
                                                         </div>
                                                         <fieldset>
@@ -263,6 +282,5 @@
         </div>
     </div>
     <!-- WISHLIST AREA START -->
-
     @include('site.includes.editAddressModal')
 @endsection
