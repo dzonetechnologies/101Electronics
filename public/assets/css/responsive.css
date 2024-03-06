@@ -160,15 +160,24 @@
 
 /* LG Devices */
 @media (min-width: 992px) and (max-width: 1024px)  {
-
+    .header-logo-lg {
+        width: 100%;
+        height: 80px;
+    }
 }
 
 /* XL Devices */
 @media (min-width: 1025px) and (max-width: 1399px)  {
-
+    .header-logo-lg {
+        width: 100%;
+        height: 90px;
+    }
 }
 
 /* XXL Devices */
 @media (min-width: 1400px) {
-
+    .header-logo-lg {
+        width: 100%;
+        height: 75px;
+    }
 }

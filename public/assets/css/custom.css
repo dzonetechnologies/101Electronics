@@ -120,7 +120,7 @@ body {
 }
 
 /*Header*/
-.header-logo-sm img {
+.header-logo-sm img, .header-logo-lg img {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -223,6 +223,19 @@ body {
 /*Footer*/
 
 /*Home Page*/
+.slider-image {
+    width: 100%;
+    height: 300px;
+}
+
+.slider-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: center center;
+    padding: 0;
+}
+
 .main-slider .slick-dots {
     margin: 1rem 0 0 0;
 }

@@ -49,9 +49,10 @@ $Logo = $GeneralSettings[0]->logo;
 $WishList = \App\Helpers\SiteHelper::GetUserList();
 $CartController = new \App\Http\Controllers\CartController();
 $CartCount = $CartController->CartCount(request());
+$Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted_at', null)->orderBy('order_no', 'ASC')->get();
 ?>
 
-<!-- For Mobile -->
+{{-- For Mobile --}}
 <section class="bg-custom-secondary text-black fs-13 d-lg-none">
     <div class="container-fluid">
         <div class="row">
@@ -67,9 +68,9 @@ $CartCount = $CartController->CartCount(request());
 </section>
 {{-- For Desktop --}}
 <section class="bg-custom-secondary text-white fs-13 d-none d-lg-block">
-    <div class="container-fluid">
+    <div class="container py-1">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12">
                 <span class="announcement-color">
                   {{$GeneralSettings[0]->announcement}}
                 </span>
@@ -82,7 +83,6 @@ $CartCount = $CartController->CartCount(request());
         </div>
     </div>
 </section>
-
 {{-- Main Header --}}
 <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
     <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
@@ -212,22 +212,21 @@ $CartCount = $CartController->CartCount(request());
                 </div>
             </div>
         </div>
-
         {{-- For Desktop --}}
-        <div class="container-fluid d-none d-lg-block">
-            <div class="row mb-2">
-                <div class="col col-md-2">
-                    <div class="site-logo-wrap">
-                        <div class="site-logo">
-                            <a href="{{route('HomeRoute')}}">
-                                <img src="{{asset('public/storage/logo/' . $Logo)}}"
-                                     alt="Logo" style="width: 172px; max-width: 172px;"></a>
-                        </div>
+        <div class="container d-none d-lg-block">
+            <div class="row mt-2">
+                {{-- Logo --}}
+                <div class="col col-lg-2">
+                    <div class="header-logo-lg">
+                        <img src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"
+                             class="img-fluid">
                     </div>
                 </div>
-                <div class="col col-md-10 header-menu-column">
+                {{-- Search & Links --}}
+                <div class="col col-lg-10 header-menu-column">
                     <div class="header-menu">
-                        <div class="row">
+                        <div class="row align-items-center">
+                            {{-- Search --}}
                             <div class="col-6 pr-0">
                                 <i class="fa fa-search absolute-search-icon"></i>
                                 <input type="text" class="form-control search-bar border-radium-5 mb-0"
@@ -242,6 +241,7 @@ $CartCount = $CartController->CartCount(request());
                                 </div>
                                 {{--Suggestion Box--}}
                             </div>
+                            {{-- Links --}}
                             <div class="col-6 pl-0 upper-menu">
                                 <nav>
                                     <div class="ltn__main-menu">
@@ -297,16 +297,8 @@ $CartCount = $CartController->CartCount(request());
                         </div>
                     </div>
                 </div>
-                <div class="col ltn__header-options"></div>
-            </div>
-        </div>
-
-        @php
-            $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted_at', null)->orderBy('order_no', 'ASC')->get();
-        @endphp
-        <div class="container">
-            <div class="row d-none d-md-flex">
-                <div class="col col-md-12 header-menu-column">
+                {{-- Categories Links --}}
+                <div class="col col-12 mt-2 header-menu-column">
                     <div class="header-menu">
                         <div class="row">
                             <div class="col-12 upper-menu">
@@ -398,63 +390,49 @@ $CartCount = $CartController->CartCount(request());
                         </div>
                     </div>
                 </div>
-                <div class="col ltn__header-options"></div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row d-none d-lg-block py-2 bottomBarSetting" id="header-marquee-lg">
-                <marquee scrollamount="5" onMouseOver="this.stop();" onMouseOut="this.start();">
-                    <div class="col-md-12 d-flex text-custom-primary">
-                        <div class="w-30 d-flex align-items-center">
+                {{-- Marquee Slider --}}
+                <div class="col-12 my-2">
+                    <marquee class="text-custom-primary" scrollamount="4" onMouseOver="this.stop();" onMouseOut="this.start();"  id="header-marquee-lg">
+                        <div class="d-flex align-items-center line-height-1-3 fs-13">
+                            {{-- Item 1 --}}
                             <img src="{{asset('public/assets/images/header/camera.png')}}" alt="CAMERA"
-                                 class="img-fluid"
-                                 style="width: 32px; margin-right: 10px;"/>
-                            <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
-                                ShopLive 10AM - 10PM, video call an expert to help you shop
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-4">
+                                ShopLive 10AM - 10PM, video call an expert to help you shop &nbsp;
                             </div>
-                        </div>
-
-                        <div class="w-30 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/van.png')}}" alt="VAN" class="img-fluid"
-                                 style="width: 32px; margin-right: 10px;"/>
-                            <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
+                            {{-- Item 2 --}}
+                            <img src="{{asset('public/assets/images/header/van.png')}}" alt="VAN"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-4">
                                 Shipping charges will be confirmed by our representative on call at order confirmation.
-                                For transactions over Rs. 100,000,
-                                we will require CNIC of the customer for consumer safety. Due to currency devaluation,
+                                For transactions over Rs. 100,000, we will require CNIC of the customer for consumer safety. Due to currency devaluation,
                                 price may change without any prior notice.
                             </div>
+                            {{-- Item 3 --}}
+                            {{--<img src="{{asset('public/assets/images/header/prize.png')}}" alt="VAN"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-3">
+                                1 Month free replacement Warranty (BOSCH)
+                            </div>--}}
+                            {{-- Item 4 --}}
+                            {{--<img src="{{asset('public/assets/images/header/referral-code.png')}}" alt="VAN"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-3">
+                                Referral Code
+                            </div>--}}
                         </div>
-
-                    <!--   <div class="w-25 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/Try It (1).png')}}" alt="PRIZE" class="img-fluid"
-                                 style="width: 24px; margin-right: 10px;"/>
-                            <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
-                                 1 Month free replacement Warranty (BOSCH)
-                            </div>
-                        </div>
-
-                        <div class="w-15 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/referral-code.png')}}" alt="referral-code"
-                                 class="img-fluid" style="width: 32px; margin-right: 10px;"/>
-                            <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
-                                OReferral Code
-                            </div>
-                        </div> -->
-                    </div>
-                </marquee>
+                    </marquee>
+                </div>
                 <div class="col ltn__header-options"></div>
             </div>
-            {{--Desktop Header--}}
         </div>
     </div>
 </header>
-<!-- HEADER AREA END -->
 
 <!-- Utilize Mobile Menu Start -->
 <div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
     <div class="ltn__utilize-menu-inner ltn__scrollbar">
-        <div class="ltn__utilize-menu-head" style=" margin-top: -10px;margin-bottom:0px;">
+        <div class="ltn__utilize-menu-head" style=" margin-top: -10px; margin-bottom:0;">
             <div class="site-logo">
                 <a href="{{url('/')}}"><img
                             src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"

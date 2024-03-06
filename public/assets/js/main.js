@@ -1952,11 +1952,11 @@
         }
         if (scroll < scrollLimit) {
             $(".ltn__header-sticky").removeClass("sticky-active");
-            $("#header-marquee-lg").addClass("d-lg-block");
+            $("#header-marquee-lg").show();//.addClass("d-lg-block");
             $("#header-marquee-sm").show();
         } else {
             $(".ltn__header-sticky").addClass("sticky-active");
-            $("#header-marquee-lg").removeClass("d-lg-block");
+            $("#header-marquee-lg").hide();//.removeClass("d-lg-block");
             $("#header-marquee-sm").hide();
         }
     });

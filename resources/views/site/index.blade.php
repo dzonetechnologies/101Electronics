@@ -4,26 +4,24 @@
     @php
         $Sliders = Illuminate\Support\Facades\DB::table('sliders')->where('page', 'home' )->where('screen', 'Desktop' )->orderBy('order_no', 'ASC')->get();
     @endphp
-    <section class="mb-0 d-none d-md-block" id="homePage">
-        <div class="container-fluid">
+    <section class="mb-0 d-none d-lg-block" id="homePage">
+        <div class="container">
             <div class="row main-slider">
                 {{-- Slide --}}
                 @foreach($Sliders as $slider)
                     @if($slider->type == "image")
                         <a href="{{$slider->link}}">
-                            <div class="col-md-12"
-                                 style="background: url('{{asset('public/storage/sliders/' . $slider->slide)}}') no-repeat center center; background-size: cover;padding-left: 0px; padding-right: 0px;">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4 d-flex align-items-center">
-                                            <div class="mt-5 mb-5" style="padding-top: 270px;">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8"></div>
+                            <div class="col-lg-12 slider-image">
+                                <img src="{{asset('public/storage/sliders/' . $slider->slide)}}" class="img-fluid" alt="Slider Img">
+                            </div>
+                            {{--<div class="col-lg-12"
+                                 style="background: url('{{asset('public/storage/sliders/' . $slider->slide)}}') no-repeat center center; background-size: contain; padding-left: 0; padding-right: 0; "> --}}{{-- width: 100%; height: 270px; --}}{{--
+                                <div class="row">
+                                    <div class="col-lg-12 d-flex align-items-center">
+                                        <div class="mt-5 mb-5" style="padding-top: 270px;"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                         </a>
                     @elseif($slider->type == "video")
                         <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
@@ -34,7 +32,6 @@
                             </video>
                         </div>
                     @endif
-
                 @endforeach
             </div>
         </div>
@@ -43,7 +40,7 @@
     @php
         $Sliders = Illuminate\Support\Facades\DB::table('sliders')->where('page', 'home')->where('screen', 'Mobile' )->orderBy('order_no', 'ASC')->get();
     @endphp
-    <section class="mb-0 d-md-none" id="homePage">
+    <section class="mb-0 d-lg-none" id="homePage">
         <div class="container-fluid">
             <div class="row main-slider">
                 {{-- Slide --}}
