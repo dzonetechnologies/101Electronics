@@ -2,19 +2,19 @@
     .ltn__main-menu li ul li {
         border-top: none;
     }
+
     .announcement-color {
         color: #ffffff;
-       
-    }
-    .design{
-
-        hover:border-bottom 1px solid #CA2645;
 
     }
-    .bg-custom-secondary{
-           background-color :  #C71836;
-       }
-     
+
+    .design:hover {
+        border-bottom: 1px solid #CA2645;
+    }
+
+    .bg-custom-secondary {
+        background-color: #C71836;
+    }
 
     @media (min-width: 991px) {
         .mega-menu.column-4 > li, .mega-menu.column-5 > li, .mega-menu.column-6 > li, .mega-menu.column-7 > li, .mega-menu.column-8 > li, .mega-menu.column-9 > li, .mega-menu.column-10 > li, .mega-menu.column-11 > li, .mega-menu.column-12 > li {
@@ -30,64 +30,192 @@
         }
 
         .bottomBarSetting {
-            background-color: #ffffff; 
-            
+            background-color: #ffffff;
         }
+
         .announcement-color {
             color: #ffffff;
         }
-       .bg-custom-secondary{
-           background-color :  #C71836;
-       }
-        
-        
+
+        .bg-custom-secondary {
+            background-color: #C71836;
+        }
     }
 </style>
-<section class="bg-custom-secondary text-white fs-13 d-none d-md-block">
+
+<?php
+$GeneralSettings = \Illuminate\Support\Facades\DB::table('general_settings')->get();
+$Logo = $GeneralSettings[0]->logo;
+$WishList = \App\Helpers\SiteHelper::GetUserList();
+$CartController = new \App\Http\Controllers\CartController();
+$CartCount = $CartController->CartCount(request());
+?>
+
+<!-- For Mobile -->
+<section class="bg-custom-secondary text-black fs-13 d-lg-none">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <span class="announcement-color">
-                  {{$GeneralSettings[0]->announcement}}
-                </span>
-                
-                <a href="{{route('B2BRoute')}}" class="float-end">B2B</a>
-                <a href="{{route('CareRepairRoute')}}" class="mr-3 float-end">Care & Repair</a>
-                <a href="{{route('clearanceSale')}}" class="mr-3 float-end">Clearance Sale</a>
-                <a href="{{route('DiscountVoucherRoute')}}" class="mr-3 float-end">Discount Vouchers</a>
-                <a href="{{route('AboutUsRoute')}}" class="mr-3 float-end">About Us</a>
-              
-            </div>
-        </div>
-    </div>
-</section>
-<!--For Mobile-->
-<section class="bg-custom-secondary text-black fs-13 d-md-none">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12" style="margin-bottom:-7px;">
+            <div class="col-12 py-1 line-height-1-3"> {{-- style="margin-bottom:-7px;" --}}
                 <marquee scrollamount="3" onMouseOver="this.stop();" onMouseOut="this.start();">
-                    <span style="text-align: center;" class="announcement-color">
-                    {{$GeneralSettings[0]->announcement}}
+                    <span class="text-center announcement-color"> {{-- style="text-align: center;" --}}
+                        {{$GeneralSettings[0]->announcement}}
                     </span>
                 </marquee>
             </div>
         </div>
     </div>
 </section>
+{{-- For Desktop --}}
+<section class="bg-custom-secondary text-white fs-13 d-none d-lg-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="announcement-color">
+                  {{$GeneralSettings[0]->announcement}}
+                </span>
+                <a href="{{route('B2BRoute')}}" class="float-end">B2B</a>
+                <a href="{{route('CareRepairRoute')}}" class="mr-3 float-end">Care & Repair</a>
+                <a href="{{route('clearanceSale')}}" class="mr-3 float-end">Clearance Sale</a>
+                <a href="{{route('DiscountVoucherRoute')}}" class="mr-3 float-end">Discount Vouchers</a>
+                <a href="{{route('AboutUsRoute')}}" class="mr-3 float-end">About Us</a>
+            </div>
+        </div>
+    </div>
+</section>
 
+{{-- Main Header --}}
 <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
     <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
-        <div class="container-fluid">
-            {{--Desktop Header--}}
-            <?php
-            $GeneralSettings = \Illuminate\Support\Facades\DB::table('general_settings')->get();
-            $Logo = $GeneralSettings[0]->logo;
-            $WishList = \App\Helpers\SiteHelper::GetUserList();
-            $CartController = new \App\Http\Controllers\CartController();
-            $CartCount = $CartController->CartCount(request());
-            ?>
-            <div class="row mb-2 d-none d-md-flex">
+        {{-- For Mobile --}}
+        <div class="container-fluid d-lg-none">
+            <div class="row mt-2">
+                {{-- Logo --}}
+                <div class="col col-4 col-md-3 pe-0">
+                    {{--<div class="site-logo-wrap pl-2">
+                        <div class="site-logo">
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"
+                                     class="img-fluid"> --}}{{-- style="width: 120px; max-width: 120px;" --}}{{--
+                            </a>
+                        </div>
+                    </div>--}}
+                    <a href="{{url('/')}}">
+                        <div class="header-logo-sm">
+                            <img src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"
+                                 class="img-fluid"> {{-- style="width: 120px; max-width: 120px;" --}}
+                        </div>
+                    </a>
+                </div>
+                {{-- Links --}}
+                <div class="col col-8 col-md-9 ps-0">
+                    <div class="row ltn__no-gutter align-items-center justify-content-end fs-12">
+                        <div class="col-2 col-md-1 me-1 me-sm-0 text-center">
+                            @if(\Illuminate\Support\Facades\Auth::check())
+                                <a href="{{route('home.account')}}">
+                                    <i class="fa fa-user text-custom-primary"></i>
+                                    <br>
+                                    <span>Account</span>
+                                </a>
+                            @else
+                                <a href="{{route('login')}}">
+                                    <i class="fa fa-user text-custom-primary"></i>
+                                    <br>
+                                    <span>Sign In</span>
+                                </a>
+                            @endif
+                        </div>
+                        <div class="col-2 col-md-1 me-1 me-sm-0 text-center">
+                            <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                <i class="fa fa-shopping-cart text-custom-primary"></i> <span
+                                        id="headerCartCountM"><?php if ($CartCount > 0) {
+                                        echo "<sup>" . $CartCount . "</sup>";
+                                    } ?>
+                                    </span>
+                                <br>
+                                <span>Cart</span>
+                            </a>
+                        </div>
+                        <div class="col-2 col-md-1 me-1 me-sm-0 text-center">
+                            <a href="javascript:void(0);"
+                               onclick="AddToWishlist('Please login first to view your list.', '');"><i
+                                        class="fa fa-heart text-custom-primary"></i> <span
+                                        id="headerWishListCountM"><?php if (sizeof($WishList) > 0) {
+                                        echo "<sup>" . sizeof($WishList) . "</sup>";
+                                    } ?></span>
+                                <br>
+                                <span>Wishlist</span>
+                            </a>
+                        </div>
+                        <div class="col-2 col-md-1 line-height-1-3 text-center" id="mobile-menu-toggle-btn">
+                            <div class="mobile-menu-toggle">
+                                <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
+                                    <svg viewBox="0 0 800 600">
+                                        <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+                                              id="top"></path>
+                                        <path d="M300,320 L540,320" id="middle"></path>
+                                        <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+                                              id="bottom"
+                                              transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Search Bar --}}
+                <div class="col-12 mt-2">
+                    <i class="fa fa-search absolute-search-icon mr-2 mt-0"></i>
+                    <input type="text" class="form-control search-bar border-radium-5 mb-0"
+                           placeholder="Search for products....."
+                           id="search-bar-input-m"
+                           onclick="ShowSearchSuggestionsM();"
+                           onkeyup="ShowSearchSuggestionsM();"
+                           style="box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);">
+                    {{--Suggestion Box--}}
+                    <div class="suggestions-m" style="display: none;" onclick="ShowSearchSuggestionsM();">
+                        <ul class="container mb-0" role="listbox" id="search-results-m"></ul>
+                    </div>
+                    {{--Suggestion Box--}}
+                </div>
+                {{-- Marquee Slider --}}
+                <div class="col-12 my-2">
+                    <marquee class="text-custom-primary" scrollamount="4" onMouseOver="this.stop();" onMouseOut="this.start();"  id="header-marquee-sm">
+                        <div class="d-flex align-items-center line-height-1-3 fs-10">
+                            {{-- Item 1 --}}
+                            <img src="{{asset('public/assets/images/header/camera.png')}}" alt="CAMERA"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-3">
+                                ShopLive 10AM - 10PM, video call an expert to help you shop &nbsp;
+                            </div>
+                            {{-- Item 2 --}}
+                            <img src="{{asset('public/assets/images/header/van.png')}}" alt="VAN"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-3">
+                                Shipping charges will be confirmed by our representative on call at order confirmation.
+                                For transactions over Rs. 100,000, we will require CNIC of the customer for consumer safety. Due to currency devaluation,
+                                price may change without any prior notice.
+                            </div>
+                            {{-- Item 3 --}}
+                            {{--<img src="{{asset('public/assets/images/header/prize.png')}}" alt="VAN"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-3">
+                                1 Month free replacement Warranty (BOSCH)
+                            </div>--}}
+                            {{-- Item 4 --}}
+                            {{--<img src="{{asset('public/assets/images/header/referral-code.png')}}" alt="VAN"
+                                 class="img-fluid" style="width: 20px;">
+                            <div class="ms-2 me-3">
+                                Referral Code
+                            </div>--}}
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+
+        {{-- For Desktop --}}
+        <div class="container-fluid d-none d-lg-block">
+            <div class="row mb-2">
                 <div class="col col-md-2">
                     <div class="site-logo-wrap">
                         <div class="site-logo">
@@ -107,13 +235,10 @@
                                        id="search-bar-input"
                                        onclick="ShowSearchSuggestions();"
                                        onkeyup="ShowSearchSuggestions();"
-                                       style="box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);"/>
-
+                                       style="box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);">
                                 {{--Suggestion Box--}}
                                 <div class="suggestions" style="display: none;" onclick="ShowSearchSuggestions();">
-                                    <ul class="container mb-0" role="listbox" id="search-results">
-
-                                    </ul>
+                                    <ul class="container mb-0" role="listbox" id="search-results"></ul>
                                 </div>
                                 {{--Suggestion Box--}}
                             </div>
@@ -121,43 +246,49 @@
                                 <nav>
                                     <div class="ltn__main-menu">
                                         <ul class="float-end">
-                                            <li class="menu-icon"><a href="javascript:void(0);"
-                                                                     onclick="AddToWishlist('Please login first to view your list.', '');"><i
-                                                            class="fa fa-heart text-custom-primary"></i> <span
+                                            <li class="menu-icon">
+                                                <a href="javascript:void(0);"
+                                                   onclick="AddToWishlist('Please login first to view your list.', '');">
+                                                    <i class="fa fa-heart text-custom-primary"></i> <span
                                                             id="headerWishListCount"><?php if (sizeof($WishList) > 0) {
-                                                            echo "<sup>" . sizeof($WishList) . "</sup>";
-                                                        } ?></span> Wishlist</a>
+                                                                echo "<sup>" . sizeof($WishList) . "</sup>";
+                                                            } ?></span> Wishlist
+                                                </a>
                                             </li>
-                                            <li class="menu-icon"><a href="#ltn__utilize-cart-menu"
-                                                                     class="ltn__utilize-toggle"><i
-                                                            class="fa fa-shopping-cart text-custom-primary"></i> <span
+                                            <li class="menu-icon">
+                                                <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                                    <i class="fa fa-shopping-cart text-custom-primary"></i> <span
                                                             id="headerCartCount"><?php if ($CartCount > 0) {
                                                             echo "<sup>" . $CartCount . "</sup>";
                                                         } ?></span>
-                                                    Cart</a></li>
-                                            <li class="menu-icon"><a href="{{route('StoresRoute')}}"><i
-                                                            class="fa fa-map-marker-alt text-custom-primary"></i> Stores</a>
+                                                    Cart
+                                                </a>
+                                            </li>
+                                            <li class="menu-icon">
+                                                <a href="{{route('StoresRoute')}}">
+                                                    <i class="fa fa-map-marker-alt text-custom-primary"></i> Stores
+                                                </a>
                                             </li>
                                             @if(\Illuminate\Support\Facades\Auth::check())
-                                                <li class="menu-icon"><a href="{{route('home.account')}}"><i
-                                                                class="fa fa-user text-custom-primary"></i>
-                                                        <span>My Account</span></a></li>
-                                                <li class="menu-icon"><a><i
-                                                                class="fas fa-sign-out-alt  text-custom-primary"></i><a
-                                                                href="javascript:void(0);"
-                                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span>
-
-                                                            <form id="logout-form" action="{{ route('logout') }}"
-                                                                  method="POST"
-                                                                  class="d-none">
-                                                                @csrf
-                                                            </form>
-                                                        </a>
+                                                <li class="menu-icon">
+                                                    <a href="{{route('home.account')}}">
+                                                        <i class="fa fa-user text-custom-primary"></i>
+                                                        <span>My Account</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-icon">
+                                                    <a href="{{ route('user.logout') }}">
+                                                        <i class="fas fa-sign-out-alt text-custom-primary"></i>
+                                                        <span>Logout</span>
+                                                    </a>
                                                 </li>
                                             @else
-                                                <li class="menu-icon"><a href="{{route('login')}}"><i
-                                                                class="fa fa-user text-custom-primary"></i>
-                                                        <span>Sign In</span></a></li>
+                                                <li class="menu-icon">
+                                                    <a href="{{route('login')}}">
+                                                        <i class="fa fa-user text-custom-primary"></i>
+                                                        <span>Sign In</span>
+                                                    </a>
+                                                </li>
                                             @endif
                                         </ul>
                                     </div>
@@ -174,14 +305,14 @@
             $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted_at', null)->orderBy('order_no', 'ASC')->get();
         @endphp
         <div class="container">
-            <div class="row d-none d-md-flex mb-2">
+            <div class="row d-none d-md-flex">
                 <div class="col col-md-12 header-menu-column">
                     <div class="header-menu">
                         <div class="row">
                             <div class="col-12 upper-menu">
                                 <nav>
                                     <div class="__menu ltn__main-menu">
-                                        <ul class="text-center" >
+                                        <ul class="text-center">
                                             @foreach($Categories as $category)
                                                 <?php
                                                 $__SubCategories = \Illuminate\Support\Facades\DB::table('subcategories')
@@ -207,7 +338,8 @@
                                                                         <a href="{{route('CheckSlugRoute', ['slug' => $subCategory->slug])}}">{{$subCategory->title}} <?php if (sizeof($__SubSubCategories) > 0) {
                                                                                 // echo '<i class="fas fa-angle-right"></i>';
                                                                             } ?>
-                                                                        </a><i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                                                                        </a><i class="fa fa-angle-right float-right"
+                                                                               aria-hidden="true"></i>
                                                                         @if(sizeof($__SubSubCategories) > 0)
                                                                             <ul>
                                                                                 @foreach($__SubSubCategories as $subSubCategory)
@@ -224,9 +356,10 @@
                                                     </li>
                                                 @else
                                                     <li class="menu-icon MenuCategoryLink ">
-                                                        <a class="design" href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">{{$category->title}} <?php if (sizeof($__SubCategories) > 0) {
-                                                          //
-                                                        } ?>
+                                                        <a class="design"
+                                                           href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">{{$category->title}} <?php if (sizeof($__SubCategories) > 0) {
+                                                                //
+                                                            } ?>
                                                         </a>
                                                         @if(sizeof($__SubCategories) > 0)
                                                             <ul>
@@ -240,7 +373,8 @@
                                                                             <?php if (sizeof($__SubSubCategories) > 0) {
                                                                                 // echo '<i class="fas fa-angle-right"></i>';
                                                                             } ?>
-                                                                        </a><i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                                                                        </a><i class="fa fa-angle-right float-right"
+                                                                               aria-hidden="true"></i>
                                                                         @if(sizeof($__SubSubCategories) > 0)
                                                                             <ul>
                                                                                 @foreach($__SubSubCategories as $subSubCategory)
@@ -267,8 +401,9 @@
                 <div class="col ltn__header-options"></div>
             </div>
         </div>
+
         <div class="container-fluid">
-            <div class="row d-none d-md-block pt-2 pb-3 bottomBarSetting">
+            <div class="row d-none d-lg-block py-2 bottomBarSetting" id="header-marquee-lg">
                 <marquee scrollamount="5" onMouseOver="this.stop();" onMouseOut="this.start();">
                     <div class="col-md-12 d-flex text-custom-primary">
                         <div class="w-30 d-flex align-items-center">
@@ -284,16 +419,18 @@
                             <img src="{{asset('public/assets/images/header/van.png')}}" alt="VAN" class="img-fluid"
                                  style="width: 32px; margin-right: 10px;"/>
                             <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
-                                Shipping charges will be confirmed by our representative on call at order confirmation. For transactions over Rs. 100,000, 
-                                we will require CNIC of the customer for consumer safety. Due to currency devaluation, price may change without any prior notice.
+                                Shipping charges will be confirmed by our representative on call at order confirmation.
+                                For transactions over Rs. 100,000,
+                                we will require CNIC of the customer for consumer safety. Due to currency devaluation,
+                                price may change without any prior notice.
                             </div>
                         </div>
 
-                     <!--   <div class="w-25 d-flex align-items-center">
+                    <!--   <div class="w-25 d-flex align-items-center">
                             <img src="{{asset('public/assets/images/header/Try It (1).png')}}" alt="PRIZE" class="img-fluid"
                                  style="width: 24px; margin-right: 10px;"/>
                             <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
-                                 1 Month free replacement Warranty (BOSCH) 
+                                 1 Month free replacement Warranty (BOSCH)
                             </div>
                         </div>
 
@@ -302,143 +439,13 @@
                                  class="img-fluid" style="width: 32px; margin-right: 10px;"/>
                             <div style="line-height: 1.3; font-size: 11px;" class="w-75 text-start">
                                 OReferral Code
-                            </div> 
+                            </div>
                         </div> -->
                     </div>
                 </marquee>
                 <div class="col ltn__header-options"></div>
             </div>
             {{--Desktop Header--}}
-
-            {{--Mobile Header--}}
-            <div class="row ltn__no-gutter d-flex d-md-none" > {{--style="margin-top: -28px;"--}}
-                <div class="col-4">
-                    <div class="site-logo-wrap pl-2">
-                        <div class="site-logo">
-                            <a href="{{url('/')}}">
-                                <img src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"
-                                     style="width: 120px; max-width: 120px;">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-8"> {{-- ltn__header-options ltn__header-options-2 mb-sm-20--}}
-                <!-- Mobile Menu Button -->
-                    <div class="container-fluid">
-                        <div class="row ltn__no-gutter" style="font-size:10px;">
-                            <div class="col-4"></div>
-                            <div class="col-2 text-center">
-                                @if(\Illuminate\Support\Facades\Auth::check())
-                                    <a href="{{route('home.account')}}">
-                                        <i class="fa fa-user text-custom-primary"></i>
-                                        <br>
-                                        <span>Account</span>
-                                    </a>
-                                @else
-                                    <a href="{{route('login')}}">
-                                        <i class="fa fa-user text-custom-primary"></i>
-                                        <br>
-                                        <span>Sign In</span>
-                                    </a>
-                                @endif
-
-                            </div>
-                            <div class="col-2 text-center">
-                                <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
-                                    <i class="fa fa-shopping-cart text-custom-primary"></i> <span
-                                            id="headerCartCountM"><?php if ($CartCount > 0) {
-                                            echo "<sup>" . $CartCount . "</sup>";
-                                        } ?>
-                                    </span>
-                                    <br>
-                                    <span>Cart</span>
-                                </a>
-                            </div>
-                            <div class="col-2 text-center">
-                                <a href="javascript:void(0);"
-                                   onclick="AddToWishlist('Please login first to view your list.', '');"><i
-                                            class="fa fa-heart text-custom-primary"></i> <span
-                                            id="headerWishListCountM"><?php if (sizeof($WishList) > 0) {
-                                            echo "<sup>" . sizeof($WishList) . "</sup>";
-                                        } ?></span>
-                                    <br>
-                                    <span>Wishlist</span>
-                                </a>
-                            </div>
-                            <div class="col-2 text-center">
-                                <div class="mobile-menu-toggle d-xl-none">
-                                    <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
-                                        <svg viewBox="0 0 800 600">
-                                            <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
-                                                  id="top"></path>
-                                            <path d="M300,320 L540,320" id="middle"></path>
-                                            <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
-                                                  id="bottom"
-                                                  transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Search Bar --}}
-                <div class="col-12 pl-2 pr-2"> {{--style="margin-bottom:12px;margin-top:-30px;padding-left:15px;padding-right:26px;"--}}
-                    <i class="fa fa-search absolute-search-icon mr-2 mt-0"></i>
-                    <input type="text" class="form-control search-bar border-radium-5 mb-0"
-                           placeholder="Search for products....."
-                           id="search-bar-input-m"
-                           onclick="ShowSearchSuggestionsM();"
-                           onkeyup="ShowSearchSuggestionsM();"
-                           style="box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);" />
-                    {{--Suggestion Box--}}
-                    <div class="suggestions-m" style="display: none;" onclick="ShowSearchSuggestionsM();">
-                        <ul class="container mb-0" role="listbox" id="search-results-m">
-
-                        </ul>
-                    </div>
-                    {{--Suggestion Box--}}
-                </div>
-
-                <marquee class="mt-1 mb-1" scrollamount="4" onMouseOver="this.stop();" onMouseOut="this.start();">
-                    <div class="col-12 d-flex text-custom-primary">
-                        <div class="w-30 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/camera.png')}}" alt="CAMERA"
-                                 class="img-fluid"
-                                 style="width: 20px; margin-right:10px; "/>
-                            <div style="line-height: 1.1; font-size: 9px; margin-right: 35px;" class="w-75 text-start">
-                                ShopLive 10AM - 10PM, video call an expert to help you shop &nbsp;
-                            </div>
-                        </div>
-                        <div class="w-30 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/van.png')}}" alt="VAN" class="img-fluid"
-                                 style="width: 20px; margin-right:10px; "/>
-                            <div style="line-height: 1.3; font-size: 9px;  margin-right:35px;" class="w-75 ">
-                                Shipping charges will be confirmed by our representative on call at order confirmation. For transactions over Rs. 100,000, 
-                                we will require CNIC of the customer for consumer safety. Due to currency devaluation, price may change without any prior notice.
-                            </div>
-                        </div>
-                      <!--  <div class="w-30 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/prize.png')}}" alt="PRIZE" class="img-fluid"
-                                 style="width: 20px; margin-right: 10px; "/>
-                            <div style="line-height: 1.3; font-size: 9px;margin-right:35px;" class="w-75 ">
-                                1 Month free replacement Warranty (BOSCH)
-                            </div>
-                        </div>
-                        <div class="w-30 d-flex align-items-center">
-                            <img src="{{asset('public/assets/images/header/referral-code.png')}}" alt="referral-code"
-                                 class="img-fluid" style="width: 20px; margin-right: 10px;"/>
-                            <div style="line-height: 1.3; font-size: 9px; margin-right:35px;" class="w-75 text-start">
-                                Referral Code
-                            </div>
-                        </div> -->
-                    </div>
-                </marquee>
-            </div>
-
-            {{--Mobile Header--}}
         </div>
     </div>
 </header>
@@ -470,7 +477,8 @@
                         ->get();
                     ?>
                     <li>
-                        <span class="menu-expand"></span><a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">{{$category->title}}</a>
+                        <span class="menu-expand"></span><a
+                                href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">{{$category->title}}</a>
                         @if(sizeof($__SubCategories) > 0)
                             <ul class="sub-menu" style="display: none;">
                                 @foreach($__SubCategories as $subCategory)
@@ -493,7 +501,7 @@
                         @endif
                     </li>
                 @endforeach
-                     <li class="menu-icon">
+                <li class="menu-icon">
                     <a href="{{route('B2BRoute')}}">B2b</a>
                 </li>
 

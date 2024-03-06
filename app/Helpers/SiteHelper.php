@@ -15,12 +15,12 @@ class SiteHelper
         $Settings = array();
         $Settings['PrimaryColor'] = '#C71738';
         $Settings['SecondaryColor'] = '#e6e6e6';
-        $Settings['SiteUrl'] = './';
-        $Settings['Instagram'] = 'https://www.instagram.com/signvox/';
-        $Settings['Facebook'] = 'https://www.facebook.com/SignvoxOnlineSignage';
-        $Settings['LinkedIn'] = 'https://www.linkedin.com/company/signvox-pty-ltd/';
-        $Settings['Twitter'] = './';
-        $Settings['SiteUrl'] = 'https://new.roxenimmigration.com/';
+        $Settings['SiteUrl'] = '';
+        $Settings['Instagram'] = '';
+        $Settings['Facebook'] = '';
+        $Settings['LinkedIn'] = '';
+        $Settings['Twitter'] = '';
+        $Settings['WhatsAppNumber'] = '+923281011019';
         return $Settings;
     }
 

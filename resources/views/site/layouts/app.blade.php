@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title><?php if(isset($Title)) { echo $Title; } else { echo config('app.name', 'Laravel'); } ?></title>
-    <meta name="robots" content="noindex, follow" />
+    {{--<meta name="robots" content="noindex, follow" />--}}
     <meta name="description" content="<?php if(isset($Description)) { echo $Description; } else { echo $_ENV['META_DESCRIPTION']; } ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Google Site Verification-->

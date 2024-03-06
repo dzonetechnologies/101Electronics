@@ -1943,15 +1943,23 @@
     /* --------------------------------------------------------
         36. Header menu sticky
     -------------------------------------------------------- */
-    /*$(window).on('scroll',function() {
-        var scroll = $(window).scrollTop();
-        if (scroll < 445) {
+    $(window).on('scroll',function() {
+        let scroll = $(window).scrollTop();
+        let width = $(window).width();
+        let scrollLimit = 445;
+        if(width >= 350 && width <= 991) {
+            scrollLimit = 265;
+        }
+        if (scroll < scrollLimit) {
             $(".ltn__header-sticky").removeClass("sticky-active");
+            $("#header-marquee-lg").addClass("d-lg-block");
+            $("#header-marquee-sm").show();
         } else {
             $(".ltn__header-sticky").addClass("sticky-active");
+            $("#header-marquee-lg").removeClass("d-lg-block");
+            $("#header-marquee-sm").hide();
         }
-    });*/
-
+    });
 
     $(window).on('load', function () {
         /*-----------------

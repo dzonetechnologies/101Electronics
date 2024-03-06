@@ -39,6 +39,18 @@
         if(NiceSelect_Select2.length > 0) {
             NiceSelect_Select2.niceSelect('destroy').select2();
         }
+
+        /* Whatsapp Button */
+        $('#WAButton').floatingWhatsApp({
+            phone: '{{\App\Helpers\SiteHelper::settings()['WhatsAppNumber']}}', //WhatsApp Business phone number
+            headerTitle: 'Chat with us on WhatsApp!', //Popup Title
+            popupMessage: 'Hello, how can we help you?', //Popup Message
+            showPopup: true, //Enables popup display
+            buttonImage: '<img src="{{asset('public/storage/logo/whatsapp.png')}}" alt="Whatsapp" />', //Button Image
+            //headerColor: 'crimson', //Custom header color
+            //backgroundColor: 'crimson', //Custom background button color
+            position: "right" //Position: left | right
+        });
     });
 
     $(window).bind("pageshow", function () {
@@ -1046,20 +1058,6 @@
             });
         }
     }
-
-    $(function () {
-        $('#WAButton').floatingWhatsApp({
-            phone: '923251011019', //WhatsApp Business phone number
-            headerTitle: 'Chat with us on WhatsApp!', //Popup Title
-            popupMessage: 'Hello, how can we help you?', //Popup Message
-            showPopup: true, //Enables popup display
-            buttonImage: '<img src="{{asset('public/storage/logo/whatsapp.png')}}" alt="Whatsapp" />', //Button Image
-            //headerColor: 'crimson', //Custom header color
-            //backgroundColor: 'crimson', //Custom background button color
-            position: "right" //Position: left | right
-
-        });
-    });
 
     //ElevateZoom-Plugin
     $("#product-image-container").ezPlus();

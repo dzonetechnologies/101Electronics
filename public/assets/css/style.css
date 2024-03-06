@@ -4679,7 +4679,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   /*min-width: 33.33%;*/
   /*width: 33.33%; */
   max-width: 14%;
-  width: 14%; 
+  width: 14%;
 }
 
 @media (min-width: 991px) {
@@ -4716,7 +4716,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     /*min-width: 50%;*/
     /*width: 50%; */
     max-width: 14%;
-  } 
+  }
 }
 
 @media (max-width: 767px) {
@@ -5316,7 +5316,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 ---------------------------------------- */
 .ltn__header-4 .ltn__header-middle-area,
 .ltn__header-5 .ltn__header-middle-area {
-  padding-top: 10px;
+  /*padding-top: 10px;*/
   /* padding-bottom: 10px; */
   padding-bottom: 0;
 }
@@ -5672,28 +5672,28 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   -ms-transform: translateX(0);
   transform: translateX(0); }
 
-.mobile-menu-toggle {
-  margin-right: 5px; }
+/*.mobile-menu-toggle {
+  margin-right: 5px; }*/
 
 .mobile-menu-toggle > a {
-  width: 24px;
-  height: 32px;
-  position: relative;
+  /*width: 24px;
+  height: 32px;*/
+  /*position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+  display: flex;*/
   color: #333;
   margin-left: auto; }
 
 .mobile-menu-toggle svg {
-  position: absolute;
+  /*position: absolute;
   top: 50%;
-  left: 50%;
-  width: 50px;
-  height: 60px;
-  margin-top: -2px;
-  margin-left: -2px;
+  left: 50%;*/
+  /*width: 50px;
+  height: 50px;*/
+  /*margin-top: -2px;
+  margin-left: -2px;*/
   cursor: pointer;
   -webkit-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0); }
@@ -5821,8 +5821,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   .header-menu-column {
     display: none; }
   /* sticky */
-  .sticky-active {
-    position: inherit; }
+  /*.sticky-active {
+    position: inherit; }*/
   .ltn__header-2 .ltn__header-middle-area > .container > .row .header-feature-column {
     -webkit-box-ordinal-group: 4;
     -ms-flex-order: 3;
@@ -14608,7 +14608,7 @@ input.cart-plus-minus-box {
     padding: 10px 20px;
     font-size: 14px; }
   [type="submit"].btn {
-    padding: 9px 15px; } 
+    padding: 9px 15px; }
 
 }
 

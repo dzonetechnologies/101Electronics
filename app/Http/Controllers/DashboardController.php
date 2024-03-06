@@ -749,4 +749,11 @@ class DashboardController extends Controller
         $Code = DB::select(DB::raw("SELECT discount_code FROM discount_vouchers WHERE deleted_at IS NULL AND code_usage < max_limit ORDER BY id DESC  LIMIT 1"));
         echo json_encode($Code);
     }
+
+    function logout()
+    {
+        Auth::logout();
+        session()->flush();
+        return redirect()->route('HomeRoute');
+    }
 }

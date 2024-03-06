@@ -124,7 +124,7 @@ Route::get('social-share', [HomeController::class, 'product']);
 
 /*Dashboard Routes*/
 Auth::routes();
-
+Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('user.logout');
 Route::middleware(['admin_validator'])->group(function (){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
