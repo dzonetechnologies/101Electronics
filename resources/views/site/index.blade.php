@@ -5,24 +5,24 @@
         $Sliders = Illuminate\Support\Facades\DB::table('sliders')->where('page', 'home' )->where('screen', 'Desktop' )->orderBy('order_no', 'ASC')->get();
     @endphp
     <section class="mb-0 d-none d-lg-block" id="homePage">
-        <div class="container">
-            <div class="row main-slider">
+        <div class="container-fluid">
+            <div class="row ltn__no-gutter main-slider">
                 {{-- Slide --}}
                 @foreach($Sliders as $slider)
                     @if($slider->type == "image")
-                        <a href="{{$slider->link}}">
-                            <div class="col-lg-12 slider-image">
+                        <div class="col-lg-12 px-0 slider-image">
+                            <a href="{{$slider->link}}">
                                 <img src="{{asset('public/storage/sliders/' . $slider->slide)}}" class="img-fluid" alt="Slider Img">
-                            </div>
-                            {{--<div class="col-lg-12"
-                                 style="background: url('{{asset('public/storage/sliders/' . $slider->slide)}}') no-repeat center center; background-size: contain; padding-left: 0; padding-right: 0; "> --}}{{-- width: 100%; height: 270px; --}}{{--
-                                <div class="row">
-                                    <div class="col-lg-12 d-flex align-items-center">
-                                        <div class="mt-5 mb-5" style="padding-top: 270px;"></div>
+                                {{--<div class="col-lg-12"
+                                     style="background: url('{{asset('public/storage/sliders/' . $slider->slide)}}') no-repeat center center; background-size: contain; padding-left: 0; padding-right: 0; "> --}}{{-- width: 100%; height: 270px; --}}{{--
+                                    <div class="row">
+                                        <div class="col-lg-12 d-flex align-items-center">
+                                            <div class="mt-5 mb-5" style="padding-top: 270px;"></div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>--}}
-                        </a>
+                                </div>--}}
+                            </a>
+                        </div>
                     @elseif($slider->type == "video")
                         <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                             <video width="100%" height="360" autoplay controls muted>

@@ -1,13 +1,6 @@
 /* ====================================================
     Responsive
 ==================================================== */
-/* Desktop 1200 - up */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1200px;
-    }
-}
-
 /* Normal desktop :992px. (Laptop 14") */
 @media (min-width: 992px) and (max-width: 1199px) {
     /* Global */
@@ -62,9 +55,9 @@
 }
 
 @media (max-width: 399px) {
-    .product-card-difference.slick-slide {
+    /*.product-card-difference.slick-slide {
         padding: 0 45px;
-    }
+    }*/
 }
 
 /* small mobile :320px. */
@@ -174,10 +167,20 @@
     }
 }
 
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
 /* XXL Devices */
 @media (min-width: 1400px) {
     .header-logo-lg {
         width: 100%;
         height: 75px;
+    }
+
+    .container {
+        max-width: 1350px;
     }
 }
