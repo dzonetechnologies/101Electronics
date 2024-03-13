@@ -134,7 +134,7 @@
                 @endphp
 
                 <div class="col-md-12">
-                    <div class="row products-category-slider ltn__category-slider slick-arrow-1">
+                    <div class="products-category-slider ltn__category-slider slick-arrow-1">
                         @foreach($Categories as $category)
                             <div class="col-4 col-md-2">
                                 <a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">

@@ -1993,11 +1993,18 @@
         speed: 300,
         slidesToShow: 6,
         slidesToScroll: 1,
-        prevArrow: '<a class="slick-prev"><i class="fas fa-arrow-left" alt="Arrow Icon"></i></a>',
-        nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right" alt="Arrow Icon"></i></a>',
+        prevArrow: '<a class="slick-prev"><i class="fas fa-arrow-left"></i></a>',
+        nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right"></i></a>',
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 1499,
+                settings: {
+                    slidesToShow: 7,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 1300,
                 settings: {
                     slidesToShow: 6,
                     slidesToScroll: 1
