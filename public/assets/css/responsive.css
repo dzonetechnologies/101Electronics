@@ -181,9 +181,9 @@
 
 /* Container and Slider Image Settings */
 @media (min-width: 1025px) and (max-width: 1099px) {
-    .container {
+    /*.container {
         max-width: 1025px;
-    }
+    }*/
 
     .slider-image {
         height: 250px;
@@ -191,9 +191,9 @@
 }
 
 @media (min-width: 1100px) and (max-width: 1150px) {
-    .container {
+    /*.container {
         max-width: 1100px;
-    }
+    }*/
 
     .slider-image {
         height: 275px;
@@ -201,9 +201,9 @@
 }
 
 @media (min-width: 1151px) and (max-width: 1199px) {
-    .container {
+    /*.container {
         max-width: 1151px;
-    }
+    }*/
 
     .slider-image {
         height: 275px;
@@ -211,39 +211,69 @@
 }
 
 @media (min-width: 1200px) and (max-width: 1250px) {
-    .container {
+    /*.container {
         max-width: 1200px;
-    }
+    }*/
 
     .slider-image {
         height: 300px;
+    }
+
+    .slick-arrow-1:hover .slick-arrow {
+        left: -45px;
+        right: auto;
+    }
+
+    .slick-arrow-1:hover .slick-next {
+        right: -45px;
+        left: auto;
     }
 }
 
 @media (min-width: 1251px) and (max-width: 1299px) {
-    .container {
+    /*.container {
         max-width: 1251px;
-    }
+    }*/
 
     .slider-image {
         height: 300px;
     }
+
+    .slick-arrow-1:hover .slick-arrow {
+        left: -50px;
+        right: auto;
+    }
+
+    .slick-arrow-1:hover .slick-next {
+        right: -50px;
+        left: auto;
+    }
 }
 
 @media (min-width: 1300px) and (max-width: 1350px) {
-    .container {
+    /*.container {
         max-width: 1300px;
-    }
+    }*/
 
     .slider-image {
         height: 325px;
     }
+
+    .slick-arrow-1:hover .slick-arrow {
+        left: -50px;
+        right: auto;
+    }
+
+    .slick-arrow-1:hover .slick-next {
+        right: -50px;
+        left: auto;
+    }
 }
 
 @media (min-width: 1351px) and (max-width: 1399px) {
-    .container {
+    /*.container {
         max-width: 1351px;
-    }
+    }*/
 
     .slider-image {
         height: 325px;
@@ -251,19 +281,29 @@
 }
 
 @media (min-width: 1400px) and (max-width: 1450px) {
-    .container {
+    /*.container {
         max-width: 1400px;
-    }
+    }*/
 
     .slider-image {
         height: 350px;
     }
+
+    .slick-arrow-1:hover .slick-arrow {
+        left: -45px;
+        right: auto;
+    }
+
+    .slick-arrow-1:hover .slick-next {
+        right: -45px;
+        left: auto;
+    }
 }
 
 @media (min-width: 1451px) and (max-width: 1499px) {
-    .container {
+    /*.container {
         max-width: 1451px;
-    }
+    }*/
 
     .slider-image {
         height: 350px;

@@ -1440,10 +1440,10 @@ ul {
 
 @media (min-width: 1350px) {
   .slick-arrow-1:hover .slick-arrow {
-    left: -15px; /* left: -50px; */
+    left: -50px;
     right: auto; }
   .slick-arrow-1:hover .slick-next {
-    right: -15px; /* right: -50px; */
+    right: -50px;
     left: auto; } }
 
 /* slick-arrow-2 */

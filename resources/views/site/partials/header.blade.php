@@ -68,8 +68,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
 </section>
 {{-- For Desktop --}}
 <section class="bg-custom-secondary text-white fs-13 d-none d-lg-block">
-    <div class="container py-1">
-        <div class="row">
+    <div class="container-fluid py-1">
+        <div class="row mx-2">
             <div class="col-lg-12">
                 <span class="announcement-color">
                   {{$GeneralSettings[0]->announcement}}
@@ -213,8 +213,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
             </div>
         </div>
         {{-- For Desktop --}}
-        <div class="container d-none d-lg-block">
-            <div class="row mt-2">
+        <div class="container-fluid d-none d-lg-block">
+            <div class="row mx-2 mt-2">
                 {{-- Logo --}}
                 <div class="col col-lg-2">
                     <div class="header-logo-lg">

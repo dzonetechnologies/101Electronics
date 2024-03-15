@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class SiteHelper
 {
     static $Currency = 'PKR';
-    static $Decimals = 2;
+    static $Decimals = 0;
 
     public static function settings()
     {

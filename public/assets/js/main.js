@@ -1991,7 +1991,7 @@
         dots: false,
         infinite: true,
         speed: 300,
-        slidesToShow: 6,
+        slidesToShow: 7,
         slidesToScroll: 1,
         prevArrow: '<a class="slick-prev"><i class="fas fa-arrow-left"></i></a>',
         nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right"></i></a>',
@@ -2107,8 +2107,8 @@ function ProductsSlider() {
             }, {
                 breakpoint: 1024,
                 settings: {
-                    arrows: true,
-                    dots: false,
+                    arrows: false,
+                    dots: true,
                     centerMode: false,
                     slidesToShow: 4,
                     slidesToScroll: 1
