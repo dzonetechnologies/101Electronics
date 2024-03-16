@@ -14,6 +14,7 @@
         MakeOrdersTable();
         MakereturnRequestTable();
         MakequoteRequestTable();
+        MakePromotionsTable();
 
         /*Select2 Initialization*/
         let Select2 = $(".select2");
@@ -1089,7 +1090,7 @@
             $("#total_products_qty").html('').html(data.total_products_qty);
         });
     }
-    
+
     function FilterSaleReportExcel() {
         /*let StartDate = $("#startDateFilter").val();
         let EndDate = $("#endDateFilter").val();
@@ -1182,7 +1183,7 @@
         $("#quote_request_status").val(status);
         $("#quoterequestModal").modal('toggle');
     }
-    
+
     function DeleteProductColor(e) {
         let RowId = $(e).attr('id').split('_')[1];
         let OldFile = $("#old_product_image_" + RowId).val();
@@ -1196,4 +1197,39 @@
         $("#oldProductColorImages").val(JSON.stringify(RemovedProductColorImages));
         $("#productColorRow_" + RowId).remove();
     }
+
+    // Promotions
+
+    function MakePromotionsTable() {
+        let Table = $("#promotionsTable");
+        if (Table.length > 0) {
+            Table.DataTable({
+                "processing": true,
+                "serverSide": true,
+                "paging": true,
+                "bPaginate": true,
+                "ordering": true,
+                "ajax": {
+                    "url": "{{ route('promotions.load')  }}",
+                    "type": "POST"
+                },
+                'columns': [
+                    { data: 'id' },
+                    { data: 'type' },
+                    { data: 'title' },
+                    { data: 'logo', orderable: false },
+                    { data: 'action', orderable: false },
+                ],
+                'order': [0, 'asc']
+            });
+        }
+    }
+    function DeletePromotion(id, title) {
+        title = atob(title);
+        $("#deletePromotionId").val(id);
+        $("#deletePromotionName").text(title);
+        $("#deletePromotionModal").modal('toggle');
+    }
+
+
 </script>

@@ -12,7 +12,8 @@
                     @if($slider->type == "image")
                         <div class="col-lg-12 px-0 slider-image">
                             <a href="{{$slider->link}}">
-                                <img src="{{asset('public/storage/sliders/' . $slider->slide)}}" class="img-fluid" alt="Slider Img">
+                                <img src="{{asset('public/storage/sliders/' . $slider->slide)}}" class="img-fluid"
+                                     alt="Slider Img">
                                 {{--<div class="col-lg-12"
                                      style="background: url('{{asset('public/storage/sliders/' . $slider->slide)}}') no-repeat center center; background-size: contain; padding-left: 0; padding-right: 0; "> --}}{{-- width: 100%; height: 270px; --}}{{--
                                     <div class="row">
@@ -155,6 +156,212 @@
     </section>
     {{--Shop by Category Section--}}
 
+
+    {{--Promotion Section--}}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 mb-5 text-center">
+                    <span class="section-title text-custom-primary text-center mb-0 heading-underline">
+                        Promotions
+                    </span>
+                </div>
+
+                @php
+                    $PromotionsSliders = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Slider')->orderBy('id', 'ASC')->get();
+                    $Timer = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Timer')->first();
+                    $Banner = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Banner')->limit(2)->get();
+                @endphp
+                <style>
+                    .timer-card {
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        height: 280px;
+                        width: auto;
+                        border-radius: 10px;
+                    }
+
+                    .banner-card-1 {
+                        height: 155px;
+                        width: auto;
+                        border-radius: 10px;
+                        background-color: #00B8F5;
+                    }
+
+                    .banner-card-2 {
+                        height: 155px;
+                        width: auto;
+                        border-radius: 10px;
+                        background-color: #FABB30;
+                    }
+
+                    .banner-btn {
+                        background-color: white;
+                        border-radius: 5px;
+                        padding: 4px 10px;
+                        font-size: 12px;
+                    }
+
+                    .timer {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .timer-div {
+                        height: 63px;
+                        width: 200px !important;
+                        border-radius: 10px;
+                        background-color: #f0f0f0;
+                    }
+
+                    .timer p {
+                        margin: 0;
+                        font-size: 0.8rem;
+                    }
+
+                    .counter {
+                        margin-top: -5px !important;
+                    }
+
+                    .counter-text {
+                        margin-top: -10px !important;
+                    }
+
+                    .timer-btn {
+                        border-radius: 5px;
+                    }
+                     .carousel-img {
+                         height: 450px;
+                         object-fit: cover;
+                         border-radius: 10px;
+                     }
+                </style>
+                <div class="col-md-6">
+                            <div class="main-slider">
+                                {{-- Slide --}}
+                                @foreach($PromotionsSliders as $Promotion)
+                                        <a href="{{$Promotion->link}}">
+                                            <img src="{{asset('public/storage/promotions/' . $Promotion->image)}}" class="carousel-img">
+                                        </a>
+                                @endforeach
+                            </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card timer-card shadow-none border-0"
+                                 style=" background-image: url({{ asset('public/storage/promotions') . '/' . $Timer->image }})">
+                                <div class="card-body row d-flex align-items-center">
+                                    <div class="col-12 col-lg-6 text-start">
+                                        <h2 class="text-white fw-600 mb-3">{{ $Timer->title }}</h2>
+                                        <div class="timer mt-3">
+                                            <div class="timer-div text-center">
+                                                <p class="fs-2 text-dark counter" id="days">00</p>
+                                                <p class="m-0 counter-text">Days</p>
+                                            </div>
+                                            <div class="timer-div text-center ml-3">
+                                                <p class="fs-2 text-dark counter" id="hours">00</p>
+                                                <p class="m-0 counter-text">Hr</p>
+                                            </div>
+                                            <div class="timer-div text-center ml-3">
+                                                <p class="fs-2 text-dark counter" id="minutes">00</p>
+                                                <p class="m-0 counter-text">Min</p>
+                                            </div>
+                                            <div class="timer-div text-center ml-3">
+                                                <p class="fs-2 text-dark counter" id="seconds">00</p>
+                                                <p class="m-0 counter-text">Sc</p>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary timer-btn mt-4"
+                                                onclick="window.location.href='{{ $Timer->link }}';">Buy Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Set the end date and time (YYYY-MM-DD HH:MM:SS format)
+                        const endDate = '{{ $Timer->end_date_time }}';
+
+                        function countdown() {
+                            const endDateTime = new Date(endDate).getTime();
+                            const now = new Date().getTime();
+                            const distance = endDateTime - now;
+
+                            if (distance < 0) {
+                                clearInterval(timerInterval);
+                                document.getElementById('days').innerHTML = '00';
+                                document.getElementById('hours').innerHTML = '00';
+                                document.getElementById('minutes').innerHTML = '00';
+                                document.getElementById('seconds').innerHTML = '00';
+                                return;
+                            }
+
+                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+                            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+                            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+                            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+                        }
+
+                        // Update the countdown every second
+                        const timerInterval = setInterval(countdown, 1000);
+
+                        // Initial call to display the timer immediately
+                        countdown();
+                    </script>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="card banner-card-1 shadow-none border-0">
+                                <div class="card-body row d-flex justify-content-center">
+                                    <div class="col-12 col-lg-8">
+                                        <h5 class="text-white fw-600 mb-2">{{ $Banner[0]->title }}</h5>
+                                        <p class="text-white fs-13 mb-2 lh-sm">
+                                            {{ $Banner[0]->description }}
+                                        </p>
+                                        <button class="banner-btn"
+                                                onclick="window.location.href='{{ $Banner[0]->link }}';">View Details
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-lg-4">
+                                        <img src="{{ asset('public/storage/promotions') . '/' . $Banner[0]->image }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card banner-card-2 shadow-none border-0">
+                                <div class="card-body row d-flex">
+                                    <div class="col-12 col-lg-8">
+                                        <h5 class="text-white fw-600 mb-2">{{ $Banner[1]->title }}</h5>
+                                        <p class="text-white fs-13 mb-2 lh-sm">
+                                            {{ $Banner[1]->description }}
+                                        </p>
+                                        <button class="banner-btn"
+                                                onclick="window.location.href='{{ $Banner[1]->link }}';">View Details
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-lg-4">
+                                        <img src="{{ asset('public/storage/promotions') . '/' . $Banner[1]->image }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{--Promotion Section--}}
+
     {{--Category With Products--}}
     @foreach($Categories as $i => $category)
         <?php
@@ -195,19 +402,19 @@
                     {{--Products--}}
                     <div class="col-12">
                         <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
-                        @php
-                            $Products = Illuminate\Support\Facades\DB::table('products')
-                                        ->where('category', $category->id)
-                                        ->where('homepage_status', 1)
-                                        ->where('deleted_at', null)
-                                        ->orderBy('order_no', 'ASC')
-                                        ->get();
-                            $List = \App\Helpers\SiteHelper::GetUserList();
-                            $index = $i;
-                        @endphp
-                        @foreach($Products as $index1 => $product)
-                            {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
-                        @endforeach
+                            @php
+                                $Products = Illuminate\Support\Facades\DB::table('products')
+                                            ->where('category', $category->id)
+                                            ->where('homepage_status', 1)
+                                            ->where('deleted_at', null)
+                                            ->orderBy('order_no', 'ASC')
+                                            ->get();
+                                $List = \App\Helpers\SiteHelper::GetUserList();
+                                $index = $i;
+                            @endphp
+                            @foreach($Products as $index1 => $product)
+                                {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                            @endforeach
                         </div>
                     </div>
                 </div>

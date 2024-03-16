@@ -179,7 +179,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                 </div>
                 {{-- Marquee Slider --}}
                 <div class="col-12 my-2">
-                    <marquee class="text-custom-primary" scrollamount="4" onMouseOver="this.stop();" onMouseOut="this.start();"  id="header-marquee-sm">
+                    <marquee class="text-custom-primary" scrollamount="4" onMouseOver="this.stop();"
+                             onMouseOut="this.start();" id="header-marquee-sm">
                         <div class="d-flex align-items-center line-height-1-3 fs-10">
                             {{-- Item 1 --}}
                             <img src="{{asset('public/assets/images/header/camera.png')}}" alt="CAMERA"
@@ -192,7 +193,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                  class="img-fluid" style="width: 20px;">
                             <div class="ms-2 me-3">
                                 Shipping charges will be confirmed by our representative on call at order confirmation.
-                                For transactions over Rs. 100,000, we will require CNIC of the customer for consumer safety. Due to currency devaluation,
+                                For transactions over Rs. 100,000, we will require CNIC of the customer for consumer
+                                safety. Due to currency devaluation,
                                 price may change without any prior notice.
                             </div>
                             {{-- Item 3 --}}
@@ -217,11 +219,14 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
             <div class="row mx-2 mt-2">
                 {{-- Logo --}}
                 <div class="col col-lg-2">
-                    <div class="header-logo-lg">
-                        <img src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"
-                             class="img-fluid">
-                    </div>
+                    <a href="{{url('/')}}">
+                        <div class="header-logo-lg">
+                            <img src="{{asset('public/storage/logo/' . $Logo)}}" alt="Logo"
+                                 class="img-fluid">
+                        </div>
+                    </a>
                 </div>
+
                 {{-- Search & Links --}}
                 <div class="col col-lg-10 header-menu-column">
                     <div class="header-menu">
@@ -251,8 +256,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                    onclick="AddToWishlist('Please login first to view your list.', '');">
                                                     <i class="fa fa-heart text-custom-primary"></i> <span
                                                             id="headerWishListCount"><?php if (sizeof($WishList) > 0) {
-                                                                echo "<sup>" . sizeof($WishList) . "</sup>";
-                                                            } ?></span> Wishlist
+                                                            echo "<sup>" . sizeof($WishList) . "</sup>";
+                                                        } ?></span> Wishlist
                                                 </a>
                                             </li>
                                             <li class="menu-icon">
@@ -392,7 +397,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                 </div>
                 {{-- Marquee Slider --}}
                 <div class="col-12 my-2">
-                    <marquee class="text-custom-primary" scrollamount="4" onMouseOver="this.stop();" onMouseOut="this.start();"  id="header-marquee-lg">
+                    <marquee class="text-custom-primary" scrollamount="4" onMouseOver="this.stop();"
+                             onMouseOut="this.start();" id="header-marquee-lg">
                         <div class="d-flex align-items-center line-height-1-3 fs-13">
                             {{-- Item 1 --}}
                             <img src="{{asset('public/assets/images/header/camera.png')}}" alt="CAMERA"
@@ -405,7 +411,8 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                  class="img-fluid" style="width: 20px;">
                             <div class="ms-2 me-4">
                                 Shipping charges will be confirmed by our representative on call at order confirmation.
-                                For transactions over Rs. 100,000, we will require CNIC of the customer for consumer safety. Due to currency devaluation,
+                                For transactions over Rs. 100,000, we will require CNIC of the customer for consumer
+                                safety. Due to currency devaluation,
                                 price may change without any prior notice.
                             </div>
                             {{-- Item 3 --}}

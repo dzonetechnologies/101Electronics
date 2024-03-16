@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PromotionsController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
@@ -305,6 +306,15 @@ Route::middleware(['admin_validator'])->group(function (){
     Route::get('sale-report',[SaleReportController::class,'index'])->name('sale-report');
     Route::post('sale-report/filter',[SaleReportController::class, 'FilterSaleReport'])->name('sale-report.filter');
     Route::get('sale-report/export/excel/{startDate}/{endDate}/{status}/{product}', [SaleReportController::class, 'ExportExcelSaleReport'])->name('sale-report.export.excel');
+
+    // Promotions
+    Route::get('promotions', [PromotionsController::class, 'index'])->name('promotions');
+    Route::get('promotions/create', [PromotionsController::class, 'create'])->name('promotions.add');
+    Route::post('promotions/store', [PromotionsController::class, 'store'])->name('promotions.store');
+    Route::post('promotions/load', [PromotionsController::class, 'load'])->name('promotions.load');
+    Route::get('promotions/edit/{brandId}', [PromotionsController::class, 'edit'])->name('promotions.edit');
+    Route::post('promotions/update', [PromotionsController::class, 'update'])->name('promotions.update');
+    Route::post('promotions/delete', [PromotionsController::class, 'delete'])->name('promotions.delete');
 
     //Profile Routes
     Route::get('dashboard/profile', [DashboardController::class, 'profileIndex'])->name('profile');

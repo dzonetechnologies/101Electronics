@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 02, 2024 at 01:26 PM
--- Server version: 10.3.39-MariaDB-cll-lve
--- PHP Version: 8.1.26
+-- Host: 127.0.0.1
+-- Generation Time: Mar 16, 2024 at 12:09 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `electron_admin_101_electronics`
+-- Database: `101electronics`
 --
 
 -- --------------------------------------------------------
@@ -1963,6 +1963,37 @@ CREATE TABLE `product_weights` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `promotions`
+--
+
+CREATE TABLE `promotions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `link` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `end_date_time` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `promotions`
+--
+
+INSERT INTO `promotions` (`id`, `type`, `title`, `description`, `link`, `image`, `end_date_time`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Timer', 'LG LED\'s', NULL, 'https://dzonetechnologies.com/', 'Promotion-20240316-115959.jpg', '2024-03-16 18:27:00', '2024-03-16 06:59:59', '2024-03-16 08:25:48', NULL),
+(2, 'Banner', 'New Dual Sense', 'For Play station 4', 'https://dzonetechnologies.com/', 'Promotion-20240316-144508.jpg', NULL, '2024-03-16 08:11:32', '2024-03-16 09:45:08', NULL),
+(3, 'Banner', 'Diswashers', 'The most easy way to clean dishes', 'https://dzonetechnologies.com/', 'Promotion-20240316-144642.jpg', NULL, '2024-03-16 08:12:22', '2024-03-16 09:46:42', NULL),
+(4, 'Slider', 'Mega Shopping Event', 'Shop Great Deals On LED\'s washing machines and more.', 'https://dzonetechnologies.com/', 'Promotion-20240316-132140.jpg', NULL, '2024-03-16 08:21:40', '2024-03-16 08:31:04', NULL),
+(5, 'Slider', 'New Slider', 'Demo Slider', 'https://dzonetechnologies.com/', 'Promotion-20240316-140941.jpg', NULL, '2024-03-16 09:09:41', '2024-03-16 09:09:41', NULL),
+(6, 'Slider', 'Deserunt distinctio Anim dolor quia consequatur rem distinctio Rerum cupiditate', 'Ut eaque explicabo Qui ea fuga Eligendi tempor dolor quia ex explicabo Facilis', 'Ut accusantium dolor', 'Promotion-20240316-162347.jpg', NULL, '2024-03-16 11:23:47', '2024-03-16 11:23:47', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rate_lists`
 --
 
@@ -2469,7 +2500,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$e3LC40IFvQMcVhOnvyGyn.Flgu5fSJ7eiI7itVtHzzzl6a9ysjxa.', 'N45DfWw8lsqFHE598m4Y3alh53bjOsKY0jmuIhjLMVNZhiHiyo0pWUbyWtt4', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
+(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'N45DfWw8lsqFHE598m4Y3alh53bjOsKY0jmuIhjLMVNZhiHiyo0pWUbyWtt4', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
 (9, 'Ammad', 'ammadhassan029@gmail.com', NULL, '$2y$10$v2YxqRTyv9ugEQWJzDMJt.pQAa89kzZyVpFIq6uUDzyuXCQumHv6G', '7iiiE0lfmNWsJOhGfrA6aJvEZ9ox0mRW7yRfRLDVQqKwDAnd67pYVu9gy0Xl', 2, 1, '2022-04-17 05:31:31', '2022-04-17 05:32:37'),
 (10, 'Faizan', 'faizan.javaid330@gmail.com', NULL, '$2y$10$Th20Tp7L/nCJqorOwwTMo.3wfaXMC3tyG.0.PcjGKUT1bBT5LpD5O', NULL, 2, 1, '2024-01-20 13:49:48', '2024-01-20 13:49:48');
 
@@ -2689,6 +2720,12 @@ ALTER TABLE `product_sizes`
 -- Indexes for table `product_weights`
 --
 ALTER TABLE `product_weights`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `promotions`
+--
+ALTER TABLE `promotions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2929,6 +2966,12 @@ ALTER TABLE `product_sizes`
 --
 ALTER TABLE `product_weights`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `promotions`
+--
+ALTER TABLE `promotions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `rate_lists`

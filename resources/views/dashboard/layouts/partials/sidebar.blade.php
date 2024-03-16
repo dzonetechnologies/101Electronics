@@ -170,6 +170,12 @@
                     <span class="link-title">Sale Report</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('promotions')}}" role="button" aria-expanded="false" aria-controls="AdminPromotions">
+                    <i class="link-icon fa fa-ad"></i>
+                    <span class="link-title">Promotions</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
