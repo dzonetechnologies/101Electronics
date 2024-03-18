@@ -172,13 +172,15 @@
                     $Timer = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Timer')->first();
                     $Banner = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Banner')->limit(2)->get();
                 @endphp
-                <div class="col-12 col-md-12 col-lg-6">
+                <div class="col-12 col-md-12 col-lg-6 padding-right-lg">
                     <div class="main-slider promotion-slider">
                         {{-- Promotion Slider --}}
                         @foreach($PromotionsSliders as $promotion)
                             <div class="promotion-slide">
-                                <img src="{{asset('public/storage/promotions/' . $promotion->image)}}"
-                                     class="carousel-img">
+                                <div class="carousel-img">
+                                    <img src="{{asset('public/storage/promotions/' . $promotion->image)}}"
+                                         class="img-fluid">
+                                </div>
                                 <div class="promotion-slider-overlay">
                                     <h1 class="promotion-slider-title fw-600">{{ $promotion->title }}</h1>
                                     <p class="promotion-slider-description mb-2">{{ $promotion->description }}</p>
@@ -192,7 +194,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-12 col-lg-6">
+                <div class="col-12 col-md-12 col-lg-6 padding-left-lg">
                     <div class="row">
                         <input type="hidden" id="end_date_time" name="end_date_time"
                                value="{{ $Timer->end_date_time }}">
@@ -237,7 +239,7 @@
 
                     </div>
                     <div class="row mt-3">
-                        <div class="col-12 col-md-6 col-lg-6">
+                        <div class="col-12 col-md-6 col-lg-6 padding-right-lg">
                             <div class="card custom-banner-card banner-card-bg-1 shadow-none border-0">
                                 <div class="card-body row d-flex justify-content-center">
                                     <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
@@ -257,7 +259,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-6">
+                        <div class="col-12 col-md-6 col-lg-6 padding-left-lg">
                             <div class="card custom-banner-card banner-card-bg-2 shadow-none border-0">
                                 <div class="card-body row d-flex">
                                     <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">

@@ -1447,10 +1447,15 @@ body {
 }
 
 .carousel-img {
-    height: 450px;
+    height: 430px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carousel-img img {
+    height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 .promotion-slider li:hover, .promotion-slider li.slick-active {
@@ -1508,7 +1513,7 @@ body {
 }
 /* Timer Card */
 .timer-card-main{
-    height: 280px;
+    height: 260px;
     background-size: cover;
     border-radius: 10px;
     background: linear-gradient(to bottom, #b3ccfa, #E9E4F5);

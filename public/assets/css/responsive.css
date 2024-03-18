@@ -195,6 +195,12 @@
     .counter-text{
         margin-top: -51px !important;
     }
+    .padding-right-lg{
+        padding-right: 8px;
+    }
+    .padding-left-lg{
+        padding-left: 8px;
+    }
 }
 
 /* XL Devices */
@@ -202,6 +208,12 @@
     .header-logo-lg {
         width: 100%;
         height: 90px;
+    }
+    .padding-right-lg{
+        padding-right: 8px;
+    }
+    .padding-left-lg{
+        padding-left: 8px;
     }
 }
 
@@ -211,7 +223,12 @@
         width: 100%;
         height: 75px;
     }
-
+    .padding-right-lg{
+        padding-right: 8px;
+    }
+    .padding-left-lg{
+        padding-left: 8px;
+    }
     .container {
         max-width: 1350px;
     }
