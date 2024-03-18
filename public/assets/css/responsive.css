@@ -129,6 +129,18 @@
     #mobile-menu-toggle-btn svg {
         left: 1rem;
     }
+    .timer-card-main{
+        margin-top: 15px !important;
+    }
+    .banner-card-bg-2{
+        margin-top: 15px !important;
+    }
+    .counter{
+        margin-top: 0 !important;
+    }
+    .counter-text{
+        margin-top: -45px !important;
+    }
 }
 
 /* SM Devices */
@@ -136,6 +148,18 @@
     .header-logo-sm {
         width: 100%;
         height: 70px;
+    }
+    .timer-card-main{
+        margin-top: 15px !important;
+    }
+    .banner-card-bg-2{
+        margin-top: 15px !important;
+    }
+    .counter{
+        margin-top: 0 !important;
+    }
+    .counter-text{
+        margin-top: -47px !important;
     }
 }
 
@@ -145,7 +169,15 @@
         width: 100%;
         height: 70px;
     }
-
+    .timer-card-main{
+        margin-top: 15px !important;
+    }
+    .counter{
+        margin-top: 0 !important;
+    }
+    .counter-text{
+        margin-top: -50px !important;
+    }
     /*#mobile-menu-toggle-btn svg {
         left: 1.2rem;
     }*/
@@ -156,6 +188,12 @@
     .header-logo-lg {
         width: 100%;
         height: 80px;
+    }
+    .counter{
+        margin-top: 0 !important;
+    }
+    .counter-text{
+        margin-top: -51px !important;
     }
 }
 

@@ -51,6 +51,32 @@
             //backgroundColor: 'crimson', //Custom background button color
             position: "right" //Position: left | right
         });
+
+        function countdown(endDate) {
+            const endDateTime = new Date(endDate).getTime();
+            const now = new Date().getTime();
+            const distance = endDateTime - now;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                console.log('00', '00', '00', '00');
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            $("#days").text(days.toString().padStart(2, '0'));
+            $("#hours").text(hours.toString().padStart(2, '0'));
+            $("#minutes").text(minutes.toString().padStart(2, '0'));
+            $("#seconds").text(seconds.toString().padStart(2, '0'));
+        }
+
+        const endDate = $("#end_date_time").val();
+        const timerInterval = setInterval(() => countdown(endDate), 1000);
+        countdown(endDate);
     });
 
     $(window).bind("pageshow", function () {

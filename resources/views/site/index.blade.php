@@ -172,185 +172,107 @@
                     $Timer = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Timer')->first();
                     $Banner = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Banner')->limit(2)->get();
                 @endphp
-                <style>
-                    .timer-card {
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                        height: 280px;
-                        width: auto;
-                        border-radius: 10px;
-                    }
-
-                    .banner-card-1 {
-                        height: 155px;
-                        width: auto;
-                        border-radius: 10px;
-                        background-color: #00B8F5;
-                    }
-
-                    .banner-card-2 {
-                        height: 155px;
-                        width: auto;
-                        border-radius: 10px;
-                        background-color: #FABB30;
-                    }
-
-                    .banner-btn {
-                        background-color: white;
-                        border-radius: 5px;
-                        padding: 4px 10px;
-                        font-size: 12px;
-                    }
-
-                    .timer {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-
-                    .timer-div {
-                        height: 63px;
-                        width: 200px !important;
-                        border-radius: 10px;
-                        background-color: #f0f0f0;
-                    }
-
-                    .timer p {
-                        margin: 0;
-                        font-size: 0.8rem;
-                    }
-
-                    .counter {
-                        margin-top: -5px !important;
-                    }
-
-                    .counter-text {
-                        margin-top: -10px !important;
-                    }
-
-                    .timer-btn {
-                        border-radius: 5px;
-                    }
-                     .carousel-img {
-                         height: 450px;
-                         object-fit: cover;
-                         border-radius: 10px;
-                     }
-                </style>
-                <div class="col-md-6">
-                            <div class="main-slider">
-                                {{-- Slide --}}
-                                @foreach($PromotionsSliders as $Promotion)
-                                        <a href="{{$Promotion->link}}">
-                                            <img src="{{asset('public/storage/promotions/' . $Promotion->image)}}" class="carousel-img">
-                                        </a>
-                                @endforeach
+                <div class="col-12 col-md-12 col-lg-6">
+                    <div class="main-slider promotion-slider">
+                        {{-- Promotion Slider --}}
+                        @foreach($PromotionsSliders as $promotion)
+                            <div class="promotion-slide">
+                                <img src="{{asset('public/storage/promotions/' . $promotion->image)}}"
+                                     class="carousel-img">
+                                <div class="promotion-slider-overlay">
+                                    <h1 class="promotion-slider-title fw-600">{{ $promotion->title }}</h1>
+                                    <p class="promotion-slider-description mb-2">{{ $promotion->description }}</p>
+                                    <a class="btn text-white promotion-btn" href="{{ $promotion->link }}"
+                                       target="_blank">
+                                        Shop Now
+                                    </a>
+                                </div>
                             </div>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-12 col-md-12 col-lg-6">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card timer-card shadow-none border-0"
-                                 style=" background-image: url({{ asset('public/storage/promotions') . '/' . $Timer->image }})">
-                                <div class="card-body row d-flex align-items-center">
-                                    <div class="col-12 col-lg-6 text-start">
-                                        <h2 class="text-white fw-600 mb-3">{{ $Timer->title }}</h2>
-                                        <div class="timer mt-3">
-                                            <div class="timer-div text-center">
-                                                <p class="fs-2 text-dark counter" id="days">00</p>
-                                                <p class="m-0 counter-text">Days</p>
+                        <input type="hidden" id="end_date_time" name="end_date_time"
+                               value="{{ $Timer->end_date_time }}">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card timer-card-main shadow-none border-0">
+                                <div class="card-body row d-flex align-items-center timer-main">
+                                    <div class="col-7 col-md-6 col-lg-6 pr-0">
+                                        <h2 class="text-white fw-600 bold">{{ $Timer->title }}</h2>
+                                        <div class="d-flex">
+                                            <div class="card timer-counter-main">
+                                                <p class="fs-3 text-dark counter" id="days">00</p>
+                                                <p class="fs-14 counter-text">Days</p>
                                             </div>
-                                            <div class="timer-div text-center ml-3">
-                                                <p class="fs-2 text-dark counter" id="hours">00</p>
-                                                <p class="m-0 counter-text">Hr</p>
+                                            <div class="card timer-counter-main ml-2">
+                                                <p class="fs-3 text-dark counter" id="hours">00</p>
+                                                <p class="m-0 fs-14 counter-text">Hr</p>
                                             </div>
-                                            <div class="timer-div text-center ml-3">
-                                                <p class="fs-2 text-dark counter" id="minutes">00</p>
-                                                <p class="m-0 counter-text">Min</p>
+                                            <div class="card timer-counter-main ml-2">
+                                                <p class="fs-3 text-dark counter" id="minutes">00</p>
+                                                <p class="m-0 fs-14 counter-text">Min</p>
                                             </div>
-                                            <div class="timer-div text-center ml-3">
-                                                <p class="fs-2 text-dark counter" id="seconds">00</p>
-                                                <p class="m-0 counter-text">Sc</p>
+                                            <div class="card timer-counter-main ml-2">
+                                                <p class="fs-3 text-dark counter" id="seconds">00</p>
+                                                <p class="m-0 fs-14 counter-text">Sc</p>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary timer-btn mt-4"
-                                                onclick="window.location.href='{{ $Timer->link }}';">Buy Now
-                                        </button>
+                                        <div class="mt-3">
+                                            <a class="btn text-white timer-btn" href="{{ $Timer->link }}"
+                                               target="_blank">
+                                                Buy Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 col-md-6 col-lg-6 pl-0">
+                                        <div class="timer-image">
+                                            <img src="{{ asset('public/storage/promotions') . '/' . $Timer->image }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-
-                    <script>
-                        // Set the end date and time (YYYY-MM-DD HH:MM:SS format)
-                        const endDate = '{{ $Timer->end_date_time }}';
-
-                        function countdown() {
-                            const endDateTime = new Date(endDate).getTime();
-                            const now = new Date().getTime();
-                            const distance = endDateTime - now;
-
-                            if (distance < 0) {
-                                clearInterval(timerInterval);
-                                document.getElementById('days').innerHTML = '00';
-                                document.getElementById('hours').innerHTML = '00';
-                                document.getElementById('minutes').innerHTML = '00';
-                                document.getElementById('seconds').innerHTML = '00';
-                                return;
-                            }
-
-                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-                            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-                            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-                            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
-                        }
-
-                        // Update the countdown every second
-                        const timerInterval = setInterval(countdown, 1000);
-
-                        // Initial call to display the timer immediately
-                        countdown();
-                    </script>
                     <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="card banner-card-1 shadow-none border-0">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="card custom-banner-card banner-card-bg-1 shadow-none border-0">
                                 <div class="card-body row d-flex justify-content-center">
-                                    <div class="col-12 col-lg-8">
+                                    <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
                                         <h5 class="text-white fw-600 mb-2">{{ $Banner[0]->title }}</h5>
-                                        <p class="text-white fs-13 mb-2 lh-sm">
+                                        <p class="text-white">
                                             {{ $Banner[0]->description }}
                                         </p>
-                                        <button class="banner-btn"
-                                                onclick="window.location.href='{{ $Banner[0]->link }}';">View Details
-                                        </button>
+                                        <a class="btn banner-btn" href="{{ $Banner[0]->link }}" target="_blank">
+                                            View Details
+                                        </a>
                                     </div>
-                                    <div class="col-12 col-lg-4">
-                                        <img src="{{ asset('public/storage/promotions') . '/' . $Banner[0]->image }}">
+                                    <div class="col-4 col-md-6 col-lg-4 pl-1 pr-2">
+                                        <div class="banner-image">
+                                            <img src="{{ asset('public/storage/promotions') . '/' . $Banner[0]->image }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card banner-card-2 shadow-none border-0">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="card custom-banner-card banner-card-bg-2 shadow-none border-0">
                                 <div class="card-body row d-flex">
-                                    <div class="col-12 col-lg-8">
+                                    <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
                                         <h5 class="text-white fw-600 mb-2">{{ $Banner[1]->title }}</h5>
-                                        <p class="text-white fs-13 mb-2 lh-sm">
+                                        <p class="text-white">
                                             {{ $Banner[1]->description }}
                                         </p>
-                                        <button class="banner-btn"
-                                                onclick="window.location.href='{{ $Banner[1]->link }}';">View Details
-                                        </button>
+                                        <a class="btn banner-btn" href="{{ $Banner[1]->link }}" target="_blank">
+                                            View Details
+                                        </a>
                                     </div>
-                                    <div class="col-12 col-lg-4">
-                                        <img src="{{ asset('public/storage/promotions') . '/' . $Banner[1]->image }}">
+                                    <div class="col-4 col-md-6 col-lg-4 pl-1 pr-2">
+                                        <div class="banner-image">
+                                            <img src="{{ asset('public/storage/promotions') . '/' . $Banner[1]->image }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
