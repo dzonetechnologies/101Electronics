@@ -239,7 +239,7 @@
 
                     </div>
                     <div class="row mt-3">
-                        <div class="col-12 col-md-6 col-lg-6 padding-right-lg">
+                        <div class="col-12 col-md-6 col-lg-6 banner-padding-right">
                             <div class="card custom-banner-card banner-card-bg-1 shadow-none border-0">
                                 <div class="card-body row d-flex justify-content-center">
                                     <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
@@ -259,7 +259,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-6 padding-left-lg">
+                        <div class="col-12 col-md-6 col-lg-6 banner-padding-left">
                             <div class="card custom-banner-card banner-card-bg-2 shadow-none border-0">
                                 <div class="card-body row d-flex">
                                     <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
