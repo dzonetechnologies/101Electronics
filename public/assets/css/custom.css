@@ -1433,10 +1433,7 @@ body {
 /* Promotions Sliders */
 .promotion-slider .slick-dots {
     width: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 12px;
-    padding-right: 3px;
+    padding: 5px 3px 5px 12px;
     background-color: whitesmoke;
     border-radius: 10px;
     position: absolute;
@@ -1446,13 +1443,13 @@ body {
     z-index: 99 !important;
 }
 
-.carousel-img {
+.promotion-slider .carousel-img {
     height: 430px;
     width: 100%;
     border-radius: 10px;
 }
 
-.carousel-img img {
+.promotion-slider .carousel-img img {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -1474,47 +1471,13 @@ body {
     overflow: hidden;
 }
 
-.promotion-slider-overlay {
-    position: absolute;
-    top: 10%;
-    left: 15%;
-    width: 70%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    opacity: 1;
-}
-
-.promotion-slider-title,
-.promotion-slider-description {
-    color: white !important;
-    text-align: center;
-}
-.promotion-slider-description{
-    font-size: 15px;
-}
-
-.promotion-btn{
-    font-size: 15px;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px !important;
-    background: #0065E5;
-}
-.promotion-btn:hover{
-    font-size: 15px;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
+.promotion-slider .promotion-slider-overlay a.promotion-btn:hover {
     background: #0051a1;
     color: white;
 }
 
 /* Timer Card */
 .timer-card-main{
-    /*height: 260px;*/
     background-size: cover;
     border-radius: 10px;
     background: linear-gradient(to bottom, #b3ccfa, #E9E4F5);
@@ -1533,28 +1496,10 @@ body {
 }
 
 .timer-counter-main {
-    height: 60px;
-    width: 60px;
     border: none;
     border-radius: 10px;
     position: relative;
     text-align: center;
-}
-
-.counter{
-    margin-top: -2px !important;
-}
-
-.counter-text{
-    margin-top: -54px !important;
-}
-
-.timer-btn {
-    font-size: 15px;
-    font-weight: bold;
-    padding: 8px 15px;
-    background: #0065E5;
-    border-radius: 5px;
 }
 
 .timer-btn:hover {
@@ -1596,8 +1541,7 @@ body {
 
 .custom-banner-card .banner-btn {
     font-size: 13px;
-    font-weight: bolder;
-    /*padding: 8px 15px;*/
+    font-weight: 500;
     background-color: white;
     border-radius: 5px;
 }

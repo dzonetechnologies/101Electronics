@@ -182,12 +182,14 @@
                                          class="img-fluid">
                                 </div>
                                 <div class="promotion-slider-overlay">
-                                    <h1 class="promotion-slider-title fw-600">{{ $promotion->title }}</h1>
-                                    <p class="promotion-slider-description mb-2">{{ $promotion->description }}</p>
-                                    <a class="btn text-white promotion-btn" href="{{ $promotion->link }}"
-                                       target="_blank">
-                                        Shop Now
-                                    </a>
+                                    <h2 class="">{{ $promotion->title }}</h2> {{-- promotion-slider-title fw-600 --}}
+                                    <p class="">{{ $promotion->description }}</p> {{-- promotion-slider-description mb-2 --}}
+                                    <div class="text-center">
+                                        <a class="btn promotion-btn" href="{{ $promotion->link }}"
+                                           target="_blank">
+                                            Shop Now
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

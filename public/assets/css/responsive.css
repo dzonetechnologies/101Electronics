@@ -130,6 +130,50 @@
         left: 1rem;
     }
 
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 250px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 1.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 0.6rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 15px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 0.75rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
+
     /* Timer Card */
     .timer-card-main{
         height: auto;
@@ -179,16 +223,6 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
-
-    /*.banner-card-bg-2{
-        margin-top: 15px !important;
-    }*/
-    /*.counter{
-        margin-top: 2px !important;
-    }
-    .counter-text{
-        margin-top: -42px !important;
-    }*/
 }
 
 /* SM Devices */
@@ -197,6 +231,50 @@
         width: 100%;
         height: 70px;
     }
+
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 350px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 15px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 0.75rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
 
     /* Timer Card */
     .timer-card-main{
@@ -247,20 +325,6 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
-
-
-    /*.timer-card-main{
-        margin-top: 15px !important;
-    }
-    .banner-card-bg-2{
-        margin-top: 15px !important;
-    }
-    .counter{
-        margin-top: 0 !important;
-    }
-    .counter-text{
-        margin-top: -47px !important;
-    }*/
 }
 
 /* MD Devices */
@@ -269,6 +333,50 @@
         width: 100%;
         height: 70px;
     }
+
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 450px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 15px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 0.75rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
 
     /* Timer Card */
     .timer-card-main{
@@ -319,25 +427,6 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
-
-    /*.timer-card-main{
-        margin-top: 15px !important;
-    }
-    .counter{
-        margin-top: 0 !important;
-    }
-    .counter-text{
-        margin-top: -50px !important;
-    }
-    .banner-padding-right{
-        padding-right: 8px;
-    }
-    .banner-padding-left{
-        padding-left: 8px;
-    }*/
-    /*#mobile-menu-toggle-btn svg {
-        left: 1.2rem;
-    }*/
 }
 
 /* LG Devices */
@@ -347,13 +436,57 @@
         height: 80px;
     }
 
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 350px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 15px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 0.75rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
+
     /* Timer Card */
     .timer-main {
-        height: 230px;
+        height: 200px;
     }
 
     .timer-image {
-        height: 200px;
+        height: 160px;
     }
 
     .timer-counter-main {
@@ -388,7 +521,7 @@
 
     /* Custom Banner Card */
     .custom-banner-card {
-        height: 140px;
+        height: 135px;
     }
 
     .custom-banner-card h5 {
@@ -403,37 +536,170 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
-
-    /*.counter{
-        margin-top: 0 !important;
-    }
-    .counter-text{
-        margin-top: -51px !important;
-    }
-    .padding-right-lg{
-        padding-right: 8px;
-    }
-    .padding-left-lg{
-        padding-left: 8px;
-    }
-    .banner-padding-right{
-        padding-right: 8px;
-    }
-    .banner-padding-left{
-        padding-left: 8px;
-    }*/
 }
 
 /* XL Devices */
-@media (min-width: 1025px) and (max-width: 1399px)  {
+@media (min-width: 1025px) and (max-width: 1200px)  {
     .header-logo-lg {
         width: 100%;
         height: 90px;
     }
 
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 350px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 15px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 0.75rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
+
     /* Timer Card */
     .timer-main {
-        height: 230px;
+        height: 200px;
+    }
+
+    .timer-image {
+        height: 160px;
+    }
+
+    .timer-counter-main {
+        height: 45px;
+        width: 45px;
+        line-height: 1.2;
+        padding: 5px;
+        margin-right: 0.75rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 1.5rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: 135px;
+    }
+
+    .custom-banner-card h5 {
+        font-size: 16px;
+    }
+
+    .custom-banner-card p {
+        font-size: 13px;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+}
+
+@media (min-width: 1200px) and (max-width: 1399px)  {
+    .header-logo-lg {
+        width: 100%;
+        height: 90px;
+    }
+
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 400px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 15px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 0.75rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
+
+    /* Timer Card */
+    .timer-main {
+        height: 245px;
     }
 
     .timer-image {
@@ -486,20 +752,6 @@
     .custom-banner-card .banner-btn {
         padding: 0.3rem 0.6rem;
     }
-    /* Custom Banner Card */
-
-    /*.padding-right-lg{
-        padding-right: 8px;
-    }
-    .padding-left-lg{
-        padding-left: 8px;
-    }
-    .banner-padding-right{
-        padding-right: 8px;
-    }
-    .banner-padding-left{
-        padding-left: 8px;
-    }*/
 }
 
 /* XXL Devices */
@@ -513,13 +765,57 @@
         max-width: 1350px;
     }
 
+    /* Promotion Slider */
+    .promotion-slider .carousel-img {
+        height: 450px;
+    }
+
+    .promotion-slider .promotion-slider-overlay {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .promotion-slider .promotion-slider-overlay h2 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .promotion-slider .promotion-slider-overlay p {
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .promotion-slider .promotion-slider-overlay a.promotion-btn {
+        font-size: 16px;
+        margin-bottom: 0;
+        font-weight: bolder;
+        padding: 0.35rem 1.5rem;
+        background: #0065E5;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    /* Promotion Slider */
+
     /* Timer Card */
     .timer-main {
-        height: 230px;
+        height: 300px;
     }
 
     .timer-image {
-        height: 200px;
+        height: 250px;
     }
 
     .timer-counter-main {
@@ -544,9 +840,9 @@
 
     .timer-btn {
         margin-top: 0.7rem;
-        font-size: 13px;
+        font-size: 16px;
         font-weight: bolder;
-        padding: 0.3rem 1.5rem;
+        padding: 0.35rem 1.5rem;
         background: #0065E5;
         border-radius: 5px;
     }
@@ -554,7 +850,7 @@
 
     /* Custom Banner Card */
     .custom-banner-card {
-        height: 140px;
+        height: 135px;
     }
 
     .custom-banner-card h5 {
@@ -569,19 +865,6 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
-
-    /*.padding-right-lg{
-        padding-right: 8px;
-    }
-    .padding-left-lg{
-        padding-left: 8px;
-    }
-    .banner-padding-right{
-        padding-right: 8px;
-    }
-    .banner-padding-left{
-        padding-left: 8px;
-    }*/
 }
 
 /* Container and Slider Image Settings */
