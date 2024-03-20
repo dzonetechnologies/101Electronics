@@ -156,7 +156,6 @@
     </section>
     {{--Shop by Category Section--}}
 
-
     {{--Promotion Section--}}
     <section class="mb-5">
         <div class="container">
@@ -166,19 +165,20 @@
                         Promotions
                     </span>
                 </div>
-
                 @php
                     $PromotionsSliders = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Slider')->orderBy('id', 'ASC')->get();
                     $Timer = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Timer')->first();
                     $Banner = Illuminate\Support\Facades\DB::table('promotions')->where('deleted_at', null)->where('type', 'Banner')->limit(2)->get();
                 @endphp
-                <div class="col-12 col-md-12 col-lg-6 padding-right-lg">
+                {{-- Slider --}}
+                <div class="col-12 col-lg-6 pe-lg-0"> {{-- padding-right-lg --}}
                     <div class="main-slider promotion-slider">
                         {{-- Promotion Slider --}}
                         @foreach($PromotionsSliders as $promotion)
                             <div class="promotion-slide">
                                 <div class="carousel-img">
                                     <img src="{{asset('public/storage/promotions/' . $promotion->image)}}"
+                                         alt="Promotion Image"
                                          class="img-fluid">
                                 </div>
                                 <div class="promotion-slider-overlay">
@@ -193,92 +193,104 @@
                         @endforeach
                     </div>
                 </div>
+                {{-- Slider --}}
 
-                <div class="col-12 col-md-12 col-lg-6 padding-left-lg">
+                <div class="col-12 col-lg-6"> {{-- padding-left-lg --}}
+                    <input type="hidden" id="end_date_time" name="end_date_time"
+                           value="{{ $Timer->end_date_time }}">
                     <div class="row">
-                        <input type="hidden" id="end_date_time" name="end_date_time"
-                               value="{{ $Timer->end_date_time }}">
-                        <div class="col-12 col-md-12 col-lg-12">
+                        {{-- Timer Card --}}
+                        <div class="col-12 mb-3">
                             <div class="card timer-card-main shadow-none border-0">
-                                <div class="card-body row d-flex align-items-center timer-main">
-                                    <div class="col-7 col-md-6 col-lg-6 pr-0">
+                                <div class="row align-items-center timer-main p-3">
+                                    <div class="col-7 col-md-6 col-lg-6 pr-1">
                                         <h2 class="text-white fw-600 bold">{{ $Timer->title }}</h2>
-                                        <div class="d-flex">
+                                        <div class="d-flex align-items-center">
                                             <div class="card timer-counter-main">
-                                                <p class="fs-3 text-dark counter" id="days">00</p>
-                                                <p class="fs-14 counter-text">Days</p>
+                                                <p class="" id="days">00</p> {{-- fs-3 text-dark counter --}}
+                                                <p class="">Days</p> {{-- fs-14 counter-text --}}
                                             </div>
-                                            <div class="card timer-counter-main ml-2">
-                                                <p class="fs-3 text-dark counter" id="hours">00</p>
-                                                <p class="m-0 fs-14 counter-text">Hr</p>
+                                            <div class="card timer-counter-main"> {{-- ml-2 --}}
+                                                <p class="" id="hours">00</p> {{-- fs-3 text-dark counter --}}
+                                                <p class="">Hr</p> {{-- m-0 fs-14 counter-text --}}
                                             </div>
-                                            <div class="card timer-counter-main ml-2">
-                                                <p class="fs-3 text-dark counter" id="minutes">00</p>
-                                                <p class="m-0 fs-14 counter-text">Min</p>
+                                            <div class="card timer-counter-main"> {{-- ml-2 --}}
+                                                <p class="" id="minutes">00</p> {{-- fs-3 text-dark counter --}}
+                                                <p class="">Min</p> {{-- m-0 fs-14 counter-text --}}
                                             </div>
-                                            <div class="card timer-counter-main ml-2">
-                                                <p class="fs-3 text-dark counter" id="seconds">00</p>
-                                                <p class="m-0 fs-14 counter-text">Sc</p>
+                                            <div class="card timer-counter-main"> {{-- ml-2 --}}
+                                                <p class="" id="seconds">00</p> {{-- fs-3 text-dark counter --}}
+                                                <p class="">Sec</p> {{-- m-0 fs-14 counter-text --}}
                                             </div>
                                         </div>
-                                        <div class="mt-3">
+                                        <div> {{-- class="mt-2" --}}
                                             <a class="btn text-white timer-btn" href="{{ $Timer->link }}"
                                                target="_blank">
                                                 Buy Now
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-5 col-md-6 col-lg-6 pl-0">
+                                    <div class="col-5 col-md-6 col-lg-6 pl-1">
                                         <div class="timer-image">
-                                            <img src="{{ asset('public/storage/promotions') . '/' . $Timer->image }}">
+                                            <img src="{{ asset('public/storage/promotions') . '/' . $Timer->image }}" alt="Timer Card Image" class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {{-- Timer Card --}}
 
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12 col-md-6 col-lg-6 banner-padding-right">
-                            <div class="card custom-banner-card banner-card-bg-1 shadow-none border-0">
-                                <div class="card-body row d-flex justify-content-center">
-                                    <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
-                                        <h5 class="text-white fw-600 mb-2">{{ $Banner[0]->title }}</h5>
-                                        <p class="text-white">
-                                            {{ $Banner[0]->description }}
-                                        </p>
-                                        <a class="btn banner-btn" href="{{ $Banner[0]->link }}" target="_blank">
-                                            View Details
-                                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-6 col-lg-4 pl-1 pr-2">
-                                        <div class="banner-image">
-                                            <img src="{{ asset('public/storage/promotions') . '/' . $Banner[0]->image }}">
+                        {{-- Custom Cards --}}
+                        <div class="col-12">
+                            <div class="row">
+                                {{-- Custom Card 1 --}}
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-3 mb-sm-0"> {{--  banner-padding-right --}}
+                                    <div class="card custom-banner-card banner-card-bg-1 shadow-none border-0">
+                                        <div class="row p-3"> {{-- card-body --}}
+                                            <div class="col-8 col-lg-8 pr-1">
+                                                <h5 class="">{{ $Banner[0]->title }}</h5> {{-- text-white fw-600 mb-2 --}}
+                                                <p class=""> {{-- text-white --}}
+                                                    {{ $Banner[0]->description }}
+                                                </p>
+                                                <a class="btn banner-btn" href="{{ $Banner[0]->link }}" target="_blank">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-lg-4 pl-1">
+                                                <div class="banner-image">
+                                                    <img src="{{ asset('public/storage/promotions') . '/' . $Banner[0]->image }}" class="img-fluid" alt="Promotion Image">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-6 banner-padding-left">
-                            <div class="card custom-banner-card banner-card-bg-2 shadow-none border-0">
-                                <div class="card-body row d-flex">
-                                    <div class="col-8 col-md-6 col-lg-8 pr-1 pl-2">
-                                        <h5 class="text-white fw-600 mb-2">{{ $Banner[1]->title }}</h5>
-                                        <p class="text-white">
-                                            {{ $Banner[1]->description }}
-                                        </p>
-                                        <a class="btn banner-btn" href="{{ $Banner[1]->link }}" target="_blank">
-                                            View Details
-                                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-6 col-lg-4 pl-1 pr-2">
-                                        <div class="banner-image">
-                                            <img src="{{ asset('public/storage/promotions') . '/' . $Banner[1]->image }}">
+                                {{-- Custom Card 1 --}}
+
+                                {{-- Custom Card 2 --}}
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 ps-sm-0"> {{-- banner-padding-left --}}
+                                    <div class="card custom-banner-card banner-card-bg-2 shadow-none border-0">
+                                        <div class="row p-3"> {{-- card-body --}}
+                                            <div class="col-8 col-lg-8 pr-1">
+                                                <h5 class="">{{ $Banner[1]->title }}</h5> {{-- text-white fw-600 mb-2 --}}
+                                                <p class=""> {{-- text-white --}}
+                                                    {{ $Banner[1]->description }}
+                                                </p>
+                                                <a class="btn banner-btn" href="{{ $Banner[1]->link }}" target="_blank">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-lg-4 pl-1">
+                                                <div class="banner-image">
+                                                    <img src="{{ asset('public/storage/promotions') . '/' . $Banner[1]->image }}" class="img-fluid" alt="Promotion Image">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                {{-- Custom Card 2 --}}
                             </div>
                         </div>
+                        {{-- Custom Cards --}}
                     </div>
                 </div>
             </div>

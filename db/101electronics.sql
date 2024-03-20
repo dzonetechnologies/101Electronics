@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2024 at 12:09 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.3
+-- Generation Time: Mar 20, 2024 at 12:20 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1984,7 +1984,7 @@ CREATE TABLE `promotions` (
 --
 
 INSERT INTO `promotions` (`id`, `type`, `title`, `description`, `link`, `image`, `end_date_time`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Timer', 'LG LED\'s', NULL, 'https://dzonetechnologies.com/', 'Promotion-20240316-115959.jpg', '2024-03-16 18:27:00', '2024-03-16 06:59:59', '2024-03-16 08:25:48', NULL),
+(1, 'Timer', 'LG LED\'s', NULL, 'https://dzonetechnologies.com/', 'Promotion-20240316-115959.png', '2024-03-25 18:27:00', '2024-03-16 06:59:59', '2024-03-16 08:25:48', NULL),
 (2, 'Banner', 'New Dual Sense', 'For Play station 4', 'https://dzonetechnologies.com/', 'Promotion-20240316-144508.jpg', NULL, '2024-03-16 08:11:32', '2024-03-16 09:45:08', NULL),
 (3, 'Banner', 'Diswashers', 'The most easy way to clean dishes', 'https://dzonetechnologies.com/', 'Promotion-20240316-144642.jpg', NULL, '2024-03-16 08:12:22', '2024-03-16 09:46:42', NULL),
 (4, 'Slider', 'Mega Shopping Event', 'Shop Great Deals On LED\'s washing machines and more.', 'https://dzonetechnologies.com/', 'Promotion-20240316-132140.jpg', NULL, '2024-03-16 08:21:40', '2024-03-16 08:31:04', NULL),

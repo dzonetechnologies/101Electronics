@@ -129,18 +129,66 @@
     #mobile-menu-toggle-btn svg {
         left: 1rem;
     }
+
+    /* Timer Card */
     .timer-card-main{
+        height: auto;
         margin-top: 15px !important;
     }
-    .banner-card-bg-2{
-        margin-top: 15px !important;
+
+    .timer-image {
+        height: 100px;
     }
-    .counter{
+
+    .timer-counter-main {
+        height: 40px;
+        width: 35px;
+        line-height: 1.2;
+        padding: 2px;
+        margin-right: 0.35rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 10px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 0.6rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: auto;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+
+    /*.banner-card-bg-2{
+        margin-top: 15px !important;
+    }*/
+    /*.counter{
         margin-top: 2px !important;
     }
     .counter-text{
         margin-top: -42px !important;
-    }
+    }*/
 }
 
 /* SM Devices */
@@ -149,7 +197,59 @@
         width: 100%;
         height: 70px;
     }
+
+    /* Timer Card */
     .timer-card-main{
+        /*height: auto;*/
+        margin-top: 15px !important;
+    }
+
+    .timer-image {
+        height: 120px;
+    }
+
+    .timer-counter-main {
+        height: 40px;
+        width: 40px;
+        line-height: 1.2;
+        padding: 3px;
+        margin-right: 0.50rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 10px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 1rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: 135px;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+
+
+    /*.timer-card-main{
         margin-top: 15px !important;
     }
     .banner-card-bg-2{
@@ -160,7 +260,7 @@
     }
     .counter-text{
         margin-top: -47px !important;
-    }
+    }*/
 }
 
 /* MD Devices */
@@ -169,7 +269,58 @@
         width: 100%;
         height: 70px;
     }
+
+    /* Timer Card */
     .timer-card-main{
+        /*height: auto;*/
+        margin-top: 15px !important;
+    }
+
+    .timer-image {
+        height: 150px;
+    }
+
+    .timer-counter-main {
+        height: 45px;
+        width: 45px;
+        line-height: 1.2;
+        padding: 5px;
+        margin-right: 0.75rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 1.5rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: 135px;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+
+    /*.timer-card-main{
         margin-top: 15px !important;
     }
     .counter{
@@ -183,7 +334,7 @@
     }
     .banner-padding-left{
         padding-left: 8px;
-    }
+    }*/
     /*#mobile-menu-toggle-btn svg {
         left: 1.2rem;
     }*/
@@ -195,7 +346,65 @@
         width: 100%;
         height: 80px;
     }
-    .counter{
+
+    /* Timer Card */
+    .timer-main {
+        height: 230px;
+    }
+
+    .timer-image {
+        height: 200px;
+    }
+
+    .timer-counter-main {
+        height: 45px;
+        width: 45px;
+        line-height: 1.2;
+        padding: 5px;
+        margin-right: 0.75rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 1.5rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: 140px;
+    }
+
+    .custom-banner-card h5 {
+        font-size: 16px;
+    }
+
+    .custom-banner-card p {
+        font-size: 13px;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+
+    /*.counter{
         margin-top: 0 !important;
     }
     .counter-text{
@@ -212,7 +421,7 @@
     }
     .banner-padding-left{
         padding-left: 8px;
-    }
+    }*/
 }
 
 /* XL Devices */
@@ -221,7 +430,65 @@
         width: 100%;
         height: 90px;
     }
-    .padding-right-lg{
+
+    /* Timer Card */
+    .timer-main {
+        height: 230px;
+    }
+
+    .timer-image {
+        height: 200px;
+    }
+
+    .timer-counter-main {
+        height: 45px;
+        width: 45px;
+        line-height: 1.2;
+        padding: 5px;
+        margin-right: 0.75rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 1.5rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: 140px;
+    }
+
+    .custom-banner-card h5 {
+        font-size: 16px;
+    }
+
+    .custom-banner-card p {
+        font-size: 13px;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+
+    /*.padding-right-lg{
         padding-right: 8px;
     }
     .padding-left-lg{
@@ -232,7 +499,7 @@
     }
     .banner-padding-left{
         padding-left: 8px;
-    }
+    }*/
 }
 
 /* XXL Devices */
@@ -241,7 +508,69 @@
         width: 100%;
         height: 75px;
     }
-    .padding-right-lg{
+
+    .container {
+        max-width: 1350px;
+    }
+
+    /* Timer Card */
+    .timer-main {
+        height: 230px;
+    }
+
+    .timer-image {
+        height: 200px;
+    }
+
+    .timer-counter-main {
+        height: 45px;
+        width: 45px;
+        line-height: 1.2;
+        padding: 5px;
+        margin-right: 0.75rem;
+    }
+
+    .timer-counter-main p:first-child {
+        font-size: 18px;
+        color: #282f3a;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .timer-counter-main p:last-child {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+
+    .timer-btn {
+        margin-top: 0.7rem;
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 0.3rem 1.5rem;
+        background: #0065E5;
+        border-radius: 5px;
+    }
+    /* Timer Card */
+
+    /* Custom Banner Card */
+    .custom-banner-card {
+        height: 140px;
+    }
+
+    .custom-banner-card h5 {
+        font-size: 16px;
+    }
+
+    .custom-banner-card p {
+        font-size: 13px;
+    }
+
+    .custom-banner-card .banner-btn {
+        padding: 0.3rem 0.6rem;
+    }
+    /* Custom Banner Card */
+
+    /*.padding-right-lg{
         padding-right: 8px;
     }
     .padding-left-lg{
@@ -252,10 +581,7 @@
     }
     .banner-padding-left{
         padding-left: 8px;
-    }
-    .container {
-        max-width: 1350px;
-    }
+    }*/
 }
 
 /* Container and Slider Image Settings */

@@ -97,7 +97,7 @@
 <div id="snackbar"></div>
 {{--Snackbar--}}
 <!--Div where the WhatsApp will be rendered-->
-    <div style="margin-bottom:80px;" id="WAButton"></div>
+    <div style="margin-bottom: 80px; z-index: 999;" id="WAButton"></div>
 <!-- All JS Plugins -->
 <script src="{{asset('public/assets/js/plugins.js')}}"></script>
 <!-- Main JS -->
