@@ -1561,3 +1561,21 @@ body {
     object-position: right;
 }
 /* Custom Banner Card */
+
+
+/* Pay Latter Section */
+
+.pay-latter-card {
+    height: 294px; /* Set a fixed height for all cards */
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+.pay-latter-image img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px !important;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    object-position: center;
+}

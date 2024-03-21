@@ -46,7 +46,10 @@ class DashboardController extends Controller
         $CustomerInformation = DB::table('customers')
             ->where('user_id', '=', Auth::id())
             ->get();
-        return view('site.account', compact('List', 'CustomerInformation'));
+        $Content = SiteHelper::GetPageContent('Wishlist');
+        $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+        $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        return view('site.account', compact('List', 'CustomerInformation','Title','Description'));
     }
 
     function updateAddress(Request $request){

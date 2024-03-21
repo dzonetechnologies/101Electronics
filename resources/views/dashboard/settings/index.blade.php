@@ -100,7 +100,22 @@
                                                    id="b2b_discount" value="{{$GeneralSettings[0]->b2b_discount}}"
                                                    onkeypress="return (event.charCode !== 8 && event.charCode === 0 || (event.charCode >= 48 && event.charCode <= 57))" />
                                         </div>
-
+                                        <div class="col-12 mb-3">
+                                            <label for="promotion" class="mb-1">Promotion</label>
+                                            <select class="form-control select2" id="promotion" name="promotion">
+                                                <option value="" selected>Select</option>
+                                                <option value="1" {{ $GeneralSettings[0]->promotion == 1 ? 'selected' : '' }}>Show</option>
+                                                <option value="0" {{ $GeneralSettings[0]->promotion == 0 ? 'selected' : '' }}>Hide</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="pay_latter" class="mb-1">Pay Latter</label>
+                                            <select class="form-control select2" id="pay_latter" name="pay_latter">
+                                                <option value="" selected>Select</option>
+                                                <option value="1" {{ $GeneralSettings[0]->pay_latter == 1 ? 'selected' : '' }}>Show</option>
+                                                <option value="0" {{ $GeneralSettings[0]->pay_latter == 0 ? 'selected' : '' }}>Hide</option>
+                                            </select>
+                                        </div>
                                         <div class="col-12 text-center">
                                             <button class="btn btn-outline-success" type="submit">Save</button>
                                         </div>

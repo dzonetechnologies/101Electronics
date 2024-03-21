@@ -223,6 +223,10 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
+    .pay-latter-card {
+        margin-top: 10px;
+        height: 364px !important;
+    }
 }
 
 /* SM Devices */
@@ -325,6 +329,10 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
+    .pay-latter-card {
+        margin-top: 10px;
+        height: 364px !important;
+    }
 }
 
 /* MD Devices */
@@ -427,6 +435,10 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
+    .pay-latter-card {
+        margin-top: 25px;
+        height: 314px !important;
+    }
 }
 
 /* LG Devices */

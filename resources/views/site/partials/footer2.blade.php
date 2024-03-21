@@ -12,7 +12,7 @@
                                     <a href="{{route('ContactUsRoute')}}">
                                         <img src="{{asset('public/assets/images/footer/links/Footer Icon 1.png')}}"
                                              alt="Footer Icon 1" class="img-fluid"/>
-                                        Contact Us
+                                        &nbsp;&nbsp;&nbsp;Contact Us
                                     </a>
                                 </li>
                                 <li>
@@ -208,8 +208,8 @@
                         </p>
                         <p class="text-black mb-0">All Copyrights are reserved for 101 Electronics | <span
                                     class="current-year"></span> | Developed by
-                            <a href="http://metasolutions.com.pk/" target="_blank"
-                               class="text-custom-primary fw-600">Meta Solutions</a>
+                            <a href="https://dzonetechnologies.com" target="_blank"
+                               class="text-custom-primary fw-600">DZone Technologies</a>
                         </p>
                     </div>
                 </div>

@@ -94,6 +94,8 @@ class GeneralSettingController extends Controller
                 'secure_payment' => $SecurePayment,
                 'b2b' => $B2bFileName,
                 'b2b_discount' => $request['b2b_discount'],
+                'promotion' => $request['promotion'],
+                'pay_latter' => $request['pay_latter'],
                 'updated_at' => Carbon::now()
             ]);
         if ($Affected) {
@@ -124,6 +126,9 @@ class GeneralSettingController extends Controller
         $Affected = DB::table('general_pages')
             ->where('id', $PageId)
             ->update([
+                'meta_title' => $request['meta_title'],
+                'meta_description' => $request['meta_description'],
+                'page_link' => $request['page_link'],
                 'desc' => $request['page_description'],
                 'updated_at' => Carbon::now()
             ]);

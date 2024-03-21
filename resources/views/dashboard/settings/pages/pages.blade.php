@@ -20,7 +20,17 @@
                         <form>
                             <div class="row">
                               <div class="col-md-12 text-center">
-                                <a href="{{route('settings.pages.edit', [9])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 buttonStyling">Orders & Collect</button></a>
+                                <a href="{{route('settings.pages.edit', [21])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 buttonStyling">Home Page</button></a>
+                                <a href="{{route('settings.pages.edit', [11])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">About Us</button></a>
+                                <a href="{{route('settings.pages.edit', [12])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Contact Us</button></a>
+                                <a href="{{route('settings.pages.edit', [20])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Clearance Sale</button></a>
+                                <a href="{{route('settings.pages.edit', [13])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Care & Repair</button></a>
+                                <a href="{{route('settings.pages.edit', [22])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">B2B</button></a>
+                                <a href="{{route('settings.pages.edit', [23])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">B2B Small Appliances </button></a>
+                                <a href="{{route('settings.pages.edit', [24])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">B2B Large Appliances</button></a>
+                                <a href="{{route('settings.pages.edit', [25])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">B2B Commercial Appliances</button></a>
+                                <a href="{{route('settings.pages.edit', [9])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Orders & Collect</button></a>
+                                <a href="{{route('settings.pages.edit', [16])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Track Order</button></a>
                                 <a href="{{route('settings.pages.edit', [1])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Stores</button></a>
                                 <a href="{{route('settings.pages.edit', [2])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Return & Cancellations</button></a>
                                 <a href="{{route('settings.pages.edit', [3])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Ways to Pay</button></a>
@@ -30,7 +40,9 @@
                                 <a href="{{route('settings.pages.edit', [7])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Privacy and Cookies Policy</button></a>
                                 <a href="{{route('settings.pages.edit', [8])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Terms and Conditions</button></a>
                                 <a href="{{route('settings.pages.edit', [10])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Discount Voucher</button></a>
-                                <!--<a href="{{route('settings.pages.edit', [17])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Installation Guide</button></a>-->
+                                <a href="{{route('settings.pages.edit', [14])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Cart</button></a>
+                                <a href="{{route('settings.pages.edit', [26])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Wishlist</button></a>
+                                {{--<a href="{{route('settings.pages.edit', [17])}}"><button type="button" name="button" class="btn btn-secondary btn-lg w-50 pt-2 pb-2 mt-2 buttonStyling">Installation Guide</button></a>--}}
                               </div>
                             </div>
                         </form>

@@ -23,7 +23,9 @@ class CartController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 14)
             ->get();
-        return view('site.cart', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.cart', compact('PageDetails','Title','Description'));
     }
 
     public function addToCart(Request $request)

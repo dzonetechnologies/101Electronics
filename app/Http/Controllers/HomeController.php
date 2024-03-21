@@ -20,7 +20,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('site.index');
+        $Content = SiteHelper::GetPageContent('Home Page');
+        $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+        $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        return view('site.index',compact('Title','Description'));
     }
 
     function GetSubcategoriesFromCategory(Request $request)
@@ -516,6 +519,8 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 13)
             ->get();
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
         $OfferDetail = DB::table('offers')->get();
         $FaqDetails = DB::table('faqs')->get();
         $CareRepair = DB::table('care_repairs')->get();
@@ -523,7 +528,7 @@ class HomeController extends Controller
         $DeliveryDetails = DB::table('delivery_service_charges')->get();
         $RateList = DB::table('rate_lists')->get();
         $DeliveryParts = DB::table('delivery_parts_designs')->get();
-        return view('site.care-repair', compact('PageDetails','OfferDetail','FaqDetails','CareRepair','PricingDetail','DeliveryDetails','RateList','DeliveryParts'));
+        return view('site.care-repair', compact('PageDetails', 'Title', 'Description','OfferDetail','FaqDetails','CareRepair','PricingDetail','DeliveryDetails','RateList','DeliveryParts'));
     }
 
     function CareRepairTableLoad(Request $request)
@@ -611,7 +616,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 9)
             ->get();
-        return view('site.orders-collect', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.orders-collect', compact('PageDetails', 'Title', 'Description'));
     }
 
     function Stores()
@@ -619,7 +626,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 1)
             ->get();
-        return view('site.stores', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.stores', compact('PageDetails','Title','Description'));
     }
 
     function ReturnCancellations()
@@ -627,7 +636,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 2)
             ->get();
-        return view('site.return-cancellations', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.return-cancellations', compact('PageDetails','Title','Description'));
     }
 
     function WaysToPay()
@@ -635,7 +646,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 3)
             ->get();
-        return view('site.ways-to-pay', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.ways-to-pay', compact('PageDetails','Title','Description'));
     }
 
     function DeliveryOptions()
@@ -643,7 +656,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 4)
             ->get();
-        return view('site.delivery-options', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.delivery-options', compact('PageDetails','Title','Description'));
     }
 
     function PricePromise()
@@ -651,7 +666,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 5)
             ->get();
-        return view('site.price-promise', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.price-promise', compact('PageDetails','Title','Description'));
     }
 
     function InstallmentGuide()
@@ -659,7 +676,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 6)
             ->get();
-        return view('site.installment-guide', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.installment-guide', compact('PageDetails','Title','Description'));
     }
 
     function InstallationGuide()
@@ -667,7 +686,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 17)
             ->get();
-        return view('site.installation-guide', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.installation-guide', compact('PageDetails','Title','Description'));
     }
 
     function PrivacyPolicy()
@@ -675,7 +696,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 7)
             ->get();
-        return view('site.privacy-policy', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.privacy-policy', compact('PageDetails','Title','Description'));
     }
 
     function TermsConditions()
@@ -683,7 +706,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 8)
             ->get();
-        return view('site.terms-conditions', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.terms-conditions', compact('PageDetails','Title','Description'));
     }
 
     function ContactUs()
@@ -691,7 +716,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 12)
             ->get();
-        return view('site.contact-us', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.contact-us', compact('PageDetails','Title','Description'));
     }
     //Contact us email function
     function send_email(Request $request){
@@ -723,10 +750,9 @@ class HomeController extends Controller
         }
 
     }
+
     function contact(){
-
         return view('email.contact');
-
     }
 
     function DiscountVoucher()
@@ -734,6 +760,8 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 10)
             ->get();
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
         // Discount Voucher Details
         $DiscountVouchers = DB::table('discount_vouchers')
             ->where('deleted_at', null)
@@ -747,7 +775,7 @@ class HomeController extends Controller
         $DiscountQuestions = DB::table('discount_questions')
             ->where('deleted_at',null)
             ->get();
-        return view('site.discount-voucher', compact('PageDetails', 'DiscountVouchers','DiscountQuestions'));
+        return view('site.discount-voucher', compact('PageDetails','Title', 'Description', 'DiscountVouchers','DiscountQuestions'));
     }
 
     function AboutUs()
@@ -755,9 +783,11 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 11)
             ->get();
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
         $AboutUsDetails = DB::table('about_us')
                     ->get();
-        return view('site.about-us', compact('PageDetails','AboutUsDetails'));
+        return view('site.about-us', compact('PageDetails','Title', 'Description','AboutUsDetails'));
     }
 
     function AddToWishlist(Request $request)
@@ -799,7 +829,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 16)
             ->get();
-        return view('site.track-order', compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.track-order', compact('PageDetails','Title','Description'));
     }
 
     function trackOrderHtml(Request $request){
@@ -1020,13 +1052,29 @@ class HomeController extends Controller
         $CategoriesDetails = DB::table('categories')
                     ->where('deleted_at',null)
                     ->get();
-        return view('site.b2b',compact('CategoriesDetails'));
+        $Content = SiteHelper::GetPageContent('B2B');
+        $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+        $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        return view('site.b2b',compact('CategoriesDetails','Title', 'Description'));
     }
 
     public function b2bDeals($Type){
         $B2BTree = DB::table('b2b_trees')
             ->where('tree_type', '=', $Type)
             ->get();
+        if ($B2BTree[0]->tree_type == 'large'){
+            $Content = SiteHelper::GetPageContent('B2B Large Appliances');
+            $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+            $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        } else if ($B2BTree[0]->tree_type == 'small'){
+            $Content = SiteHelper::GetPageContent('B2B Small Appliances');
+            $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+            $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        } else{
+            $Content = SiteHelper::GetPageContent('B2B Commercial Appliances');
+            $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+            $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        }
         if (sizeof($B2BTree) == 0) {
             return redirect()->route('B2BRoute');
         }
@@ -1046,7 +1094,7 @@ class HomeController extends Controller
         $List = SiteHelper::GetUserList();
         $index = 0;
 
-        return view('site.b2b-deals',compact('Type', 'Products', 'List', 'index'));
+        return view('site.b2b-deals',compact('Type','Title','Description', 'Products', 'List', 'index'));
     }
 
     public function b2bForm(Request $request){
@@ -1205,7 +1253,9 @@ class HomeController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 20)
             ->get();
-        return view('site.clearance-sale',compact('PageDetails'));
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
+        return view('site.clearance-sale',compact('PageDetails','Title','Description'));
     }
 
 }

@@ -29,13 +29,15 @@
                             <div class="row">
                                 <div class="offset-md-2 col-md-8">
                                     <div class="row">
+                                        @if($Promotion->type != 'Pay Latter')
                                         <div class="col-12 mb-3">
                                             <label for="name" class="mb-1">Title</label>
                                             <input type="text" placeholder="Title" id="title"
                                                    name="title" value="{{ $Promotion->title }}" class="form-control" maxlength="100"
                                                    required>
                                         </div>
-                                        @if($Promotion->type != 'Timer')
+                                        @endif
+                                        @if($Promotion->type != 'Timer' && $Promotion->type != 'Pay Latter')
                                         <div class="col-12 mb-3">
                                             <label for="description" class="mb-1">Description</label>
                                             <textarea type="text" id="description" name="description"

@@ -174,4 +174,26 @@ class SiteHelper
             </a>
         </div>';
     }
+
+    static function GetPageContent($pageName)
+    {
+        return DB::table('general_pages')
+            ->where('page_name', $pageName)
+            ->first();
+    }
+
+    static function CheckPromotionVisibility($type)
+    {
+        $settings = DB::table('general_settings')->first();
+        if ($type == 'Promotion'){
+            if ($settings->promotion == 1){
+                return true;
+            }
+        } else if ($type == 'Pay Latter'){
+            if ($settings->pay_latter == 1){
+                return true;
+            }
+        }
+        return false;
+    }
 }
