@@ -36,13 +36,15 @@ class CheckoutController extends Controller
         $PageDetails = DB::table('general_pages')
             ->where('id', 15)
             ->get();
+        $Title = !empty($PageDetails) ? $PageDetails[0]->meta_title : env('APP_NAME');
+        $Description = !empty($PageDetails) ? $PageDetails[0]->meta_description : env('META_DESCRIPTION');
         $CustomerInformation = array();
         if(Auth::check()){
             $CustomerInformation = DB::table('customers')
                 ->where('user_id', '=', Auth::id())
                 ->get();
         }
-        return view('site.checkout', compact('PageDetails', 'CustomerInformation'));
+        return view('site.checkout', compact('PageDetails', 'Title', 'Description', 'CustomerInformation'));
     }
 
     function LoadCheckoutPageHtml(Request $request){

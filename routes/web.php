@@ -18,9 +18,7 @@ use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\DiscountVoucherController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\SaleReportController;
-use App\Http\Controllers\Auth\LoginController;
 
 //Command Routes
 Route::get('clear-cache', function () {

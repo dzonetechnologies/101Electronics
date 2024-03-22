@@ -40,13 +40,14 @@ class DashboardController extends Controller
 
     function accountPage(){
         $List = false;
+        $Content = SiteHelper::GetPageContent('Home Page');
         if(isset($_GET['list'])){
             $List = true;
+            $Content = SiteHelper::GetPageContent('Wishlist');
         }
         $CustomerInformation = DB::table('customers')
             ->where('user_id', '=', Auth::id())
             ->get();
-        $Content = SiteHelper::GetPageContent('Wishlist');
         $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
         $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
         return view('site.account', compact('List', 'CustomerInformation','Title','Description'));
@@ -481,6 +482,7 @@ class DashboardController extends Controller
     echo json_encode($json_data);
 
 }
+
     function viewRequest($RequestId)
     {
         $RequestDetails = DB::table('return_requests')

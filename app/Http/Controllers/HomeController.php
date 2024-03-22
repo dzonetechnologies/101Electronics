@@ -248,8 +248,26 @@ class HomeController extends Controller
             ->whereIn('id', explode(',', $Category[0]->brand))
             ->orderBy('order_no', 'ASC')
             ->get();
-
-        return view('site.compare', compact('Category', 'SubCategories', 'SubSubCategories', 'SubCategoryId', 'slug', 'SelectedSubCategory', 'SelectedRange', 'SelectedBrands', 'PriceRange', 'Brands', 'StartPrice', 'EndPrice', 'SelectedSubSubCategory', '__SubSubCategories'));
+        if ($slug == 'tv'){
+            $Content = SiteHelper::GetPageContent('Compare LED TV In Pakistan TV');
+        } else if ($slug == 'ac'){
+            $Content = SiteHelper::GetPageContent('Compare Air Conditioner');
+        } else if ($slug == 'washing-machine'){
+            $Content = SiteHelper::GetPageContent('Compare Fully Automatic Washing Machine');
+        } else if ($slug == 'refrigerator'){
+            $Content = SiteHelper::GetPageContent('Compare Refrigerator');
+        } else if ($slug == 'dishwasher'){
+            $Content = SiteHelper::GetPageContent('Compare Dishwasher');
+        } else if ($slug == 'cooking-appliances'){
+            $Content = SiteHelper::GetPageContent('Compare Kitchen Appliances');
+        } else if ($slug == 'sd-appliances'){
+            $Content = SiteHelper::GetPageContent('Compare Home Small Domestic Appliances');
+        } else if ($slug == 'coffee-machine'){
+            $Content = SiteHelper::GetPageContent('Compare Coffee Machine');
+        }
+        $Title = !empty($Content) ? $Content->meta_title : env('APP_NAME');
+        $Description = !empty($Content) ? $Content->meta_description : env('META_DESCRIPTION');
+        return view('site.compare', compact('Title','Description', 'Category', 'SubCategories', 'SubSubCategories', 'SubCategoryId', 'slug', 'SelectedSubCategory', 'SelectedRange', 'SelectedBrands', 'PriceRange', 'Brands', 'StartPrice', 'EndPrice', 'SelectedSubSubCategory', '__SubSubCategories'));
     }
 
     public function compareRunTime(Request $request)
