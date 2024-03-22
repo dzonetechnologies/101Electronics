@@ -49,11 +49,6 @@
                                             <textarea class="form-control" name="meta_description"
                                                       id="meta_description" rows="8" placeholder="Enter Meta Description">{{ $PageDetails[0]->meta_description }}</textarea>
                                         </div>
-                                        <div class="col-12 mb-3">
-                                            <label class="w-100" for="page_link">Page Link</label>
-                                            <input type="text" class="form-control" name="page_link"
-                                                   id="page_link" value="{{ $PageDetails[0]->page_link }}" placeholder="Enter Page Link">
-                                        </div>
                                         @if(!empty($PageDetails[0]->desc))
                                         <div class="col-12 mb-3">
                                               <label class="w-100" for="product_short_description">Page

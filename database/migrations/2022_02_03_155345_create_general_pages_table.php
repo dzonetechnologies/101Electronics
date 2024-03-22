@@ -13,7 +13,6 @@ class CreateGeneralPagesTable extends Migration
             $table->string("page_name");
             $table->string("meta_title")->nullable();
             $table->text("meta_description")->nullable();
-            $table->string("page_link")->nullable();
             $table->text('desc')->nullable();
             $table->string("banner_img")->nullable();
             $table->string("banner_img_mobile")->nullable();

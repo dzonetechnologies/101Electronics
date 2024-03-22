@@ -128,7 +128,6 @@ class GeneralSettingController extends Controller
             ->update([
                 'meta_title' => $request['meta_title'],
                 'meta_description' => $request['meta_description'],
-                'page_link' => $request['page_link'],
                 'desc' => $request['page_description'],
                 'updated_at' => Carbon::now()
             ]);
