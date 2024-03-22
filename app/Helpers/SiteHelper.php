@@ -114,6 +114,17 @@ class SiteHelper
     //     return  $code;
     // }
 
+    static function GetTreeTitleFromType($Type)
+    {
+        if($Type == "home-appliances-in-pakistan") {
+            return "Large Appliances";
+        } elseif($Type == "small-appliances") {
+            return "Small Appliances";
+        } else {
+            return "Commercial Appliances";
+        }
+    }
+
     static function GetCategoryFromId($Id)
     {
         return DB::table('categories')

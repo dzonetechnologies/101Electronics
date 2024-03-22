@@ -143,12 +143,12 @@
                 <div class="col-md-4 ">
                     <a class="btn btn-custom-primary-b2b fs-15 fw-600 w-75 d-none d-md-block btn-centre "
                        href="{{$DealsPageUrl}}">
-                        {{ucwords($b2bTree->tree_type)}} Appliances
+                        {{ \App\Helpers\SiteHelper::GetTreeTitleFromType($b2bTree->tree_type) }}
                     </a>
                     {{--Mobile Btn--}}
                     <div class="container btn-centre">
                         <a class="btn btn-custom-primary-b2b fs-15 fw-600 w-40 d-md-none" href="{{$DealsPageUrl}}">
-                            {{ucwords($b2bTree->tree_type)}} Appliances
+                            {{ \App\Helpers\SiteHelper::GetTreeTitleFromType($b2bTree->tree_type) }}
                         </a>
                     </div>
                     {{--Mobile Btn End--}}

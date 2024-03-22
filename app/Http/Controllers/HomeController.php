@@ -12,9 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use function JmesPath\search;
-use Mail;
-use App\Mail\NotifyMail;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -766,7 +764,6 @@ class HomeController extends Controller
         catch (exception $e) {
     //code to handle the exception
         }
-
     }
 
     function contact(){

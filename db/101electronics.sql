@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 09:59 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.3
+-- Generation Time: Mar 22, 2024 at 09:18 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,9 +94,9 @@ CREATE TABLE `b2b_trees` (
 --
 
 INSERT INTO `b2b_trees` (`id`, `tree_type`, `categories`, `sub_categories`, `sub_sub_categories`, `created_at`, `updated_at`) VALUES
-(1, 'large', '2,3,4,5,6', '', '', '2022-05-31 19:00:00', '2022-05-31 19:00:00'),
-(2, 'small', '', '', '36,37,38,39,40,41,42,43,45,46,47', '2022-05-31 19:00:00', '2022-05-31 19:00:00'),
-(3, 'commercial', '', '17', '73,90', '2022-05-31 19:00:00', '2022-05-31 19:00:00');
+(1, 'home-appliances-in-pakistan', '2,3,4,5,6', '', '', '2022-05-31 19:00:00', '2022-05-31 19:00:00'),
+(2, 'small-appliances', '', '', '36,37,38,39,40,41,42,43,45,46,47', '2022-05-31 19:00:00', '2022-05-31 19:00:00'),
+(3, 'commercial-appliances', '', '17', '73,90', '2022-05-31 19:00:00', '2022-05-31 19:00:00');
 
 -- --------------------------------------------------------
 
@@ -2007,13 +2007,12 @@ CREATE TABLE `promotions` (
 --
 
 INSERT INTO `promotions` (`id`, `type`, `title`, `description`, `link`, `image`, `end_date_time`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Timer', 'LG LED\'s', NULL, 'https://dzonetechnologies.com/', 'Promotion-20240318-152336.png', '2024-03-19 18:27:00', '2024-03-16 06:59:59', '2024-03-18 10:23:36', NULL),
+(1, 'Timer', 'LG LED\'s', NULL, 'https://dzonetechnologies.com/', 'Promotion-20240318-152336.png', '2024-04-15 18:27:00', '2024-03-16 06:59:59', '2024-03-18 10:23:36', NULL),
 (2, 'Banner', 'New Dual Sense', 'For Play station 4', 'https://dzonetechnologies.com/', 'Promotion-20240316-144508.jpg', NULL, '2024-03-16 08:11:32', '2024-03-16 09:45:08', NULL),
 (3, 'Banner', 'Diswashers', 'The most easy way to clean dishes', 'https://dzonetechnologies.com/', 'Promotion-20240316-144642.jpg', NULL, '2024-03-16 08:12:22', '2024-03-16 09:46:42', NULL),
 (4, 'Slider', 'Mega Shopping Event', 'Shop Great Deals On LED\'s washing machines and more.', 'https://dzonetechnologies.com/', 'Promotion-20240318-115348.jpg', NULL, '2024-03-16 08:21:40', '2024-03-18 06:53:48', NULL),
 (5, 'Slider', 'Mega Shopping Event', 'Shop Great Deals On LED\'s washing machines and more.', 'https://dzonetechnologies.com/', 'Promotion-20240318-115412.jpg', NULL, '2024-03-16 09:09:41', '2024-03-18 06:54:12', NULL),
 (6, 'Slider', 'Mega Shopping Event', 'Shop Great Deals On LED\'s washing machines and more.', 'Ut accusantium dolor', 'Promotion-20240318-115429.jpg', NULL, '2024-03-16 11:23:47', '2024-03-18 06:54:38', NULL),
-(7, 'Slider', 'Et vel sint adipisci qui aperiam perferendis consectetur aliquam vel voluptatem impedit commodi qu', 'Cupiditate quidem consectetur deserunt sequi sapiente', 'Vitae esse dignissi', 'Promotion-20240318-110050.jpg', NULL, '2024-03-18 05:27:42', '2024-03-18 06:54:19', '2024-03-18 06:54:19'),
 (8, 'Pay Latter', NULL, NULL, 'https://101electronics.pk/', 'Promotion-20240321-155149.jpg', NULL, '2024-03-21 10:10:56', '2024-03-21 10:51:49', NULL),
 (9, 'Pay Latter', NULL, NULL, 'https://101electronics.pk/', 'Promotion-20240321-151146.jpg', NULL, '2024-03-21 10:11:46', '2024-03-21 10:15:34', NULL),
 (10, 'Pay Latter', NULL, NULL, 'https://101electronics.pk/', 'Promotion-20240321-151155.jpg', NULL, '2024-03-21 10:11:55', '2024-03-21 10:15:56', NULL),
