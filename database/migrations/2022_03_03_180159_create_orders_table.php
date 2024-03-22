@@ -14,6 +14,7 @@ class CreateOrdersTable extends Migration
             $table->integer('customer_id')->nullable();
             $table->string('payment_gateway');
             $table->string('discount_code', 100)->nullable();
+            $table->double('b2b_discount');
             $table->double('sub_total');
             $table->double('gst');
             $table->double('discount');

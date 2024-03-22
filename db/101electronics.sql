@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 09:17 AM
+-- Generation Time: Mar 22, 2024 at 09:53 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.3
 
@@ -309,7 +309,8 @@ INSERT INTO `customers` (`id`, `user_id`, `first_name`, `last_name`, `phone`, `e
 (13, 0, 'Ammad', 'Hassan', '+923314330660', 'ammadhassan029@gmail.com', 'Matador Mart', 'Matador Mart', 'H # 71/A Main Street Alhabib park OutFall Road', 'Lahore', 'Punjab', '54000', 'H # 71/A Main Street Alhabib park OutFall Road', 'Lahore', 'Punjab', '54000', '2022-05-18 05:13:12', '2022-05-18 05:13:12', NULL),
 (14, 0, 'Ammad', 'Hassan', '+923314330660', 'ammadhassan029@gmail.com', 'Matador Mart', 'Matador Mart', 'H # 71/A Main Street Alhabib park OutFall Road', 'Lahore', 'Punjab', '54000', 'H # 71/A Main Street Alhabib park OutFall Road', 'Lahore', 'Punjab', '54000', '2022-05-18 05:20:50', '2022-05-18 05:20:50', NULL),
 (15, 0, 'Ammad', 'Hassan', '+923314330660', 'ammadhassan029@gmail.com', 'Matador Mart', 'Matador Mart', 'H # 71/A Main Street Alhabib park OutFall Road', 'Lahore', 'Punjab', '54000', 'H # 71/A Main Street Alhabib park OutFall Road', 'Lahore', 'Punjab', '54000', '2022-05-18 05:32:47', '2022-05-18 05:32:47', NULL),
-(19, 10, 'Faizan', 'Javaid', NULL, 'faizan.javaid330@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-20 13:49:48', '2024-01-20 13:49:48', NULL);
+(19, 10, 'Faizan', 'Javaid', NULL, 'faizan.javaid330@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-20 13:49:48', '2024-01-20 13:49:48', NULL),
+(20, 11, 'Lara', 'Lancaster', '+1 (559) 149-2252', 'hamzaafzal032@gmail.com', 'Rasmussen Gates Co', 'Calhoun and Mclean Plc', 'Dolore et id dolorem eos', 'Voluptas occaecat aute porro omnis id obcaecati dolor enim ea natus impedit cillum nisi quisquam ve', 'Quis reprehenderit aspernatur consectetur enim aliqua Corporis distinctio', '16210', 'Dolorum voluptas ea dolor est quos in expedita minima non minim veniam', 'Voluptate sequi delectus ipsum obcaecati', 'Duis cum quia consequatur Illo incididunt sit dolor dolorum quo qui', '10561', '2024-03-22 09:47:28', '2024-03-22 09:47:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -706,6 +707,7 @@ CREATE TABLE `orders` (
   `sub_total` double NOT NULL,
   `gst` double NOT NULL,
   `discount` double NOT NULL,
+  `b2b_discount` double NOT NULL,
   `shipping` double NOT NULL,
   `installation` double NOT NULL,
   `voucher_amount` double DEFAULT NULL,
@@ -722,13 +724,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `invoice_no`, `customer_id`, `payment_gateway`, `discount_code`, `sub_total`, `gst`, `discount`, `shipping`, `installation`, `voucher_amount`, `order_total`, `order_notes`, `order_status`, `invoice_pdf`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '0000001', 11, 'COD', NULL, 46320.417, 6798.3, 467.883, 0, 0, 0, 46320.417, 'Call before dispatch order', 0, '101 Invoice-0000001.pdf', '2022-04-17 05:47:30', '2023-08-30 12:22:44', '2023-08-30 12:22:44'),
-(2, '0000002', 12, 'COD', NULL, 138996, 20400, 1404, 0, 0, 0, 138996, NULL, 0, '101 Invoice-0000002.pdf', '2022-04-17 16:31:00', '2023-09-24 19:43:53', '2023-09-24 19:43:53'),
-(3, '0000003', 11, 'COD', NULL, 138996, 20400, 1404, 0, 0, 0, 138996, NULL, 0, '101 Invoice-0000003.pdf', '2022-04-17 16:34:20', '2023-09-24 19:43:48', '2023-09-24 19:43:48'),
-(4, '0000004', 13, 'COD', NULL, 118996.7922, 17464.78, 1201.9878, 0, 0, 0, 118996.7922, NULL, 0, '101 Invoice-0000004.pdf', '2022-05-18 05:13:12', '2023-09-24 19:43:45', '2023-09-24 19:43:45'),
-(5, '0000005', 14, 'COD', NULL, 94980.6, 13940, 959.39999999999, 0, 0, 0, 94980.6, NULL, 0, '101 Invoice-0000005.pdf', '2022-05-18 05:20:50', '2023-09-24 19:43:42', '2023-09-24 19:43:42'),
-(6, '0000006', 15, 'COD', NULL, 434362.5, 63750, 4387.5, 0, 0, 0, 434362.5, NULL, 0, '101 Invoice-0000006.pdf', '2022-05-18 05:32:47', '2023-08-30 12:22:47', '2023-08-30 12:22:47');
+INSERT INTO `orders` (`id`, `invoice_no`, `customer_id`, `payment_gateway`, `discount_code`, `sub_total`, `gst`, `discount`, `b2b_discount`, `shipping`, `installation`, `voucher_amount`, `order_total`, `order_notes`, `order_status`, `invoice_pdf`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '0000001', 11, 'COD', NULL, 46320.417, 6798.3, 467.883, 0, 0, 0, 0, 46320.417, 'Call before dispatch order', 0, '101 Invoice-0000001.pdf', '2022-04-17 05:47:30', '2023-08-30 12:22:44', '2023-08-30 12:22:44'),
+(2, '0000002', 12, 'COD', NULL, 138996, 20400, 1404, 0, 0, 0, 0, 138996, NULL, 0, '101 Invoice-0000002.pdf', '2022-04-17 16:31:00', '2023-09-24 19:43:53', '2023-09-24 19:43:53'),
+(3, '0000003', 11, 'COD', NULL, 138996, 20400, 1404, 0, 0, 0, 0, 138996, NULL, 0, '101 Invoice-0000003.pdf', '2022-04-17 16:34:20', '2023-09-24 19:43:48', '2023-09-24 19:43:48'),
+(4, '0000004', 13, 'COD', NULL, 118996.7922, 17464.78, 1201.9878, 0, 0, 0, 0, 118996.7922, NULL, 0, '101 Invoice-0000004.pdf', '2022-05-18 05:13:12', '2023-09-24 19:43:45', '2023-09-24 19:43:45'),
+(5, '0000005', 14, 'COD', NULL, 94980.6, 13940, 959.39999999999, 0, 0, 0, 0, 94980.6, NULL, 0, '101 Invoice-0000005.pdf', '2022-05-18 05:20:50', '2023-09-24 19:43:42', '2023-09-24 19:43:42'),
+(6, '0000006', 15, 'COD', NULL, 434362.5, 63750, 4387.5, 0, 0, 0, 0, 434362.5, NULL, 0, '101 Invoice-0000006.pdf', '2022-05-18 05:32:47', '2023-08-30 12:22:47', '2023-08-30 12:22:47');
 
 -- --------------------------------------------------------
 
@@ -760,7 +762,8 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `unit_p
 (3, 3, 50, 1, 140400, 17, 1, 1404, 138996, '2022-04-17 16:34:20', '2022-04-17 16:34:20'),
 (4, 4, 182, 1, 120198.78, 17, 1, 1201.9878, 118996.7922, '2022-05-18 05:13:12', '2022-05-18 05:13:12'),
 (5, 5, 88, 1, 95940, 17, 1, 959.39999999999, 94980.6, '2022-05-18 05:20:50', '2022-05-18 05:20:50'),
-(6, 6, 48, 3, 146250, 17, 1, 4387.5, 434362.5, '2022-05-18 05:32:47', '2022-05-18 05:32:47');
+(6, 6, 48, 3, 146250, 17, 1, 4387.5, 434362.5, '2022-05-18 05:32:47', '2022-05-18 05:32:47'),
+(7, 7, 373, 1, 60900, 0, 0, 0, 60900, '2024-03-22 09:47:57', '2024-03-22 09:47:57');
 
 -- --------------------------------------------------------
 
@@ -2526,9 +2529,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'sI0YSKTCDgytfhYMyfuoiZcLvageAI6kVqhvDGgVOEmnHrIOFXcCA0tx1GY9', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
+(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'XIYveCs9ZmTsskx5LzYhsa7k02W3aGVgPMTHKhnZ9RG1VS5G2k9UpcCdCyCQ', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
 (9, 'Ammad', 'ammadhassan029@gmail.com', NULL, '$2y$10$v2YxqRTyv9ugEQWJzDMJt.pQAa89kzZyVpFIq6uUDzyuXCQumHv6G', '7iiiE0lfmNWsJOhGfrA6aJvEZ9ox0mRW7yRfRLDVQqKwDAnd67pYVu9gy0Xl', 2, 1, '2022-04-17 05:31:31', '2022-04-17 05:32:37'),
-(10, 'Faizan', 'faizan.javaid330@gmail.com', NULL, '$2y$10$Th20Tp7L/nCJqorOwwTMo.3wfaXMC3tyG.0.PcjGKUT1bBT5LpD5O', NULL, 2, 1, '2024-01-20 13:49:48', '2024-01-20 13:49:48');
+(10, 'Faizan', 'faizan.javaid330@gmail.com', NULL, '$2y$10$Th20Tp7L/nCJqorOwwTMo.3wfaXMC3tyG.0.PcjGKUT1bBT5LpD5O', NULL, 2, 1, '2024-01-20 13:49:48', '2024-01-20 13:49:48'),
+(11, 'Hamza', 'hamzaafzal032@gmail.com', NULL, '$2y$10$s5aYcClyntDpouc9FVonDelep3II53Fkw/rvblquMepWq8Ab41Kb6', NULL, 2, 1, '2024-03-22 09:47:28', '2024-03-22 09:47:28');
 
 -- --------------------------------------------------------
 
@@ -2859,7 +2863,7 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `customer_reviews`
@@ -2937,13 +2941,13 @@ ALTER TABLE `offers`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -3045,7 +3049,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `wish_lists`
