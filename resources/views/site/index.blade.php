@@ -82,7 +82,7 @@
 
                 @foreach($ImportedBrands as $brand)
                     <div class="col-6 col-md-3 mb-3 ">
-                        <a href="{{route('CheckSlugRoute', ['slug' => $brand->slug])}}">
+                        <a href="{{ route('home.slug', ['slug1' => $brand->slug2]) }}"> {{-- route('CheckSlugRoute', ['slug' => $brand->slug]) --}}
                             <div class="brand-layout">
                                 <div class="brand-layout-img">
                                     <img src="{{asset('public/storage/brands/' . $brand->image)}}"
@@ -105,7 +105,7 @@
 
                 @foreach($ChineseBrands as $brand)
                     <div class="col-6 col-md-3 mb-3">
-                        <a href="{{route('CheckSlugRoute', ['slug' => $brand->slug])}}">
+                        <a href="{{ route('home.slug', ['slug1' => $brand->slug2]) }}"> {{-- route('CheckSlugRoute', ['slug' => $brand->slug]) --}}
                             <div class="brand-layout">
                                 <div class="brand-layout-img">
                                     <img src="{{asset('public/storage/brands/' . $brand->image)}}" alt="Chinese Brand"
@@ -284,12 +284,11 @@
                 @php
                     $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted_at', null)->orderBy('order_no', 'ASC')->get();
                 @endphp
-
                 <div class="col-md-12">
                     <div class="products-category-slider ltn__category-slider slick-arrow-1">
                         @foreach($Categories as $category)
                             <div class="col-4 col-md-2">
-                                <a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">
+                                <a href="{{ route('home.slug', ['slug1' => $category->slug2]) }}"> {{-- route('CheckSlugRoute', ['slug' => $category->slug]) --}}
                                     <span class="product-category-circle">
                                         <span class="product-category-circle-img">
                                             <img src="{{asset('public/storage/categories/' . $category->icon)}}"
@@ -345,7 +344,7 @@
         if (count($GetFirstSubCategory) > 0) {
             $SubCategoryId = $GetFirstSubCategory[0]->id;
         }
-        $CompareUrl = route('CompareRoute', ['slug' => $category->slug]) . '?sub=' . $SubCategoryId . '&subSub=&range=1_1000000&brands=';
+        $CompareUrl = route('CompareRoute', ['slug' => $category->slug2]); /*  . '?sub=' . $SubCategoryId . '&subSub=&range=1_1000000&brands=' */
         ?>
         <section class="mb-5">
             <div class="container">
@@ -356,11 +355,11 @@
                         </h2>
                     </div>
                     <div class="col-5 col-sm-4">
-                        <a href="{{route('CheckSlugRoute', ['slug' => $category->slug]) }}">
+                        <a href="{{ route('home.slug', ['slug1' => $category->slug2]) }}">
                             <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
                                 See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </label>
-                        </a>
+                        </a> {{-- route('CheckSlugRoute', ['slug' => $category->slug]) --}}
                     </div>
                     <div class="col-12">
                         <div class="d-flex align-items-center">

@@ -1,32 +1,31 @@
 @extends('site.layouts.app')
 @section('content')
     {{--Shop by Category Section--}}
-    <?php $subcategoryslug = "all"; ?>
     <section class="mb-4 mt-4 d-none d-md-block">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center" style="line-height: 3;">
                     @if($SubCategoryId == "")
-                        <?php $subcategoryslug = "all"; ?>
-                        <a href="{{route('CheckSlugRoute', ['slug' => $Category[0]->slug])}}"
+                        <?php $SubCategorySlug = "all"; ?>
+                        <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug2]) }}"
                            class="activeSubCategoryBlock">
                             ALL
                         </a>
                     @else
-                        <a href="{{route('CheckSlugRoute', ['slug' => $Category[0]->slug])}}" class="subCategoryBlock">
+                        <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug2]) }}"
+                           class="subCategoryBlock">
                             ALL
                         </a>
                     @endif
-
                     @foreach($SubCategories as $subcategory)
                         @if($SubCategoryId != "" && $SubCategoryId == $subcategory->id)
-                            <?php $subcategoryslug = $subcategory->slug; ?>
-                            <a href="{{route('CheckSlugRoute', ['slug' => $subcategory->slug])}}"
+                            <?php $SubCategorySlug = $subcategory->slug2; ?>
+                            <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug, 'slug2' => $subcategory->slug2]) }}"
                                class="activeSubCategoryBlock">
                                 {{$subcategory->title}}
                             </a>
                         @else
-                            <a href="{{route('CheckSlugRoute', ['slug' => $subcategory->slug])}}"
+                            <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug, 'slug2' => $subcategory->slug2]) }}"
                                class="subCategoryBlock">
                                 {{$subcategory->title}}
                             </a>
@@ -42,26 +41,26 @@
             <div class="row">
                 <div class="col-md-12 text-center" style="line-height: 3;">
                     @if($SubCategoryId == "")
-                        <?php $subcategoryslug = "all"; ?>
-                        <a href="{{route('CheckSlugRoute', ['slug' => $Category[0]->slug])}}"
+                        <?php $SubCategorySlug = "all"; ?>
+                        <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug2]) }}"
                            class="activeSubCategoryBlock">
                             ALL
                         </a>
                     @else
-                        <a href="{{route('CheckSlugRoute', ['slug' => $Category[0]->slug])}}" class="subCategoryBlock">
+                        <a href="{{route('home.slug', ['slug1' => $Category[0]->slug2])}}"
+                           class="subCategoryBlock">
                             ALL
                         </a>
                     @endif
-
                     @foreach($SubCategories as $subcategory)
                         @if($SubCategoryId != "" && $SubCategoryId == $subcategory->id)
-                            <?php $subcategoryslug = $subcategory->slug; ?>
-                            <a href="{{route('CheckSlugRoute', ['slug' => $subcategory->slug])}}"
+                            <?php $SubCategorySlug = $subcategory->slug; ?>
+                            <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug, 'slug2' => $subcategory->slug2]) }}"
                                class="activeSubCategoryBlock">
                                 {{$subcategory->title}}
                             </a>
                         @else
-                            <a href="{{route('CheckSlugRoute', ['slug' => $subcategory->slug])}}"
+                            <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug, 'slug2' => $subcategory->slug2]) }}"
                                class="subCategoryBlock">
                                 {{$subcategory->title}}
                             </a>
@@ -76,7 +75,7 @@
     {{--Category With Products--}}
     @foreach($SubSubCategories as $i => $sub_subcategory)
         <?php
-        $FirstSubCategoryId = 0;
+        /*$FirstSubCategoryId = 0;
         if ($SubCategoryId == "") {
             $GetFirstSubCategory = \Illuminate\Support\Facades\DB::table('subcategories')
                 ->where('category', '=', $Category[0]->id)
@@ -89,7 +88,7 @@
         } else {
             $FirstSubCategoryId = $SubCategoryId;
         }
-        $CompareUrl = route('CompareRoute', ['slug' => $Category[0]->slug]) . '?sub=' . $FirstSubCategoryId . '&subSub=&range=1_1000000&brands=';
+        $CompareUrl = route('CompareRoute', ['slug' => $Category[0]->slug2]) . '?sub=' . $FirstSubCategoryId . '&subSub=&range=1_1000000&brands=';*/
         $Products = [];
         ?>
         <section class="mb-5">
@@ -101,7 +100,7 @@
                         </h2>
                     </div>
                     <div class="col-5 col-sm-4">
-                        <a href="{{ url('/'. $Category[0]->slug .'/'. $subcategoryslug .'/'. $sub_subcategory->slug) }}">
+                        <a href="{{ route('home.slug', ['slug1' => $Category[0]->slug, 'slug2' => $sub_subcategory->SubCatSlug, 'slug3' => $sub_subcategory->slug2]) }}">
                             <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
                                 See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </label>
@@ -111,14 +110,14 @@
                         <div class="d-flex align-items-center">
                             <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
                                    class="form-check-input compareCheckBox mt-0 mr-2"
-                                   onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
+                                   onclick="window.location.href='{{route('CompareRoute', ['slug' => $Category[0]->slug2])}}';" autocomplete='off'>
                             <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
                         </div>
                     </div>
                     {{--Products--}}
                     <div class="col-12">
                         <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
-                            @if($subcategoryslug != "all" && $SubCategoryId != "")
+                            @if($SubCategorySlug != "all" && $SubCategoryId != "")
                                 @php
                                     $Products = Illuminate\Support\Facades\DB::table('products')
                                                 ->where('deleted_at', null)

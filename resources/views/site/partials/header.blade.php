@@ -320,7 +320,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                 ?>
                                                 @if($category->title == "IOT Devices")
                                                     <li class="menu-icon MenuCategoryLink ">
-                                                        <a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}"
+                                                        <a href="{{ route('home.slug', ['slug1' => $category->slug2]) }}"
                                                            class="text-custom-primary design">{{$category->title}} <?php if (sizeof($__SubCategories) > 0) {
                                                             } ?>
                                                         </a>
@@ -332,7 +332,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                                     $__SubSubCategories = \Illuminate\Support\Facades\DB::select(DB::raw($SubSubcategorySql), array($subCategory->id, $category->id));
                                                                     ?>
                                                                     <li>
-                                                                        <a href="{{route('CheckSlugRoute', ['slug' => $subCategory->slug])}}">{{$subCategory->title}} <?php if (sizeof($__SubSubCategories) > 0) {
+                                                                        <a href="{{ route('home.slug', ['slug1' => $category->slug, 'slug2' => $subCategory->slug2]) }}">{{$subCategory->title}} <?php if (sizeof($__SubSubCategories) > 0) {
                                                                                 // echo '<i class="fas fa-angle-right"></i>';
                                                                             } ?>
                                                                         </a><i class="fa fa-angle-right float-right"
@@ -341,7 +341,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                                             <ul>
                                                                                 @foreach($__SubSubCategories as $subSubCategory)
                                                                                     <li>
-                                                                                        <a href="{{url('/'. $category->slug .'/'. $subCategory->slug .'/'. $subSubCategory->slug)}}">{{$subSubCategory->title}}</a>
+                                                                                        <a href="{{ route('home.slug', ['slug1' => $category->slug, 'slug2' => $subCategory->slug, 'slug3' => $subSubCategory->slug2]) }}">{{$subSubCategory->title}}</a>
                                                                                     </li>
                                                                                 @endforeach
                                                                             </ul>
@@ -354,7 +354,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                 @else
                                                     <li class="menu-icon MenuCategoryLink ">
                                                         <a class="design"
-                                                           href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">{{$category->title}} <?php if (sizeof($__SubCategories) > 0) {
+                                                           href="{{ route('home.slug', ['slug1' => $category->slug2]) }}">{{$category->title}} <?php if (sizeof($__SubCategories) > 0) { /* route('CheckSlugRoute', ['slug' => $category->slug]) */
                                                                 //
                                                             } ?>
                                                         </a>
@@ -366,7 +366,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                                     $__SubSubCategories = \Illuminate\Support\Facades\DB::select(DB::raw($SubSubcategorySql), array($subCategory->id, $category->id));
                                                                     ?>
                                                                     <li>
-                                                                        <a href="{{route('CheckSlugRoute', ['slug' => $subCategory->slug])}}">{{$subCategory->title}}
+                                                                        <a href="{{ route('home.slug', ['slug1' => $category->slug, 'slug2' => $subCategory->slug2]) }}">{{$subCategory->title}} {{-- route('CheckSlugRoute', ['slug' => $subCategory->slug]) --}}
                                                                             <?php if (sizeof($__SubSubCategories) > 0) {
                                                                                 // echo '<i class="fas fa-angle-right"></i>';
                                                                             } ?>
@@ -376,7 +376,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                                                             <ul>
                                                                                 @foreach($__SubSubCategories as $subSubCategory)
                                                                                     <li>
-                                                                                        <a href="{{url('/'. $category->slug .'/'. $subCategory->slug .'/'. $subSubCategory->slug)}}">{{$subSubCategory->title}}</a>
+                                                                                        <a href="{{ route('home.slug', ['slug1' => $category->slug, 'slug2' => $subCategory->slug, 'slug3' => $subSubCategory->slug2]) }}">{{$subSubCategory->title}}</a> {{-- url('/'. $category->slug .'/'. $subCategory->slug .'/'. $subSubCategory->slug) --}}
                                                                                     </li>
                                                                                 @endforeach
                                                                             </ul>
@@ -463,7 +463,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                     ?>
                     <li>
                         <span class="menu-expand"></span><a
-                                href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">{{$category->title}}</a>
+                                href="{{ route('home.slug', ['slug1' => $category->slug2]) }}">{{$category->title}}</a>
                         @if(sizeof($__SubCategories) > 0)
                             <ul class="sub-menu" style="display: none;">
                                 @foreach($__SubCategories as $subCategory)
@@ -472,12 +472,12 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                                     $__SubSubCategories = \Illuminate\Support\Facades\DB::select(DB::raw($SubSubcategorySql), array($subCategory->id, $category->id));
                                     ?>
                                     <li>
-                                        <a href="{{route('CheckSlugRoute', ['slug' => $subCategory->slug])}}"><b>{{$subCategory->title}}</b></a>
+                                        <a href="{{ route('home.slug', ['slug1' => $category->slug, 'slug2' => $subCategory->slug2])  }}"><b>{{$subCategory->title}}</b></a>
                                     </li>
                                     @if(sizeof($__SubSubCategories) > 0)
                                         @foreach($__SubSubCategories as $subSubCategory)
                                             <li>
-                                                <a href="{{url('/'. $category->slug .'/'. $subCategory->slug .'/'. $subSubCategory->slug)}}">{{$subSubCategory->title}}</a>
+                                                <a href="{{ route('home.slug', ['slug1' => $category->slug, 'slug2' => $subCategory->slug, 'slug3' => $subSubCategory->slug2]) }}">{{$subSubCategory->title}}</a>
                                             </li>
                                         @endforeach
                                     @endif
@@ -552,7 +552,7 @@ $Categories = Illuminate\Support\Facades\DB::table('categories')->where('deleted
                         <div class="row">
                             @foreach($Categories as $category)
                                 <div class="col-md-6 mb-4">
-                                    <a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">
+                                    <a href="{{ route('home.slug', ['slug1' => $category->slug2]) }}">
                                     <span class="product-category-circle">
                                         <span class="product-category-circle-img">
                                             <img src="{{asset('public/storage/categories/' . $category->icon)}}"
