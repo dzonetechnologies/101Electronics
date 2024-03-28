@@ -11,7 +11,6 @@
     </style>
     <input type="hidden" id="UrlSlug" value="{{$slug}}">
     {{--Category With Products--}}
-    <?php $subcategoryslug = "all"; ?>
     <section class="mb-4 mt-4">
         <div class="container-fluid">
             <div class="row">
