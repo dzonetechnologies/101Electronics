@@ -561,7 +561,7 @@ class HomeController extends Controller
                 '    <span class="col-12 item" id="product-0" role="option">' .
                 '        <div class="row">' .
                 '            <div class="col-xs-12 col-sm-9 prod-detail">' .
-                '                <a href="' . route('CheckSlugRoute', ['slug' => $product->slug]) . '" ' .
+                '                <a href="' . route('home.slug', ['slug1' => $product->slug]) . '" ' .
                 '                   aria-label="INDESIT IWC 71453 W UK N 7 kg 1400 Spin Washing Machine - White">' .
                 '                    <img class="swatch-circle" ' .
                 '                         alt="INDESIT IWC 71453 W UK N 7 kg 1400 Spin Washing Machine - White" ' .
@@ -570,7 +570,7 @@ class HomeController extends Controller
                 '                </a>' .
                 '            </div>' .
                 '            <div class="col-xs-12 col-sm-3 pricing">' .
-                '                <span style="font-size: 13px">' . \App\Helpers\SiteHelper::CalculatePrice($product->total_price) . '</span>' .
+                '                <span style="font-size: 13px">' . SiteHelper::CalculatePrice($product->total_price) . '</span>' .
                 '            </div>' .
                 '         </div>' .
                 '    </span>' .
@@ -603,13 +603,12 @@ class HomeController extends Controller
             ->get();
         $html = '';
         foreach ($products as $product) {
-
             $html .= '' .
                 '<li class="row justify-content-end items productList mt-3">' .
                 '    <span class="col-12 item" id="product-0" role="option">' .
                 '        <div class="row ltn__no-gutter">' .
                 '            <div class="col-xs-12 col-sm-9 col-9 prod-detail">' .
-                '                <a href="' . route('CheckSlugRoute', ['slug' => $product->slug]) . '" ' .
+                '                <a href="' . route('home.slug', ['slug1' => $product->slug]) . '" ' .
                 '                   aria-label="INDESIT IWC 71453 W UK N 7 kg 1400 Spin Washing Machine - White">' .
                 '                   <div class="row">' .
                 '                      <div class="col-2">' .
@@ -624,7 +623,7 @@ class HomeController extends Controller
                 '                </a>' .
                 '            </div>' .
                 '            <div class="col-xs-12 col-sm-3 col-3 pricing" style="margin-top:13px">' .
-                '                <span style="font-size: 10px;">' . \App\Helpers\SiteHelper::CalculatePrice($product->total_price) . '</span>' .
+                '                <span style="font-size: 10px;">' . SiteHelper::CalculatePrice($product->total_price) . '</span>' .
                 '            </div>' .
                 '         </div>' .
                 '    </span>' .
