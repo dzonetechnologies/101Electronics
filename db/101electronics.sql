@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2024 at 11:31 AM
+-- Generation Time: Apr 04, 2024 at 08:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.16
 
@@ -2533,7 +2533,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'VRNIfvxxVlBAHiF0rQJJvKI9IiDApFJKGrzszKgKZ5doBSeFkkSJq6rcTByw', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
+(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'Pc1beQgdGm5mkgVW1vLRBvaN7ZSFzEvKZBv5Z9oz3ZXgjuiXwEAUEtDRxoq5', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
 (9, 'Ammad', 'ammadhassan029@gmail.com', NULL, '$2y$10$v2YxqRTyv9ugEQWJzDMJt.pQAa89kzZyVpFIq6uUDzyuXCQumHv6G', '7iiiE0lfmNWsJOhGfrA6aJvEZ9ox0mRW7yRfRLDVQqKwDAnd67pYVu9gy0Xl', 2, 1, '2022-04-17 05:31:31', '2022-04-17 05:32:37'),
 (10, 'Faizan', 'faizan.javaid330@gmail.com', NULL, '$2y$10$Th20Tp7L/nCJqorOwwTMo.3wfaXMC3tyG.0.PcjGKUT1bBT5LpD5O', NULL, 2, 1, '2024-01-20 13:49:48', '2024-01-20 13:49:48'),
 (11, 'Hamza', 'hamzaafzal032@gmail.com', NULL, '$2y$10$s5aYcClyntDpouc9FVonDelep3II53Fkw/rvblquMepWq8Ab41Kb6', NULL, 2, 1, '2024-03-22 09:47:28', '2024-03-22 09:47:28');
