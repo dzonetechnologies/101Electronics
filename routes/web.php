@@ -4,6 +4,7 @@ use App\Http\Controllers\PromotionsController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\SlugController;
 use \App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BrandsController;
@@ -37,8 +38,6 @@ Route::get('/link', function () {
 
 /* Front Website Routes*/
 Route::get('/', [HomeController::class, 'index'])->name('HomeRoute');
-Route::get('/dealssettings/{slug}', [HomeController::class, 'deals'])->name('DealsRoute');
-Route::get('/compare/{slug}', [HomeController::class, 'compare'])->name('CompareRoute');
 Route::post('/compare/subSubCategories', [HomeController::class, 'GetSubSubCategories'])->name('CompareRoute.subSubCategories');
 Route::post('/compare/runtime', [HomeController::class, 'compareRunTime'])->name('CompareRunTimeRoute');
 Route::get('/care-repair', [HomeController::class, 'CareRepair'])->name('CareRepairRoute');
@@ -319,6 +318,9 @@ Route::middleware(['admin_validator'])->group(function (){
     Route::post('dashboard/update-account', [DashboardController::class, 'UpdateAccount'])->name('update.account');
 });
 
-// Front website
-Route::get('/{slug}', [HomeController::class, 'checkSlug'])->name('CheckSlugRoute');
-Route::get('/{categoryslug}/{subcategoryslug}/{subsubcategoryslug}', [HomeController::class, 'checkSubSubCategorySlug'])->name('CheckSubSubCategorySlugRoute');
+// Front website Slug Routes
+Route::get('/deals/{slug}', [SlugController::class, 'brandDeals'])->name('home.brands.deals');
+Route::get('/compare/{slug}', [SlugController::class, 'compare'])->name('CompareRoute');
+Route::get('/{slug1}/{slug2?}/{slug3?}', [SlugController::class, 'index'])->name('home.slug');
+/*Route::get('/{slug}', [HomeController::class, 'checkSlug'])->name('CheckSlugRoute');
+Route::get('/{categoryslug}/{subcategoryslug}/{subsubcategoryslug}', [HomeController::class, 'checkSubSubCategorySlug'])->name('CheckSubSubCategorySlugRoute');*/

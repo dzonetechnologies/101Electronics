@@ -92,7 +92,7 @@
                         <div class="row">
                             @foreach($Categories as $category)
                                 <div class="col-md-3 mb-4">
-                                    <a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">
+                                    <a href="{{route('home.slug', ['slug' => $category->slug2])}}">
                                         <span class="product-category-circle">
                                             <span class="product-category-circle-img">
                                                 <img src="{{asset('public/storage/categories/' . $category->icon)}}"

@@ -148,8 +148,9 @@ class SiteHelper
 
     static function GetProductTemplate($product, $index, $index1, $List)
     {
+        /* route('CheckSlugRoute', ['slug' => $product->slug]) */
         return '<div class="product-card-difference my-3">
-            <a href="' . route('CheckSlugRoute', ['slug' => $product->slug]) . '">
+            <a href="' . route('home.slug', ['slug1' => $product->slug]) . '">
                 <div class="product-category-square text-center">' .
                     (($product->rating != null && $product->rating != 0) ? '<span class="product-category-square-rating"><i class="fa fa-star text-warning"></i>&nbsp;' . $product->rating . '</span>' : '') .
                     (floatval($product->discount) != 0 ? '<span class="product-category-square-discount bg-custom-primary text-white">' . $product->discount . '% OFF</span>' : '') .

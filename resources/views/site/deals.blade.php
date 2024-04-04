@@ -22,7 +22,7 @@
                     </span>
                 </div>
                 {{-- Products --}}
-                @if($subcategoryslug != "all")
+                @if($Slug2 != "all")
                     @php
                         $Products = Illuminate\Support\Facades\DB::table('products')
                                     ->where('deleted_at', null)

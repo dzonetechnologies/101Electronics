@@ -1,7 +1,7 @@
 @if(isset($ComparePage))
     @foreach($Products as $index1 => $product)
         <div class="col-md-3 mt-2 mb-2 product-card-difference">
-            <a href="{{route('CheckSlugRoute', ['slug' => $product->slug])}}">
+            <a href="{{ route('home.slug', ['slug1' => $product->slug]) }}">
                 <div class="product-category-square text-center">
                     @if($product->rating != null && $product->rating != 0)
                         <span class="product-category-square-rating">
@@ -150,7 +150,7 @@
 @elseif(isset($AccountPage))
     @foreach($Products as $index1 => $product)
         <div class="col-6 col-md-3 mb-3 product-card-difference">
-            <a href="{{route('CheckSlugRoute', ['slug' => $product->slug])}}">
+            <a href="{{ route('home.slug', ['slug1' => $product->slug]) }}">
                 <div class="product-category-square text-center">
                     @if($product->rating != null && $product->rating != 0)
                         <span class="product-category-square-rating">
@@ -220,7 +220,7 @@
 @else
     @foreach($Products as $index1 => $product)
         <div class="col-md-3 product-card-difference my-3">
-            <a href="{{route('CheckSlugRoute', ['slug' => $product->slug])}}">
+            <a href="{{ route('home.slug', ['slug' => $product->slug]) }}">
                 <div class="product-category-square text-center">
                     @if($product->rating != null && $product->rating != 0)
                         <span class="product-category-square-rating">

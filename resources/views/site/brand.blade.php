@@ -25,7 +25,6 @@
                             </video>
                         </div>
                     @endif
-
                 @endforeach
             </div>
         </div>
@@ -71,7 +70,7 @@
                     <div class="row products-category-slider ltn__category-slider slick-arrow-1">
                         @foreach($Categories as $category)
                             <div class="col-md-2">
-                                <a href="{{route('CheckSlugRoute', ['slug' => $category->slug])}}">
+                                <a href="{{route('home.slug', ['slug1' => $category->slug2])}}">
                                     <span class="product-category-circle">
                                         <span class="product-category-circle-img">
                                             <img src="{{asset('public/storage/categories/' . $category->icon)}}"
@@ -90,18 +89,6 @@
     {{--Shop by Category Section--}}
     {{--Category With Products--}}
     @foreach($Categories as $i => $category)
-        <?php
-        $SubCategoryId = 0;
-        $GetFirstSubCategory = \Illuminate\Support\Facades\DB::table('subcategories')
-            ->where('category', '=', $category->id)
-            ->where('deleted_at', '=', null)
-            ->orderBy('order_no', 'ASC')
-            ->get();
-        if (count($GetFirstSubCategory) > 0) {
-            $SubCategoryId = $GetFirstSubCategory[0]->id;
-        }
-        $CompareUrl = route('CompareRoute', ['slug' => $category->slug]) . '?sub='. $SubCategoryId .'&subSub=&range=1_1000000&brands=';
-        ?>
         <section class="mb-5">
             <div class="container">
                 <div class="row line-height-1-3 mb-2">
@@ -111,7 +98,7 @@
                         </h2>
                     </div>
                     <div class="col-5 col-sm-4">
-                        <a href="{{ route('DealsRoute', ['slug' => $category->slug]) }}">
+                        <a href="{{ route('home.brands.deals', ['slug' => $category->slug2]) }}">
                             <label for="" class="form-check-label text-custom-primary cursor-pointer fs-14 float-right">
                                 See all deals <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </label>
@@ -121,7 +108,7 @@
                         <div class="d-flex align-items-center">
                             <input type="checkbox" id="compare{{$i}}" name="compare{{$i}}"
                                    class="form-check-input compareCheckBox mt-0 mr-2"
-                                   onclick="window.location.href='{{$CompareUrl}}';" autocomplete='off'>
+                                   onclick="window.location.href='{{route('CompareRoute', ['slug' => $category->slug2])}}';" autocomplete='off'>
                             <label for="compare{{$i}}" class="form-check-label fs-15">Compare</label>
                         </div>
                     </div>

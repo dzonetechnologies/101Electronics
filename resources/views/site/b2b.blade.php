@@ -156,7 +156,7 @@
                         <ul class="StepProgress mb-0 mb-4 mt-4">
                             @foreach($Categories as $category)
                                 <li class="StepProgress-item is-done cursor-pointer mt-0 mb-2"
-                                    onclick="window.location.href='{{route('CheckSlugRoute', ['slug' => \App\Helpers\SiteHelper::GetCategoryFromId($category)[0]->slug])}}';"> {{--is-active--}}
+                                    onclick="window.location.href='{{route('home.slug', ['slug1' => \App\Helpers\SiteHelper::GetCategoryFromId($category)[0]->slug])}}';"> {{--is-active--}}
                                     <strong>{{\App\Helpers\SiteHelper::GetCategoryFromId($category)[0]->title}}</strong>
                                 </li>
                             @endforeach

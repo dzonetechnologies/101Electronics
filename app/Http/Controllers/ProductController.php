@@ -366,7 +366,7 @@ class ProductController extends Controller
             $Id = $item->id;
             $OrderNo = $item->order_no;
             $Parameters = "this, '$Id', '$OrderNo'";
-            $Action .= '<a href="javascript:void(0);" class="mr-2" onclick="ProductOrderUp(' . $Parameters . ');"><i class="fa fa-arrow-up"></i></a><a href="javascript:void(0);" class="mr-2" onclick="ProductOrderDown(' . $Parameters . ');"><i class="fa fa-arrow-down"></i></a><a href="' . $EditUrl . '"><i class="fa fa-pen text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DuplicateProduct(\'' . $item->id . '\');"><i class="fa fa-clone text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DeleteProduct(\'' . $item->id . '\');"><i class="fa fa-trash text-color-red"></i></a>';
+            $Action .= '<a href="javascript:void(0);" class="mr-2" onclick="ProductOrderUp(' . $Parameters . ');"><i class="fa fa-arrow-up"></i></a><a href="javascript:void(0);" class="mr-2" onclick="ProductOrderDown(' . $Parameters . ');"><i class="fa fa-arrow-down"></i></a><i class="fas fa-clipboard-list mr-2 text-color-green"></i><a href="' . $EditUrl . '"><i class="fa fa-pen text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DuplicateProduct(\'' . $item->id . '\');"><i class="fa fa-clone text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DeleteProduct(\'' . $item->id . '\');"><i class="fa fa-trash text-color-red"></i></a>';
             $Action .= "<span>";
             $sub_array['action'] = $Action;
             $SrNo++;

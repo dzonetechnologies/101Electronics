@@ -221,9 +221,11 @@
             .discount-quiz {
                 color: #C71837;
             }
-            .ml-25{
+
+            .ml-25 {
                 margin-left: 25px;
             }
+
             .fs {
                 font-size: 20px;
             }
@@ -234,10 +236,12 @@
             .fs {
                 font-size: 15px;
             }
+
             .quiz-img {
                 height: 150px;
                 margin-left: 30px;
             }
+
             .discount-quiz {
                 color: #C71837;
             }
@@ -311,7 +315,8 @@
                        value="{{$Product[0]->total_price_without_discount}}">
                 <input type="hidden" name="hiddenTotalPrice" id="hiddenTotalPrice" value="{{$Product[0]->total_price}}">
                 <div class="col-6">
-                    <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay" style="display: none;" />
+                    <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay"
+                         style="display: none;"/>
                     <img src="{{asset('public/storage/products') . '/' . $ProductGalleryImages[0]->gallery}}"
                          id="product-image-container-mob" alt="PRODUCT DETAILS 1" class="img-fluid"/>
                     <video src="" id="product-video-container" style="display: none;" class="w-100" controls></video>
@@ -384,20 +389,20 @@
                     <div class="f-10 mt-install">
                         @if($Product[0]->installment_calculator == 1)
                             <i class="fas fa-info-circle text-custom-primary cursor-pointer"></i>&nbsp;<a
-                                    href="#ltn__utilize-installment-guide-menu" class="ltn__utilize-toggle">Installment
+                                href="#ltn__utilize-installment-guide-menu" class="ltn__utilize-toggle">Installment
                                 Guide</a>
                         @endif
                         <i class="fas fa-gift text-custom-primary cursor-pointer"></i>&nbsp;<a
-                                href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount
+                            href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount
                             Vouchers</a>
                     </div>
                     <div class="mb-2 f-10">
                         <i style="color:#C72D4B;margin-top:-10px;" class="fa fa-address-book" aria-hidden="true"></i>&nbsp;<a
-                                href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
-                                    class=" text-custom-primary cursor-pointer"></span>Return & Cancellations</a><br>
+                            href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
+                                class=" text-custom-primary cursor-pointer"></span>Return & Cancellations</a><br>
                         <i style="color:#C72D4B" class="fa fa-truck" aria-hidden="true"></i>&nbsp; <a
-                                href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
-                                    class=" text-custom-primary cursor-pointer"></span>Delivery Options</a>
+                            href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
+                                class=" text-custom-primary cursor-pointer"></span>Delivery Options</a>
                     </div>
                 </div>
                 <div class="col-6">
@@ -412,25 +417,25 @@
                     </div>
                     {{--Colors--}}
                     @if(sizeof($ProductColors) > 0) {{--$Product[0]->color_variants != null && $Product[0]->color_variants != ''--}}
-                        <p class="text-custom-primary fw-600 f-16 mb-0">
-                            Colors:
-                        </p>
-                        <div class="mb-2">
-                            <?php
-                            /*$Colors = array();
-                            $Colors = explode(',', $Product[0]->color_variants);
-                            $ProductColors = \Illuminate\Support\Facades\DB::table('colors')
-                                ->whereIn('id', $Colors)
-                                ->get();
-                            foreach ($ProductColors as $index => $color) {
-                                echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $color->name . '" style="background-color: ' . $color->code . '; border-radius: 100%; padding: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                            }*/
-                            foreach ($ProductColors as $index => $productColor) {
-                                $AssetUrl = asset('public/storage/products/') . '/' . $productColor->color_image;
-                                echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $productColor->ColorName . '" style="background-color: ' . $productColor->ColorCode . '; border-radius: 100%; padding: 2px;" onclick="ShowProductColorImage(\'' . $AssetUrl . '\');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                            }
-                            ?>
-                        </div>
+                    <p class="text-custom-primary fw-600 f-16 mb-0">
+                        Colors:
+                    </p>
+                    <div class="mb-2">
+                        <?php
+                        /*$Colors = array();
+                        $Colors = explode(',', $Product[0]->color_variants);
+                        $ProductColors = \Illuminate\Support\Facades\DB::table('colors')
+                            ->whereIn('id', $Colors)
+                            ->get();
+                        foreach ($ProductColors as $index => $color) {
+                            echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $color->name . '" style="background-color: ' . $color->code . '; border-radius: 100%; padding: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                        }*/
+                        foreach ($ProductColors as $index => $productColor) {
+                            $AssetUrl = asset('public/storage/products/') . '/' . $productColor->color_image;
+                            echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $productColor->ColorName . '" style="background-color: ' . $productColor->ColorCode . '; border-radius: 100%; padding: 2px;" onclick="ShowProductColorImage(\'' . $AssetUrl . '\');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                        }
+                        ?>
+                    </div>
                     @endif
                     {{--<div class="product-detail-offers">
                        <table>
@@ -471,7 +476,7 @@
                                 <td style="width: 18%;">
                                     <span class=" q_btn product-quantity-btn ml fs-10"
                                           onclick="ReduceQty(document.getElementById('quantity'), 1);"><i
-                                                class="fas fa-minus"></i></span>
+                                            class="fas fa-minus"></i></span>
                                 </td>
                                 <td style="width: 62%">
                                     <input style="padding:0px;" type="text" class="form-control  mb-0" name="quantity"
@@ -482,7 +487,7 @@
                                 <td style="width: 20%;">
                                     <span class=" q_btn product-quantity-btn fs-10 "
                                           onclick="IncreaseQty(document.getElementById('quantity'), 1);"><i
-                                                class="fas fa-plus"></i></span>
+                                            class="fas fa-plus"></i></span>
                                 </td>
                             </tr>
                         </table>
@@ -508,7 +513,7 @@
                     <div>
                         @if($Product[0]->pdf_specification != "")
                             <a href="{{asset('public/storage/products/' . $Product[0]->pdf_specification)}}" download><i
-                                        class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
+                                    class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
                             <br>
                         @endif
                         @php
@@ -561,7 +566,7 @@
                                                        id="unit{{$ProductSizes[0]->UnitName}}DepthWidth"
                                                        style="display: none;">
                                                         <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[0]->depth . ' ' . $ProductSizes[0]->UnitName}}</span><span
-                                                                class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
+                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
                                                     </p>
                                                 @endif
                                                 @if(sizeof($ProductSizes) > 1)
@@ -569,15 +574,17 @@
                                                        id="unit{{$ProductSizes[1]->UnitName}}DepthWidth"
                                                        style="display: none;">
                                                         <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[1]->depth . ' ' . $ProductSizes[1]->UnitName}}</span><span
-                                                                class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
+                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
                                                     </p>
                                                 @endif
                                                 @if(sizeof($SizePackagingDetails) > 0 && $SizePackagingDetails[0]->image != "")
-                                                    <img src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
-                                                         alt="PRODUCT DETAILS 2" class="img-fluid"/>
+                                                    <img
+                                                        src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
+                                                        alt="PRODUCT DETAILS 2" class="img-fluid"/>
                                                 @else
-                                                    <img src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
-                                                         alt="PRODUCT DETAILS 2" class="img-fluid"/>
+                                                    <img
+                                                        src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
+                                                        alt="PRODUCT DETAILS 2" class="img-fluid"/>
                                                 @endif
                                             </div>
                                             <div class="col-4 col-md-5 pl-0">
@@ -609,8 +616,9 @@
                                     </div>
                                     <div class="col-md-7">
                                         @if($Product[0]->size_packaging_img != "")
-                                            <img src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
-                                                 alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"/>
+                                            <img
+                                                src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
+                                                alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"/>
                                         @endif
                                     </div>
                                 </div>
@@ -712,7 +720,7 @@
                                                     @if(\Illuminate\Support\Facades\Auth::id() == 1)
                                                         <span class="ml-2 cursor-pointer"
                                                               onclick="DeleteReview('{{$review->id}}');"><i
-                                                                    class="fas fa-trash"></i></span>
+                                                                class="fas fa-trash"></i></span>
                                                     @endif
                                                 @endif
                                             </small>
@@ -755,15 +763,15 @@
                             ->limit(10)
                             ->get();
                         $List = \App\Helpers\SiteHelper::GetUserList();
+                        $index = $i;
                     @endphp
-                    <div class="row products-category-slider ltn__category-products-slider slick-arrow-1">
-                        <!-- Product - Start -->
-                    @include('site.partials.product-template')
-                    <!-- Product - End -->
+                    <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
+                        @foreach($Products as $index1 => $product)
+                            {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <!-- MOBILE VIEW - END -->
@@ -811,7 +819,8 @@
 
                 {{-- Product Images --}}
                 <div class="col-md-4">
-                    <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay" style="display: none;" />
+                    <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay"
+                         style="display: none;"/>
                     <img src="{{asset('public/storage/products') . '/' . $ProductGalleryImages[0]->gallery}}"
                          id="product-image-container" alt="PRODUCT DETAILS 1" class="img-fluid"/>
                     <video src="" id="product-video-container" style="display: none;" class="w-100" controls></video>
@@ -869,31 +878,31 @@
                     </div>
                     {{--Colors--}}
                     @if(sizeof($ProductColors) > 0) {{--@if($Product[0]->color_variants != null && $Product[0]->color_variants != '')--}}
-                        <p class="text-custom-primary fw-600 fs-large mb-0">
-                            Colors:
-                        </p>
-                        <div class="mb-2">
-                            <?php
-                            /*$Colors = array();
-                            $Colors = explode(',', $Product[0]->color_variants);
-                            $ProductColors = \Illuminate\Support\Facades\DB::table('colors')
-                                ->whereIn('id', $Colors)
-                                ->get();
-                            foreach ($ProductColors as $index => $color) {
-                                echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $color->name . '" style="background-color: ' . $color->code . '; border-radius: 100%; padding: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                            }*/
-                            foreach ($ProductColors as $index => $productColor) {
-                                $AssetUrl = asset('public/storage/products/') . '/' . $productColor->color_image;
-                                echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $productColor->ColorName . '" style="background-color: ' . $productColor->ColorCode . '; border-radius: 100%; padding: 2px;" onclick="ShowProductColorImage(\'' . $AssetUrl . '\');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                            }
-                            ?>
-                        </div>
+                    <p class="text-custom-primary fw-600 fs-large mb-0">
+                        Colors:
+                    </p>
+                    <div class="mb-2">
+                        <?php
+                        /*$Colors = array();
+                        $Colors = explode(',', $Product[0]->color_variants);
+                        $ProductColors = \Illuminate\Support\Facades\DB::table('colors')
+                            ->whereIn('id', $Colors)
+                            ->get();
+                        foreach ($ProductColors as $index => $color) {
+                            echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $color->name . '" style="background-color: ' . $color->code . '; border-radius: 100%; padding: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                        }*/
+                        foreach ($ProductColors as $index => $productColor) {
+                            $AssetUrl = asset('public/storage/products/') . '/' . $productColor->color_image;
+                            echo '<span class="mr-1 cursor-pointer" data-toggle="tooltip" title="' . $productColor->ColorName . '" style="background-color: ' . $productColor->ColorCode . '; border-radius: 100%; padding: 2px;" onclick="ShowProductColorImage(\'' . $AssetUrl . '\');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                        }
+                        ?>
+                    </div>
                     @endif
                     <div class="mb-2">
                         <a href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
-                                    class=" mr-1 px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Return & Cancellations</span></a>
+                                class=" mr-1 px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Return & Cancellations</span></a>
                         <a href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
-                                    class="px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Delivery Options</span></a>
+                                class="px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Delivery Options</span></a>
                     </div>
                     {{--<div class="product-detail-offers">
                         <table>
@@ -919,7 +928,7 @@
                     <div>
                         @if($Product[0]->pdf_specification != "")
                             <a href="{{asset('public/storage/products/' . $Product[0]->pdf_specification)}}" download><i
-                                        class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
+                                    class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
                             <br>
                         @endif
                         @php
@@ -979,7 +988,7 @@
 
                     <p class="fs-14 mb-2">
                         <a href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount Vouchers <i
-                                    class="fas fa-gift text-custom-primary cursor-pointer"></i></a>
+                                class="fas fa-gift text-custom-primary cursor-pointer"></i></a>
                     </p>
 
                     @if($Product[0]->installment_calculator == 1)
@@ -1017,7 +1026,7 @@
                                 <td style="width: 15%;">
                                     <span class="px-2 py-2 product-quantity-btn fs-12"
                                           onclick="ReduceQty(document.getElementById('quantity'), 1);"><i
-                                                class="fas fa-minus"></i></span>
+                                            class="fas fa-minus"></i></span>
                                 </td>
                                 <td style="width: 5%;"></td>
                                 <td style="width: 60%">
@@ -1030,7 +1039,7 @@
                                 <td style="width: 15%;">
                                     <span class="px-2 py-2 product-quantity-btn fs-12"
                                           onclick="IncreaseQty(document.getElementById('quantity'), 1);"><i
-                                                class="fas fa-plus"></i></span>
+                                            class="fas fa-plus"></i></span>
                                 </td>
                             </tr>
                         </table>
@@ -1085,7 +1094,7 @@
                                                    id="unit{{$ProductSizes[0]->UnitName}}DepthWidth"
                                                    style="display: none;">
                                                     <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[0]->depth . ' ' . $ProductSizes[0]->UnitName}}</span><span
-                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
+                                                        class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
                                                 </p>
                                             @endif
                                             @if(sizeof($ProductSizes) > 1)
@@ -1093,13 +1102,14 @@
                                                    id="unit{{$ProductSizes[1]->UnitName}}DepthWidth"
                                                    style="display: none;">
                                                     <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[1]->depth . ' ' . $ProductSizes[1]->UnitName}}</span><span
-                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
+                                                        class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
                                                 </p>
                                             @endif
                                             @if(sizeof($SizePackagingDetails) > 0 && $SizePackagingDetails[0]->image != "")
-                                                <img src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
-                                                     alt="PRODUCT DETAILS 2" class="img-fluid"
-                                                     style="max-width:267px;"/>
+                                                <img
+                                                    src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
+                                                    alt="PRODUCT DETAILS 2" class="img-fluid"
+                                                    style="max-width:267px;"/>
                                             @else
                                                 <img src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
                                                      alt="PRODUCT DETAILS 2" class="img-fluid"
@@ -1135,9 +1145,10 @@
                                 </div>
                                 <div class="col-md-7">
                                     @if($Product[0]->size_packaging_img != "")
-                                        <img src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
-                                             alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"
-                                             style="max-width:500px;max-height:1000px;"/>
+                                        <img
+                                            src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
+                                            alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"
+                                            style="max-width:500px;max-height:1000px;"/>
                                     @endif
                                 </div>
                             </div>
@@ -1239,7 +1250,7 @@
                                                     @if(\Illuminate\Support\Facades\Auth::id() == 1)
                                                         <span class="ml-2 cursor-pointer"
                                                               onclick="DeleteReview('{{$review->id}}');"><i
-                                                                    class="fas fa-trash"></i></span>
+                                                                class="fas fa-trash"></i></span>
                                                     @endif
                                                 @endif
                                             </small>
@@ -1347,11 +1358,12 @@
                             ->limit(10)
                             ->get();
                         $List = \App\Helpers\SiteHelper::GetUserList();
+                        $index = 0;
                     @endphp
-                    <div class="row products-category-slider ltn__category-products-slider slick-arrow-1">
-                        <!-- Product - Start -->
-                    @include('site.partials.product-template')
-                    <!-- Product - End -->
+                    <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
+                        @foreach($Products as $index1 => $product)
+                            {!! \App\Helpers\SiteHelper::GetProductTemplate($product, $index, $index1, $List) !!}
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -1370,7 +1382,8 @@
                 <button class="ltn__utilize-close">×</button>
             </div>
             <div class="mini-cart-product-area ltn__scrollbar">
-                <p><strong><i class="fa fa-question-circle fa-1x" aria-hidden="true"></i> Get Your Instant Discount By Submit Answers</strong></p>
+                <p><strong><i class="fa fa-question-circle fa-1x" aria-hidden="true"></i> Get Your Instant Discount By
+                        Submit Answers</strong></p>
                 @php
                     $TotalQuestions = Illuminate\Support\Facades\DB::table('discount_questions')
                         ->where('deleted_at', null)
@@ -1384,16 +1397,16 @@
                             <p class="mb-1"><strong>{{$index+1}}) {{$value->question}}</strong></p>
                         </div>
                         <div class="col-md-12">
-                            <input type="hidden" name="answer" id="answer_{{$index}}" value="{{$value->answer}}">
+                              <input type="hidden" name="answer" id="answer_{{$index}}" value="{{$value->answer}}">
 
                             <input type="radio" name="choice_{{$index}}" value="1" style="margin-left: -7px;">
-                            <label> {{$value->choice1}}</label><br>
-                            <input type="radio"  name="choice_{{$index}}" value="2">
-                            <label> {{$value->choice2}}</label><br>
-                            <input type="radio"  name="choice_{{$index}}" value="3">
-                            <label> {{$value->choice3}}</label><br>
-                            <input type="radio"  name="choice_{{$index}}" value="4">
-                            <label> {{$value->choice4}}</label><br>
+                              <label> {{$value->choice1}}</label><br>
+                            <input type="radio" name="choice_{{$index}}" value="2">
+                              <label> {{$value->choice2}}</label><br>
+                            <input type="radio" name="choice_{{$index}}" value="3">
+                              <label> {{$value->choice3}}</label><br>
+                            <input type="radio" name="choice_{{$index}}" value="4">
+                              <label> {{$value->choice4}}</label><br>
                         </div>
                     @endforeach
                 </div>
@@ -1408,11 +1421,14 @@
                 <div class="ml-27" id="message_lose" style="display: none">
                     <img src="{{asset('public/assets/images/quiz/lost.jpeg')}}"
                          class="img-fluid quiz-img align-items-center"/>
-                    <p class="mt-3 mb-0  discount-quiz fs"><strong onclick="window.location.reload()">Sorry! Your answers are incorrect. Try Again.</strong></p>
+                    <p class="mt-3 mb-0  discount-quiz fs"><strong onclick="window.location.reload()">Sorry! Your
+                            answers are incorrect. Try Again.</strong></p>
                 </div>
-                    <div class="col-md-12 text-center mt-3 mb-3">
-                        <button id="submit_btn"  class="btn btn-custom-primary-b2b fs-15" onclick="quizCalculation()">Submit</button>
-                    </div>
+                <div class="col-md-12 text-center mt-3 mb-3">
+                    <button id="submit_btn" class="btn btn-custom-primary-b2b fs-15" onclick="quizCalculation()">
+                        Submit
+                    </button>
+                </div>
                 <div class="mini-cart-item clearfix discountVoucherDescSetting">
                     <div class="discountVoucherModel">
                         @foreach($GeneralPages as $page)
