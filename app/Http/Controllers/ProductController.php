@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\SiteHelper;
 use App\Models\Product;
 use App\Models\ProductColors;
+use App\Models\ProductDetail;
 use App\Models\ProductWeight;
 use App\Models\ProductGallery;
 use App\Models\ProductSize;
@@ -105,18 +106,18 @@ class ProductController extends Controller
         }*/
         $ProductPurchasePrice = $request['product_purchase_price'];
         $ProductTax = $request['product_tax'] == '' ? 0 : $request['product_tax'];
-        $ProductTaxPrice =  ceil((floatval($ProductPurchasePrice) / 100) * floatval($ProductTax));
+        $ProductTaxPrice = ceil((floatval($ProductPurchasePrice) / 100) * floatval($ProductTax));
         $ProductDiscount = $request['product_discount'] == '' ? 0 : $request['product_discount'];
         $DiscountPrice = 0;
         $TotalPriceWithoutDiscount = 0;
         $TotalPrice = 0;
         /*Tax*/
-        $TotalPriceWithoutDiscount = ceil(floatval($ProductPurchasePrice) + ((floatval($ProductPurchasePrice) / 100) * floatval($ProductTax))) ;
+        $TotalPriceWithoutDiscount = ceil(floatval($ProductPurchasePrice) + ((floatval($ProductPurchasePrice) / 100) * floatval($ProductTax)));
         /*Discount*/
         if ($ProductDiscount > 0) {
             $TotalPrice = ceil(floatval($TotalPriceWithoutDiscount) - ((floatval($TotalPriceWithoutDiscount) / 100) * floatval($ProductDiscount)));
         } else {
-            $TotalPrice = ceil($TotalPriceWithoutDiscount) ;
+            $TotalPrice = ceil($TotalPriceWithoutDiscount);
         }
         $DiscountPrice = ceil($TotalPriceWithoutDiscount - $TotalPrice);
         $ProductQuantity = $request['product_quantity'];
@@ -350,23 +351,24 @@ class ProductController extends Controller
             $HomepageStatus = "";
             if ($item->homepage_status == 1) {
                 $HomepageStatus = '<label class="switch">
-                                  <input type="checkbox" name="product_homepage_status" id="producthomepagestatus_'. $item->id .'" checked onchange="UpdateProductHomepageStatus(this.id);">
+                                  <input type="checkbox" name="product_homepage_status" id="producthomepagestatus_' . $item->id . '" checked onchange="UpdateProductHomepageStatus(this.id);">
                                     <span class="slider round"></span>
                                   </label>';
             } else {
                 $HomepageStatus = '<label class="switch">
-                                    <input type="checkbox" name="product_homepage_status" id="producthomepagestatus_'. $item->id .'" onchange="UpdateProductHomepageStatus(this.id);">
+                                    <input type="checkbox" name="product_homepage_status" id="producthomepagestatus_' . $item->id . '" onchange="UpdateProductHomepageStatus(this.id);">
                                     <span class="slider round"></span>
                                   </label>';
             }
             $sub_array['homepage'] = $HomepageStatus;
 
             $Action = "<span>";
+            $EditDetailsUrl = route('product.edit.details', array($item->id));
             $EditUrl = route('product.edit', array($item->id));
             $Id = $item->id;
             $OrderNo = $item->order_no;
             $Parameters = "this, '$Id', '$OrderNo'";
-            $Action .= '<a href="javascript:void(0);" class="mr-2" onclick="ProductOrderUp(' . $Parameters . ');"><i class="fa fa-arrow-up"></i></a><a href="javascript:void(0);" class="mr-2" onclick="ProductOrderDown(' . $Parameters . ');"><i class="fa fa-arrow-down"></i></a><i class="fas fa-clipboard-list mr-2 text-color-green"></i><a href="' . $EditUrl . '"><i class="fa fa-pen text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DuplicateProduct(\'' . $item->id . '\');"><i class="fa fa-clone text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DeleteProduct(\'' . $item->id . '\');"><i class="fa fa-trash text-color-red"></i></a>';
+            $Action .= '<a href="javascript:void(0);" class="mr-2" onclick="ProductOrderUp(' . $Parameters . ');"><i class="fa fa-arrow-up"></i></a><a href="javascript:void(0);" class="mr-2" onclick="ProductOrderDown(' . $Parameters . ');"><i class="fa fa-arrow-down"></i></a><a href="' . $EditDetailsUrl . '"><i class="fas fa-clipboard-list mr-2 text-color-green"></i></a><a href="' . $EditUrl . '"><i class="fa fa-pen text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DuplicateProduct(\'' . $item->id . '\');"><i class="fa fa-clone text-color-green"></i></a><a href="javascript:void(0);" class="ml-2" onclick="DeleteProduct(\'' . $item->id . '\');"><i class="fa fa-trash text-color-red"></i></a>';
             $Action .= "<span>";
             $sub_array['action'] = $Action;
             $SrNo++;
@@ -381,6 +383,47 @@ class ProductController extends Controller
         );
 
         echo json_encode($json_data);
+    }
+
+    function editDetails($ProductId)
+    {
+        $productDetails = ProductDetail::where('product_id', $ProductId)->first();
+        $spec_summaries = !empty($productDetails['spec_summaries']) ? json_decode($productDetails['spec_summaries']) : null;
+        $capacities = !empty($productDetails['capacities']) ? json_decode($productDetails['capacities']) : null;
+        $dimensions = !empty($productDetails['dimensions']) ? json_decode($productDetails['dimensions']) : null;
+        $general_features = !empty($productDetails['general_features']) ? json_decode($productDetails['general_features']) : null;
+        return view('dashboard.products.edit-details', compact('ProductId','spec_summaries','capacities','dimensions','general_features'));
+    }
+
+    function updateDetails(Request $request)
+    {
+        $productDetails = ProductDetail::where('product_id', $request['product_id'])->first();
+        if (empty($productDetails)) {
+            $Affected = ProductDetail::create([
+                'product_id' => $request['product_id'],
+                'spec_summaries' => !empty($request['spec_summaries']) ? json_encode($request['spec_summaries']) : null,
+                'capacities' => !empty($request['capacities']) ? json_encode($request['capacities']) : null,
+                'dimensions' => !empty($request['dimensions']) ? json_encode($request['dimensions']) : null,
+                'general_features' => !empty($request['general_features']) ? json_encode($request['general_features']) : null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        } else {
+            $Affected = ProductDetail::where('product_id', $request['product_id'])->update([
+                'spec_summaries' => !empty($request['spec_summaries']) ? json_encode($request['spec_summaries']) : null,
+                'capacities' => !empty($request['capacities']) ? json_encode($request['capacities']) : null,
+                'dimensions' => !empty($request['dimensions']) ? json_encode($request['dimensions']) : null,
+                'general_features' => !empty($request['general_features']) ? json_encode($request['general_features']) : null,
+                'updated_at' => Carbon::now()
+            ]);
+        }
+        if ($Affected) {
+            DB::commit();
+            return redirect()->route('product')->with('success-message', 'Product details updated successfully.');
+        } else {
+            DB::rollBack();
+            return redirect()->route('product')->with('error-message', 'An unhandled error occurred.');
+        }
     }
 
     function edit($ProductId)
@@ -418,6 +461,7 @@ class ProductController extends Controller
         return view('dashboard.products.edit', compact('categories', 'subcategories', 'sub_subcategories', 'brands', 'colors', 'units', 'Product', 'ProductGallery', 'ProductSizes', 'ProductWeights', 'ProductColors'));
     }
 
+
     function update(Request $request)
     {
         /*echo '<pre>';
@@ -452,7 +496,7 @@ class ProductController extends Controller
                 if ($request['old_primary_img'] != "") {
                     $path = public_path() . "/storage/products/" . $request['old_primary_img'];
                     if (file_exists($path)) {
-                      unlink($path);
+                        unlink($path);
                     }
                 }
             }
@@ -539,7 +583,7 @@ class ProductController extends Controller
         $TotalPriceWithoutDiscount = ceil(floatval($ProductPurchasePrice) + ((floatval($ProductPurchasePrice) / 100) * floatval($ProductTax)));
         /*Discount*/
         if ($ProductDiscount > 0) {
-            $TotalPrice = ceil(floatval($TotalPriceWithoutDiscount) - ((floatval($TotalPriceWithoutDiscount) / 100) * floatval($ProductDiscount))) ;
+            $TotalPrice = ceil(floatval($TotalPriceWithoutDiscount) - ((floatval($TotalPriceWithoutDiscount) / 100) * floatval($ProductDiscount)));
         } else {
             $TotalPrice = $TotalPriceWithoutDiscount;
         }
@@ -666,8 +710,8 @@ class ProductController extends Controller
         /** PRODUCT COLOR **/
         DB::table('product_colors')->where('product_id', $ProductId)->delete();
         /*Unlink Deleted Color Files*/
-        if($request->has('oldProductColorImages')) {
-            if($request['oldProductColorImages'] != '') {
+        if ($request->has('oldProductColorImages')) {
+            if ($request['oldProductColorImages'] != '') {
                 $DeletedColorFiles = json_decode($request['oldProductColorImages']);
                 foreach ($DeletedColorFiles as $deletedColorFile) {
                     $path = public_path() . "/storage/products/" . $deletedColorFile;
@@ -678,7 +722,7 @@ class ProductController extends Controller
             }
         }
         /*Inserting Old Color Entries*/
-        if($request->has('old_product_color')) {
+        if ($request->has('old_product_color')) {
             foreach ($request['old_product_color'] as $index => $OldProductColor) {
                 ProductColors::create([
                     'product_id' => $ProductId,

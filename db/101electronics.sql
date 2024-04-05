@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 08:38 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.16
+-- Generation Time: Apr 05, 2024 at 08:13 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1446,6 +1446,32 @@ INSERT INTO `product_colors` (`id`, `product_id`, `color_id`, `color_image`, `cr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_details`
+--
+
+CREATE TABLE `product_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `spec_summaries` text DEFAULT NULL,
+  `capacities` text DEFAULT NULL,
+  `dimensions` text DEFAULT NULL,
+  `general_features` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_details`
+--
+
+INSERT INTO `product_details` (`id`, `product_id`, `spec_summaries`, `capacities`, `dimensions`, `general_features`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 454, '[{\"title\":\"In aut laboriosam q\",\"value\":\"Vel in omnis excepte\"},{\"title\":\"Vel distinctio Volu\",\"value\":\"Enim nostrum debitis\"},{\"title\":\"Officia sunt accusam\",\"value\":\"Quod sequi et odio q\"}]', '[{\"title\":\"Sint voluptatem moll\",\"value\":\"Praesentium consecte\"},{\"title\":\"Sit occaecat dicta e\",\"value\":\"Aliquid possimus eu\"},{\"title\":\"Neque eius voluptate\",\"value\":\"Eos ut sint ullamco\"}]', '[{\"title\":\"Rem earum error sed\",\"value\":\"Commodo nostrud expe\"},{\"title\":\"Non laboris nostrum\",\"value\":\"Mollitia et sed mole\"},{\"title\":\"Nam praesentium sint\",\"value\":\"Ut minima quia disti\"}]', '[{\"title\":\"Adipisicing proident\",\"value\":\"Quidem dolor nesciun\"}]', '2024-04-05 07:02:23', '2024-04-05 08:12:16', NULL),
+(3, 453, '[{\"title\":\"Sed a consequatur F\",\"value\":\"Incididunt beatae in\"}]', '[{\"title\":\"Quia ratione obcaeca\",\"value\":\"Eu eius ipsam dolore\"}]', '[{\"title\":\"Vitae voluptate obca\",\"value\":\"Ipsum rerum aperiam\"}]', '[{\"title\":\"In dignissimos fugit\",\"value\":\"Dolor ut magna persp\"}]', '2024-04-05 08:11:33', '2024-04-05 08:11:33', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product_galleries`
 --
 
@@ -2739,6 +2765,12 @@ ALTER TABLE `product_colors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_details`
+--
+ALTER TABLE `product_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `product_galleries`
 --
 ALTER TABLE `product_galleries`
@@ -2982,6 +3014,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `product_colors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+
+--
+-- AUTO_INCREMENT for table `product_details`
+--
+ALTER TABLE `product_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_galleries`

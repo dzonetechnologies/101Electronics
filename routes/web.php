@@ -199,6 +199,8 @@ Route::middleware(['admin_validator'])->group(function (){
     Route::get('product/create', [ProductController::class, 'create'])->name('product.add');
     Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
     Route::post('product/load', [ProductController::class, 'load'])->name('product.load');
+    Route::get('product/details/edit/{ProductId}', [ProductController::class, 'editDetails'])->name('product.edit.details');
+    Route::post('product/details/update', [ProductController::class, 'updateDetails'])->name('product.details.update');
     Route::get('product/edit/{ProductId}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('product/update', [ProductController::class, 'update'])->name('product.update');
     Route::post('product/delete', [ProductController::class, 'delete'])->name('product.delete');
