@@ -16,10 +16,10 @@ class CreateProductDetailsTable extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->text('spec_summaries')->nullable();
-            $table->text('capacities')->nullable();
-            $table->text('dimensions')->nullable();
-            $table->text('general_features')->nullable();
+            $table->mediumText('spec_summaries')->nullable();
+            $table->mediumText('capacities')->nullable();
+            $table->mediumText('dimensions')->nullable();
+            $table->mediumText('general_features')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

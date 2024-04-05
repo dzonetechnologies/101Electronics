@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 08:13 AM
+-- Generation Time: Apr 05, 2024 at 10:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.3
 
@@ -1452,10 +1452,10 @@ INSERT INTO `product_colors` (`id`, `product_id`, `color_id`, `color_image`, `cr
 CREATE TABLE `product_details` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `product_id` int(11) NOT NULL,
-  `spec_summaries` text DEFAULT NULL,
-  `capacities` text DEFAULT NULL,
-  `dimensions` text DEFAULT NULL,
-  `general_features` text DEFAULT NULL,
+  `spec_summaries` mediumtext DEFAULT NULL,
+  `capacities` mediumtext DEFAULT NULL,
+  `dimensions` mediumtext DEFAULT NULL,
+  `general_features` mediumtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
