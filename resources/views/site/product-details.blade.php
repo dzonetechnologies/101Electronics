@@ -2,7 +2,6 @@
 @section('content')
     {{--Reviews--}}
     <link rel="stylesheet" href="{{asset('public/assets/css/reviews.css')}}">
-
     <style media="screen">
         .pdfGuideSetting {
             font-size: 18px;
@@ -146,13 +145,9 @@
             border-radius: 5px;
         }
 
-        img {
+        /*img {
             margin-left: 6px;
-        }
-
-        .f-color {
-            color: #C71837;
-        }
+        }*/
 
         .logo {
             max-width: 110px;
@@ -255,28 +250,23 @@
         ->select('customer_reviews.*', 'customers.first_name', 'customers.last_name')
         ->orderBy('id', 'DESC')
         ->get();
-
-
     $ReviewsCounts = \Illuminate\Support\Facades\DB::table('customer_reviews')
         ->where('customer_reviews.deleted_at', '=', null)
         ->where('customer_reviews.product_id', '=', $Product[0]->id)
         ->selectRaw("COUNT(*) AS TotalReviews, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 5) AS FiveStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 4) AS FourStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 3) AS ThreeStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 2) AS TwoStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 1) AS OneStarCount", array($Product[0]->id, $Product[0]->id, $Product[0]->id, $Product[0]->id, $Product[0]->id))
         ->get();
-
     $TotalRating = $ReviewsCounts[0]->TotalReviews;
     $FiveStars = $ReviewsCounts[0]->FiveStarCount;
     $FourStars = $ReviewsCounts[0]->FourStarCount;
     $ThreeStars = $ReviewsCounts[0]->ThreeStarCount;
     $TwoStars = $ReviewsCounts[0]->TwoStarCount;
     $OneStars = $ReviewsCounts[0]->OneStarCount;
-
     $TotalFiveStar = 0;
     $TotalFourStar = 0;
     $TotalThreeStar = 0;
     $TotalTwoStar = 0;
     $TotalOneStar = 0;
     $AverageRating = 0;
-
     if ($TotalRating != 0) {
         $TotalFiveStar = round(($FiveStars / $TotalRating) * 100);
         $TotalFourStar = round(($FourStars / $TotalRating) * 100);
@@ -286,17 +276,22 @@
         $AverageRating = round((($OneStars * 1) + ($TwoStars * 2) + ($ThreeStars * 3) + ($FourStars * 4) + ($FiveStars * 5)) / $TotalRating, 1);
     }
     ?>
+    <input type="hidden" name="hiddenProductId" id="hiddenProductId" value="{{$Product[0]->id}}">
+    <input type="hidden" name="hiddenUnitPrice" id="hiddenUnitPrice" value="{{$Product[0]->unit_price}}">
+    <input type="hidden" name="hiddenTaxRate" id="hiddenTaxRate" value="{{$Product[0]->tax}}">
+    <input type="hidden" name="hiddenDiscount" id="hiddenDiscount" value="{{$Product[0]->discount}}">
+    <input type="hidden" name="hiddenCurrency" id="hiddenCurrency"
+           value="{!! \App\Helpers\SiteHelper::$Currency !!}">
+    <input type="hidden" name="hiddenTotalQuantity" id="hiddenTotalQuantity" value="1">
+    <input type="hidden" name="hiddenTotalPriceWithoutDiscounted" id="hiddenTotalPriceWithoutDiscounted"
+           value="{{$Product[0]->total_price_without_discount}}">
+    <input type="hidden" name="hiddenTotalPrice" id="hiddenTotalPrice" value="{{$Product[0]->total_price}}">
 
-    <?php
-    $useragent = $_SERVER['HTTP_USER_AGENT'];
-    if(preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $useragent) || preg_match('/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i', substr($useragent, 0, 4)))
-    {
-    ?>
     <!-- MOBILE VIEW - START -->
     <section id="product-details-page" class="d-md-none">
         <div class="container">
             <div class="row mb-2 mt-3">
-                <div class="col-md-12 fw-500 f-13 f-color">
+                <div class="col-md-12 fw-500 f-13 text-custom-primary">
                     {{$Product[0]->name}}
                     @if(floatval($Product[0]->discount) != 0)
                         <span class="badge product-badge-price bg-danger ml-1">{{$Product[0]->discount}}% OFF</span>
@@ -304,24 +299,15 @@
                 </div>
             </div>
             <div class="row">
-                <input type="hidden" name="hiddenProductId" id="hiddenProductId" value="{{$Product[0]->id}}">
-                <input type="hidden" name="hiddenUnitPrice" id="hiddenUnitPrice" value="{{$Product[0]->unit_price}}">
-                <input type="hidden" name="hiddenTaxRate" id="hiddenTaxRate" value="{{$Product[0]->tax}}">
-                <input type="hidden" name="hiddenDiscount" id="hiddenDiscount" value="{{$Product[0]->discount}}">
-                <input type="hidden" name="hiddenCurrency" id="hiddenCurrency"
-                       value="{!! \App\Helpers\SiteHelper::$Currency !!}">
-                <input type="hidden" name="hiddenTotalQuantity" id="hiddenTotalQuantity" value="1">
-                <input type="hidden" name="hiddenTotalPriceWithoutDiscounted" id="hiddenTotalPriceWithoutDiscounted"
-                       value="{{$Product[0]->total_price_without_discount}}">
-                <input type="hidden" name="hiddenTotalPrice" id="hiddenTotalPrice" value="{{$Product[0]->total_price}}">
                 <div class="col-6">
                     <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay"
                          style="display: none;"/>
                     <img src="{{asset('public/storage/products') . '/' . $ProductGalleryImages[0]->gallery}}"
                          id="product-image-container-mob" alt="PRODUCT DETAILS 1" class="img-fluid"/>
-                    <video src="" id="product-video-container" style="display: none;" class="w-100" controls></video>
-                    <iframe src="" id="product-video-iframe" title="Video Player" frameborder="0"
-                            style="width: 100%; height: 250px; display: none;">
+                    <video src="" id="product-video-container-mob" style="display: none;" class="w-100"
+                           controls></video>
+                    <iframe src="" id="product-video-iframe-mob" title="Video Player" frameborder="0"
+                            style="width: 100%; height:100%; display: none;">
                     </iframe>
                     <div class="row mt-3 ltn__product-gallery-slider">
                         @foreach($ProductGalleryImages as $index => $item)
@@ -340,8 +326,8 @@
                                 <span class="product_img_circle_mob">
                                     <span class="product-images-circle-img-mob">
                                         <img src="{{asset('public/storage/products/video.jpg')}}" alt="Gallery Image"
-                                             id="videoLink||{{$Product[0]->video_link}}" class="img-fluid"
-                                             onclick="DisplayIframe(this.id);"/>
+                                             data-link="{{$Product[0]->video_link}}" class="img-fluid"
+                                             onclick="DisplayIframe(this, 'product-video-iframe-mob');">
                                     </span>
                                 </span>
                             </div>
@@ -351,8 +337,9 @@
                                 <span class="product_img_circle_mob">
                                     <span class="product-images-circle-img-mob">
                                         <img src="{{asset('public/storage/products/video.jpg')}}" alt="Gallery Image"
-                                             id="videoTag||{{asset('public/storage/products' . '/' . $Product[0]->video_file)}}"
-                                             class="img-fluid" onclick="DisplayVideoTag(this.id);"/>
+                                             data-link="{{asset('public/storage/products' . '/' . $Product[0]->video_file)}}"
+                                             class="img-fluid"
+                                             onclick="DisplayVideoTag(this, 'product-video-container-mob');">
                                     </span>
                                 </span>
                             </div>
@@ -389,20 +376,20 @@
                     <div class="f-10 mt-install">
                         @if($Product[0]->installment_calculator == 1)
                             <i class="fas fa-info-circle text-custom-primary cursor-pointer"></i>&nbsp;<a
-                                href="#ltn__utilize-installment-guide-menu" class="ltn__utilize-toggle">Installment
+                                    href="#ltn__utilize-installment-guide-menu" class="ltn__utilize-toggle">Installment
                                 Guide</a>
                         @endif
                         <i class="fas fa-gift text-custom-primary cursor-pointer"></i>&nbsp;<a
-                            href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount
+                                href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount
                             Vouchers</a>
                     </div>
                     <div class="mb-2 f-10">
                         <i style="color:#C72D4B;margin-top:-10px;" class="fa fa-address-book" aria-hidden="true"></i>&nbsp;<a
-                            href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
-                                class=" text-custom-primary cursor-pointer"></span>Return & Cancellations</a><br>
+                                href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
+                                    class=" text-custom-primary cursor-pointer"></span>Return & Cancellations</a><br>
                         <i style="color:#C72D4B" class="fa fa-truck" aria-hidden="true"></i>&nbsp; <a
-                            href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
-                                class=" text-custom-primary cursor-pointer"></span>Delivery Options</a>
+                                href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
+                                    class=" text-custom-primary cursor-pointer"></span>Delivery Options</a>
                     </div>
                 </div>
                 <div class="col-6">
@@ -468,7 +455,6 @@
                                 </span>
                             @endif
                         </div>
-
                     </div>
                     <div class="row">
                         <table width="30%">
@@ -476,7 +462,7 @@
                                 <td style="width: 18%;">
                                     <span class=" q_btn product-quantity-btn ml fs-10"
                                           onclick="ReduceQty(document.getElementById('quantity'), 1);"><i
-                                            class="fas fa-minus"></i></span>
+                                                class="fas fa-minus"></i></span>
                                 </td>
                                 <td style="width: 62%">
                                     <input style="padding:0px;" type="text" class="form-control  mb-0" name="quantity"
@@ -487,7 +473,7 @@
                                 <td style="width: 20%;">
                                     <span class=" q_btn product-quantity-btn fs-10 "
                                           onclick="IncreaseQty(document.getElementById('quantity'), 1);"><i
-                                            class="fas fa-plus"></i></span>
+                                                class="fas fa-plus"></i></span>
                                 </td>
                             </tr>
                         </table>
@@ -513,7 +499,7 @@
                     <div>
                         @if($Product[0]->pdf_specification != "")
                             <a href="{{asset('public/storage/products/' . $Product[0]->pdf_specification)}}" download><i
-                                    class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
+                                        class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
                             <br>
                         @endif
                         @php
@@ -566,7 +552,7 @@
                                                        id="unit{{$ProductSizes[0]->UnitName}}DepthWidth"
                                                        style="display: none;">
                                                         <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[0]->depth . ' ' . $ProductSizes[0]->UnitName}}</span><span
-                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
+                                                                class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
                                                     </p>
                                                 @endif
                                                 @if(sizeof($ProductSizes) > 1)
@@ -574,17 +560,17 @@
                                                        id="unit{{$ProductSizes[1]->UnitName}}DepthWidth"
                                                        style="display: none;">
                                                         <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[1]->depth . ' ' . $ProductSizes[1]->UnitName}}</span><span
-                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
+                                                                class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
                                                     </p>
                                                 @endif
                                                 @if(sizeof($SizePackagingDetails) > 0 && $SizePackagingDetails[0]->image != "")
                                                     <img
-                                                        src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
-                                                        alt="PRODUCT DETAILS 2" class="img-fluid"/>
+                                                            src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
+                                                            alt="PRODUCT DETAILS 2" class="img-fluid"/>
                                                 @else
                                                     <img
-                                                        src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
-                                                        alt="PRODUCT DETAILS 2" class="img-fluid"/>
+                                                            src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
+                                                            alt="PRODUCT DETAILS 2" class="img-fluid"/>
                                                 @endif
                                             </div>
                                             <div class="col-4 col-md-5 pl-0">
@@ -617,8 +603,8 @@
                                     <div class="col-md-7">
                                         @if($Product[0]->size_packaging_img != "")
                                             <img
-                                                src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
-                                                alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"/>
+                                                    src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
+                                                    alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"/>
                                         @endif
                                     </div>
                                 </div>
@@ -720,7 +706,7 @@
                                                     @if(\Illuminate\Support\Facades\Auth::id() == 1)
                                                         <span class="ml-2 cursor-pointer"
                                                               onclick="DeleteReview('{{$review->id}}');"><i
-                                                                class="fas fa-trash"></i></span>
+                                                                    class="fas fa-trash"></i></span>
                                                     @endif
                                                 @endif
                                             </small>
@@ -763,7 +749,7 @@
                             ->limit(10)
                             ->get();
                         $List = \App\Helpers\SiteHelper::GetUserList();
-                        $index = $i;
+                        $index = 0;
                     @endphp
                     <div class="products-category-slider ltn__category-products-slider slick-arrow-1">
                         @foreach($Products as $index1 => $product)
@@ -775,11 +761,7 @@
         </div>
     </section>
     <!-- MOBILE VIEW - END -->
-    <?php
-    }
-    else
-    {
-    ?>
+
     <!-- DESKTOP VIEW - START -->
     <section id="product-details-page" class="d-none d-md-block">
         <div class="container">
@@ -796,75 +778,61 @@
                     @endif
                 </div>
             </div>
-            <div class="row mb-2 mt-3">
-                <div class="col-md-12 fw-500 f-color">
-                    {{$Product[0]->name}}
-                    @if(floatval($Product[0]->discount) != 0)
-                        <span class="badge product-badge-price bg-danger ml-1">{{$Product[0]->discount}}% OFF</span>
-                    @endif
+            <div class="row my-3">
+                <div class="col-md-12 col-lg-6">
+                    <div class="text-black fs-20 fw-bold">
+                        {{$Product[0]->name}}
+                        @if(floatval($Product[0]->discount) != 0)
+                            <span class="badge product-badge-price bg-danger ml-1">{{$Product[0]->discount}}% OFF</span>
+                        @endif
+                    </div>
+                    <div class="mt-2">
+                        <div class="product-gallery-container">
+                            <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay"
+                                 style="display: none;"/>
+                            <img src="{{asset('public/storage/products') . '/' . $ProductGalleryImages[0]->gallery}}"
+                                 id="product-image-container" alt="PRODUCT DETAILS 1" class="img-fluid"/>
+                            <video src="" id="product-video-container" style="width: 100%; height: 100%; display: none;"
+                                   controls></video>
+                            <iframe src="" id="product-video-iframe" title="Video Player" frameborder="0"
+                                    style="width: 100%; height: 100%; display: none;"></iframe>
+                        </div>
+                        <div class="row ltn__no-gutter justify-content-center">
+                            <div class="col-9">
+                                <div class="mt-3 ltn__product-gallery-slider">
+                                    @foreach($ProductGalleryImages as $index => $item)
+                                        <div class="product-images-circle">
+                                            <img src="{{asset('public/storage/products') . '/' . $item->gallery}}"
+                                                 alt="Gallery Image" class="img-fluid" id="galleryImage||{{$index}}"
+                                                 onclick="ChangeGalleryImage(this, this.id);"/>
+                                        </div>
+                                    @endforeach
+                                    @if($Product[0]->video_link != '')
+                                        <div class="product-images-circle">
+                                            <img src="{{asset('public/storage/products/video.jpg')}}" alt="Video"
+                                                 data-link="{{$Product[0]->video_link}}" class="img-fluid"
+                                                 onclick="DisplayIframe(this, 'product-video-iframe');">
+                                        </div>
+                                    @endif
+                                    @if($Product[0]->video_file != '')
+                                        <div class="product-images-circle">
+                                            <img src="{{asset('public/storage/products/video.jpg')}}" alt="Gallery Image"
+                                                 data-link="{{asset('public/storage/products' . '/' . $Product[0]->video_file)}}"
+                                                 class="img-fluid" onclick="DisplayVideoTag(this, 'product-video-container');">
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+
                 </div>
             </div>
 
+
             <div class="row">
-                <input type="hidden" name="hiddenProductId" id="hiddenProductId" value="{{$Product[0]->id}}">
-                <input type="hidden" name="hiddenUnitPrice" id="hiddenUnitPrice" value="{{$Product[0]->unit_price}}">
-                <input type="hidden" name="hiddenTaxRate" id="hiddenTaxRate" value="{{$Product[0]->tax}}">
-                <input type="hidden" name="hiddenDiscount" id="hiddenDiscount" value="{{$Product[0]->discount}}">
-                <input type="hidden" name="hiddenCurrency" id="hiddenCurrency"
-                       value="{!! \App\Helpers\SiteHelper::$Currency !!}">
-                <input type="hidden" name="hiddenTotalQuantity" id="hiddenTotalQuantity" value="1">
-                <input type="hidden" name="hiddenTotalPriceWithoutDiscounted" id="hiddenTotalPriceWithoutDiscounted"
-                       value="{{$Product[0]->total_price_without_discount}}">
-                <input type="hidden" name="hiddenTotalPrice" id="hiddenTotalPrice" value="{{$Product[0]->total_price}}">
-
-                {{-- Product Images --}}
-                <div class="col-md-4">
-                    <img src="" alt="PRODUCT DETAILS 1" class="img-fluid" id="colorImageDisplay"
-                         style="display: none;"/>
-                    <img src="{{asset('public/storage/products') . '/' . $ProductGalleryImages[0]->gallery}}"
-                         id="product-image-container" alt="PRODUCT DETAILS 1" class="img-fluid"/>
-                    <video src="" id="product-video-container" style="display: none;" class="w-100" controls></video>
-                    <iframe src="" id="product-video-iframe" title="Video Player" frameborder="0"
-                            style="width: 100%; height: 250px; display: none;"></iframe>
-
-                    <div class="row ltn__no-gutter-all mt-3 ltn__product-gallery-slider ">
-                        @foreach($ProductGalleryImages as $index => $item)
-                            <div class="col-3" style="text-align: -webkit-center;">
-                                <span class="product-images-circle">
-                                    <span class="product-images-circle-img">
-                                        <img src="{{asset('public/storage/products') . '/' . $item->gallery}}"
-                                             alt="Gallery Image" class="img-fluid" id="galleryImage||{{$index}}"
-                                             onclick="ChangeGalleryImage(this, this.id);"/>
-                                    </span>
-                                </span>
-                            </div>
-                        @endforeach
-
-                        @if($Product[0]->video_link != '')
-                            <div class="col-2" style="text-align: -webkit-center;">
-                                <span class="product-images-circle">
-                                    <span class="product-images-circle-img">
-                                        <img src="{{asset('public/storage/products/video.jpg')}}" alt="Gallery Image"
-                                             id="videoLink||{{$Product[0]->video_link}}" class="img-fluid"
-                                             onclick="DisplayIframe(this.id);"/>
-                                    </span>
-                                </span>
-                            </div>
-                        @endif
-                        @if($Product[0]->video_file != '')
-                            <div class="col-2" style="text-align: -webkit-center;">
-                                <span class="product-images-circle">
-                                    <span class="product-images-circle-img">
-                                        <img src="{{asset('public/storage/products/video.jpg')}}" alt="Gallery Image"
-                                             id="videoTag||{{asset('public/storage/products' . '/' . $Product[0]->video_file)}}"
-                                             class="img-fluid" onclick="DisplayVideoTag(this.id);"/>
-                                    </span>
-                                </span>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-
                 {{-- Product Details --}}
                 <div class="col-md-4">
                     <p class="text-custom-primary fw-600 fs-large mb-2 line-height-1-3">
@@ -900,9 +868,9 @@
                     @endif
                     <div class="mb-2">
                         <a href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
-                                class=" mr-1 px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Return & Cancellations</span></a>
+                                    class=" mr-1 px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Return & Cancellations</span></a>
                         <a href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
-                                class="px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Delivery Options</span></a>
+                                    class="px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Delivery Options</span></a>
                     </div>
                     {{--<div class="product-detail-offers">
                         <table>
@@ -928,7 +896,7 @@
                     <div>
                         @if($Product[0]->pdf_specification != "")
                             <a href="{{asset('public/storage/products/' . $Product[0]->pdf_specification)}}" download><i
-                                    class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
+                                        class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide</a>
                             <br>
                         @endif
                         @php
@@ -988,7 +956,7 @@
 
                     <p class="fs-14 mb-2">
                         <a href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount Vouchers <i
-                                class="fas fa-gift text-custom-primary cursor-pointer"></i></a>
+                                    class="fas fa-gift text-custom-primary cursor-pointer"></i></a>
                     </p>
 
                     @if($Product[0]->installment_calculator == 1)
@@ -1026,7 +994,7 @@
                                 <td style="width: 15%;">
                                     <span class="px-2 py-2 product-quantity-btn fs-12"
                                           onclick="ReduceQty(document.getElementById('quantity'), 1);"><i
-                                            class="fas fa-minus"></i></span>
+                                                class="fas fa-minus"></i></span>
                                 </td>
                                 <td style="width: 5%;"></td>
                                 <td style="width: 60%">
@@ -1039,7 +1007,7 @@
                                 <td style="width: 15%;">
                                     <span class="px-2 py-2 product-quantity-btn fs-12"
                                           onclick="IncreaseQty(document.getElementById('quantity'), 1);"><i
-                                            class="fas fa-plus"></i></span>
+                                                class="fas fa-plus"></i></span>
                                 </td>
                             </tr>
                         </table>
@@ -1094,7 +1062,7 @@
                                                    id="unit{{$ProductSizes[0]->UnitName}}DepthWidth"
                                                    style="display: none;">
                                                     <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[0]->depth . ' ' . $ProductSizes[0]->UnitName}}</span><span
-                                                        class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
+                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
                                                 </p>
                                             @endif
                                             @if(sizeof($ProductSizes) > 1)
@@ -1102,14 +1070,14 @@
                                                    id="unit{{$ProductSizes[1]->UnitName}}DepthWidth"
                                                    style="display: none;">
                                                     <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[1]->depth . ' ' . $ProductSizes[1]->UnitName}}</span><span
-                                                        class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
+                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
                                                 </p>
                                             @endif
                                             @if(sizeof($SizePackagingDetails) > 0 && $SizePackagingDetails[0]->image != "")
                                                 <img
-                                                    src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
-                                                    alt="PRODUCT DETAILS 2" class="img-fluid"
-                                                    style="max-width:267px;"/>
+                                                        src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
+                                                        alt="PRODUCT DETAILS 2" class="img-fluid"
+                                                        style="max-width:267px;"/>
                                             @else
                                                 <img src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
                                                      alt="PRODUCT DETAILS 2" class="img-fluid"
@@ -1146,9 +1114,9 @@
                                 <div class="col-md-7">
                                     @if($Product[0]->size_packaging_img != "")
                                         <img
-                                            src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
-                                            alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"
-                                            style="max-width:500px;max-height:1000px;"/>
+                                                src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
+                                                alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"
+                                                style="max-width:500px;max-height:1000px;"/>
                                     @endif
                                 </div>
                             </div>
@@ -1250,7 +1218,7 @@
                                                     @if(\Illuminate\Support\Facades\Auth::id() == 1)
                                                         <span class="ml-2 cursor-pointer"
                                                               onclick="DeleteReview('{{$review->id}}');"><i
-                                                                class="fas fa-trash"></i></span>
+                                                                    class="fas fa-trash"></i></span>
                                                     @endif
                                                 @endif
                                             </small>
@@ -1370,9 +1338,6 @@
         </div>
     </section>
     <!-- DESKTOP VIEW - END -->
-    <?php
-    }
-    ?>
 
     <!-- Utilize Discount Voucher Right Sidebar Start -->
     <div id="ltn__utilize-discount-voucher-menu" class="ltn__utilize ltn__utilize-cart-menu">

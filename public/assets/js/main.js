@@ -2051,15 +2051,16 @@
 
     /*Product Gallery Slider*/
     $('.ltn__product-gallery-slider').slick({
-        arrows: false,
+        arrows: true,
         centerMode: false,
+        centerPadding: '80px',
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 300,
         slidesToShow: 4,
         slidesToScroll: 1,
-        prevArrow: '<a class="slick-prev"><i class="fas fa-arrow-left" alt="Arrow Icon"></i></a>',
-        nextArrow: '<a class="slick-next"><i class="fas fa-arrow-right float-end" alt="Arrow Icon"></i></a>',
+        prevArrow: '<a class="slick-prev"><i class="fas fa-angle-left"></i></a>',
+        nextArrow: '<a class="slick-next"><i class="fas fa-angle-right"></i></a>',
     });
 })(jQuery);
 
