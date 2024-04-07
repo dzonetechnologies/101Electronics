@@ -827,7 +827,199 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
-
+                    <p class="text-black fs-16 mb-2">
+                        {!! $Product[0]->code !!}
+                    </p>
+                    <div class="row align-items-end mb-2">
+                        <div class="col-6">
+                            <img src="{{asset('public/storage/brands'). '/' . $Product[0]->BrandImage}}" alt="Brand Logo" class="logo"/>
+                        </div>
+                        <div class="col-6">
+                            <p class="fs-14 mb-0 text-end">
+                                <a href="#ltn__utilize-discount-voucher-menu" class="ltn__utilize-toggle">Discount Vouchers <i
+                                        class="fas fa-gift text-custom-primary cursor-pointer"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <p class="text-black fs-16 mb-0">
+                                Key Features
+                            </p>
+                        </div>
+                        <div class="col-8">
+                            <p class="mb-0 fs-14 fw-500 text-end">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                ({{$TotalRating}})
+                                &nbsp;
+                                |
+                                &nbsp;
+                                @if(\Illuminate\Support\Facades\Auth::check())
+                                    <span class="text-custom-primary text-decoration-underline cursor-pointer" onclick="postReview()">
+                                    Write a review
+                                    </span>
+                                @elseif(\Illuminate\Support\Facades\Auth::check() == "")
+                                    <span class="text-custom-primary text-decoration-underline cursor-pointer" onclick="window.location.href='{{url('login')}}';">
+                                        Login to write a review
+                                    </span>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                    <div class="product-features-card mb-3">
+                        {!! $Product[0]->short_description !!}
+                        <hr class="my-3">
+                        <div class="row align-items-center">
+                            <div class="col-7">
+                                <a href="javascript:void(0);" onclick="toggleReturnCancellations();"><span
+                                        class=" mr-1 px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Return & Cancellations</span></a>
+                                <a href="javascript:void(0);" onclick="toggleDeliveryOptions();"><span
+                                        class="px-2 py-1 border-radium-5 text-custom-primary border-custom-primary cursor-pointer">Delivery Options</span></a>
+                            </div>
+                            <div class="col-5">
+                                <div class="text-end mb-1">
+                                    <a href="javascript:void(0);" class="fs-12 text-custom-primary fw-600 mb-0 cursor-pointer">
+                                        SEE ALL SPECS <i class="fas fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        @if($Product[0]->installment_calculator == 1)
+                            <div class="col-6">
+                                <p class="fs-14 mb-2">
+                                    <a href="#ltn__utilize-installment-guide-menu" class="ltn__utilize-toggle">Installment Guide
+                                        <i class="fas fa-info-circle text-custom-primary cursor-pointer"></i></a>
+                                </p>
+                                <div class="fs-13 mb-2">
+                                    <?php
+                                    $Months = \Illuminate\Support\Facades\DB::table('instant_calculators')
+                                        ->get();
+                                    ?>
+                                    @foreach($Months as $index => $item)
+                                        <span class="installment-plan-option px-2 py-1">{{$item->month}}</span>
+                                    @endforeach
+                                    <span> /Month</span>
+                                </div>
+                                <input type="text" class="form-control installment-plan-option-input mb-0" name="installment"
+                                       id="installment" placeholder="PKR">
+                            </div>
+                        @endif
+                        <div class="col-6">
+                            <div class="product-detail-delivery">
+                                <p class="mb-0 fs-13 fw-600 text-black">
+                                    @if($Product[0]->free_shipping == 0)
+                                        <i class="fas fa-check text-success"></i>&nbsp;
+                                        Free Shipping
+                                    @else
+                                        Shipping: {{\App\Helpers\SiteHelper::$Currency . ' ' . number_format($Product[0]->shipping_flat_rate)}}
+                                    @endif
+                                </p>
+                                <p class="mb-0 fs-13 text-black mb-0">
+                                    @if($Product[0]->zero_free_installation == 1)
+                                        <i class="fas fa-check text-success"></i>&nbsp;
+                                        Free Installation
+                                    @else
+                                        Installation: {{\App\Helpers\SiteHelper::$Currency . ' ' . number_format($Product[0]->installation_price)}}
+                                    @endif
+                                </p>
+                                <p class="mb-0 fs-13 text-black">
+                                    @if($Product[0]->fast_24hour_delivery == 1)
+                                        <i class="fas fa-check text-success"></i>&nbsp;
+                                        Fast free delivery
+                                    @else
+                                        <i class="fas fa-check text-success"></i>&nbsp;
+                                        Normal Delivery
+                                    @endif
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <p class="fs-large fw-500 text-black mb-1 line-height-1-3" id="productPriceDisplay">
+                                {!! \App\Helpers\SiteHelper::CalculatePrice($Product[0]->total_price) !!}
+                            </p>
+                            @if(floatval($Product[0]->discount) != 0)
+                                <p class="mb-2 fs-13 line-height-1-3">
+                                    <span class="text-decoration-line-through" id="productOrgPriceDisplay">
+                                        {!! \App\Helpers\SiteHelper::CalculatePrice($Product[0]->total_price_without_discount) !!}
+                                    </span>
+                                </p>
+                            @endif
+                            <div class="mb-2">
+                                <table>
+                                    <tr>
+                                        <td style="width: 15%;">
+                                            <span class="px-2 py-2 product-quantity-btn fs-12"
+                                                onclick="ReduceQty(document.getElementById('quantity'), 1);">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </td>
+                                        <td style="width: 5%;"></td>
+                                        <td style="width: 60%">
+                                            <input type="text" class="form-control product-quantity-input mb-0" name="quantity"
+                                                   id="quantity" placeholder="Quantity" value="1"
+                                                   onkeypress="CheckNumberInputForQty(this, event, this.value);"
+                                                   onblur="CalculatePrice();"/>
+                                        </td>
+                                        <td style="width: 5%;"></td>
+                                        <td style="width: 15%;">
+                                            <span class="px-2 py-2 product-quantity-btn fs-12"
+                                                  onclick="IncreaseQty(document.getElementById('quantity'), 1);">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-2">
+                                <button class="btn btn-custom-primary fs-13 w-100 mb-2" type="button"
+                                        onclick="AddToCartProductDetails(this);">
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;
+                                    Add to Cart
+                                </button>
+                                <button class="btn btn-custom-primary fs-13 w-100" type="button"
+                                        onclick="AddToCartProductDetails(this, true);">
+                                    <i class="fas fa-cart-arrow-down"></i>&nbsp;
+                                    Buy Now
+                                </button>
+                            </div>
+                            <div>
+                                @if($Product[0]->pdf_specification != "")
+                                    <a href="{{asset('public/storage/products/' . $Product[0]->pdf_specification)}}" download>
+                                        <i class="fas fa-file-pdf text-custom-primary pdfGuideSetting"></i> PDF Guide
+                                    </a>
+                                    &nbsp;&nbsp;
+                                @endif
+                                @php
+                                    $WishList = \App\Helpers\SiteHelper::GetUserList();
+                                @endphp
+                                @if(in_array($Product[0]->id, $WishList))
+                                    <a href="javascript:void(0);" class="text-custom-primary"
+                                       onclick="AddToWishlistProductDetails('Please login first to add product in your list.', '{{$Product[0]->id}}', this);">
+                                        <i class="fas fa-heart text-custom-primary pdfGuideSetting"></i> Wishlisted
+                                    </a>
+                                @else
+                                    <a href="javascript:void(0);" class="text-custom-primary"
+                                       onclick="AddToWishlistProductDetails('Please login first to add product in your list.', '{{$Product[0]->id}}', this);">
+                                        <i class="far fa-heart text-custom-primary pdfGuideSetting"></i> Wishlist
+                                    </a>
+                                @endif
+                                <br>
+                                <div class="social-btn-sp">
+                                    {!! $shareButtons !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

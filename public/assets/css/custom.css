@@ -627,6 +627,19 @@ body {
     object-fit: contain;
 }
 
+.product-features-card {
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 1.2;
+    font-size: 13px;
+    border: 1px solid black;
+}
+
+.product-features-card p {
+    margin-bottom: 0.4rem;
+    color: #333333;
+}
+
 .ltn__product-gallery-slider .slick-prev {
     position: absolute;
     top: 30px;
