@@ -691,6 +691,11 @@ body {
     cursor: pointer;
     border: 1px solid #C71738 !important;
     border-radius: 5px !important;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-quantity-btn:hover {
@@ -799,6 +804,13 @@ body {
     text-align: center;
 }
 
+.features-buttons br {
+    display: none;
+}
+
+.pdf-list-buttons br {
+    display: none;
+}
 /*Product Details Page*/
 
 /*Care and Repair Page*/

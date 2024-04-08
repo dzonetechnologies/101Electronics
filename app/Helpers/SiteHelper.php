@@ -149,10 +149,15 @@ class SiteHelper
     static function GetProductTemplate($product, $index, $index1, $List)
     {
         /* route('CheckSlugRoute', ['slug' => $product->slug]) */
+        $RatingDisplay = "";
+        $RatingData = SiteHelper::GetAverageRating($product->id);
+        if($RatingData['total_rating'] != 0) {
+            $RatingDisplay = '<span class="product-category-square-rating"><i class="fa fa-star text-warning"></i>&nbsp;' . $RatingData['avg_rating'] . '</span>';
+        }
         return '<div class="product-card-difference my-3">
             <a href="' . route('home.slug', ['slug1' => $product->slug]) . '">
                 <div class="product-category-square text-center">' .
-                    (($product->rating != null && $product->rating != 0) ? '<span class="product-category-square-rating"><i class="fa fa-star text-warning"></i>&nbsp;' . $product->rating . '</span>' : '') .
+                    $RatingDisplay .
                     (floatval($product->discount) != 0 ? '<span class="product-category-square-discount bg-custom-primary text-white">' . $product->discount . '% OFF</span>' : '') .
                     '<div class="product-category-square-img">
                         <img src="' . asset('public/storage/products/' . $product->primary_img) . '" alt="Phones" class="img-fluid">
@@ -207,5 +212,56 @@ class SiteHelper
             }
         }
         return false;
+    }
+
+    static function GetAverageRating($ProductId)
+    {
+        $Reviews = DB::table('customer_reviews')
+            ->join('customers', 'customer_reviews.user_id', '=', 'customers.user_id')
+            ->where('customer_reviews.deleted_at', '=', null)
+            ->where('customer_reviews.product_id', '=', $ProductId)
+            ->select('customer_reviews.*', 'customers.first_name', 'customers.last_name')
+            ->orderBy('id', 'DESC')
+            ->get();
+        $ReviewsCount = DB::table('customer_reviews')
+            ->where('customer_reviews.deleted_at', '=', null)
+            ->where('customer_reviews.product_id', '=', $ProductId)
+            ->selectRaw("COUNT(*) AS TotalReviews, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 5) AS FiveStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 4) AS FourStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 3) AS ThreeStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 2) AS TwoStarCount, (SELECT COUNT(*) FROM customer_reviews WHERE deleted_at IS NULL AND product_id = ? AND rating = 1) AS OneStarCount", [$ProductId, $ProductId, $ProductId, $ProductId, $ProductId])
+            ->get();
+        $TotalRating = $ReviewsCount[0]->TotalReviews;
+        $FiveStars = $ReviewsCount[0]->FiveStarCount;
+        $FourStars = $ReviewsCount[0]->FourStarCount;
+        $ThreeStars = $ReviewsCount[0]->ThreeStarCount;
+        $TwoStars = $ReviewsCount[0]->TwoStarCount;
+        $OneStars = $ReviewsCount[0]->OneStarCount;
+        $TotalFiveStar = 0;
+        $TotalFourStar = 0;
+        $TotalThreeStar = 0;
+        $TotalTwoStar = 0;
+        $TotalOneStar = 0;
+        $AverageRating = 0;
+        if ($TotalRating != 0) {
+            $TotalFiveStar = round(($FiveStars / $TotalRating) * 100);
+            $TotalFourStar = round(($FourStars / $TotalRating) * 100);
+            $TotalThreeStar = round(($ThreeStars / $TotalRating) * 100);
+            $TotalTwoStar = round(($TwoStars / $TotalRating) * 100);
+            $TotalOneStar = round(($OneStars / $TotalRating) * 100);
+            $AverageRating = round((($OneStars * 1) + ($TwoStars * 2) + ($ThreeStars * 3) + ($FourStars * 4) + ($FiveStars * 5)) / $TotalRating, 1);
+        }
+        return [
+            'reviews' => $Reviews,
+            'total_rating' => $TotalRating,
+            '1_star' => $OneStars,
+            '1_star_total' => $TotalOneStar,
+            '2_star' => $TwoStars,
+            '2_star_total' => $TotalTwoStar,
+            '3_star' => $ThreeStars,
+            '3_star_total' => $TotalThreeStar,
+            '4_star' => $FourStars,
+            '4_star_total' => $TotalFourStar,
+            '5_star' => $FiveStars,
+            '5_star_total' => $TotalFiveStar,
+            'avg_rating' => $AverageRating
+        ];
     }
 }

@@ -688,10 +688,10 @@ class HomeController extends Controller
         ]);
         if ($Affected) {
             DB::commit();
-            return redirect()->route('CheckSlugRoute', array($Slug))->with('success-message', 'Review posted successfully.');
+            return redirect()->route('home.slug', ['slug1' => $Slug])->with('success-message', 'Review posted successfully.');
         } else {
             DB::rollBack();
-            return redirect()->route('CheckSlugRoute', array($Slug))->with('error-message', 'An unhandled error occurred.');
+            return redirect()->route('home.slug', ['slug1' => $Slug])->with('error-message', 'An unhandled error occurred.');
         }
 
     }
