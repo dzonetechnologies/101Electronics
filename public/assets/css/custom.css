@@ -811,6 +811,40 @@ body {
 .pdf-list-buttons br {
     display: none;
 }
+
+.product-specs-section .table-striped>tbody>tr:nth-of-type(odd) {
+     --bs-table-accent-bg: transparent;
+}
+
+.product-specs-section .table tr:nth-child(odd) {
+     background-color: transparent;
+}
+
+.product-specs-section .table tr:nth-child(even) {
+    background-color: transparent;
+}
+
+.product-main-specs .custom-card {
+    background: #ebeff7;
+    height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.product-main-specs .custom-card div p:first-child {
+    color: #444444;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.product-main-specs .custom-card div p:last-child {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
 /*Product Details Page*/
 
 /*Care and Repair Page*/

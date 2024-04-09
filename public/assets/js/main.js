@@ -2273,3 +2273,24 @@ function sliderInit() {
         ]
     });*/
 }
+
+function ScrollToSpecs() {
+    let Element = document.getElementById("-product-main-specs-scroll");
+    Element.scrollIntoView();
+}
+
+function LoadMoreSpecs() {
+    $("#more-specs").addClass("d-none");
+    $("#less-specs").removeClass("d-none");
+    $(".more-specs").each((i, obj) => {
+        $(obj).removeClass("d-none");
+    });
+}
+
+function HideMoreSpecs(e) {
+    $("#more-specs").removeClass("d-none");
+    $("#less-specs").addClass("d-none");
+    $(".more-specs").each((i, obj) => {
+        $(obj).addClass("d-none");
+    });
+}

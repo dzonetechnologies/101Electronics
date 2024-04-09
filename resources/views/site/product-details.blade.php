@@ -257,6 +257,10 @@
         ->get();*/
     $ReviewsData = \App\Helpers\SiteHelper::GetAverageRating($Product[0]->id);
     $Reviews = $ReviewsData['reviews'];
+    $Specs = isset($ProductDetails->spec_summaries) ? json_decode($ProductDetails->spec_summaries) : [];
+    $Capacities = isset($ProductDetails->capacities) ? json_decode($ProductDetails->capacities) : [];
+    $Dimensions = isset($ProductDetails->dimensions) ? json_decode($ProductDetails->dimensions) : [];
+    $Features = isset($ProductDetails->general_features) ? json_decode($ProductDetails->general_features) : [];
     ?>
     <input type="hidden" name="hiddenProductId" id="hiddenProductId" value="{{$Product[0]->id}}">
     <input type="hidden" name="hiddenUnitPrice" id="hiddenUnitPrice" value="{{$Product[0]->unit_price}}">
@@ -285,6 +289,7 @@
                 </div>
             </div>
 
+            {{-- General --}}
             <div class="row my-3">
                 <div class="col-md-12 col-lg-6">
                     <div class="text-black fs-20 fw-bold">
@@ -389,14 +394,14 @@
                             </div>
                             <div class="ps-1 col-4">
                                 <div class="text-end mb-1">
-                                    <a href="javascript:void(0);" class="fs-12 text-custom-primary fw-600 mb-0 cursor-pointer">
+                                    <a href="javascript:ScrollToSpecs();" class="fs-12 text-custom-primary fw-600 mb-0 cursor-pointer">
                                         SEE ALL SPECS <i class="fas fa-angle-right"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-3" id="-product-main-specs-scroll">
                         @if($Product[0]->installment_calculator == 1)
                             <div class="col-6">
                                 <p class="fs-14 mb-2">
@@ -530,6 +535,161 @@
                     </div>
                 </div>
             </div>
+            {{-- General --}}
+
+            {{-- Specs --}}
+            <div class="row mb-3 product-main-specs">
+                <div class="col-12 mb-2">
+                    <div class="text-black fs-20 fw-bolder">
+                        SPEC SUMMARY
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        @foreach($Specs as $index => $item)
+                            @if($index == 4)
+                                <div class="col-12 text-center mb-2" id="more-specs">
+                                    <a href="javascript:LoadMoreSpecs();" class="fs-13 text-custom-bla fw-600 mb-0 cursor-pointer">
+                                        SEE ALL SPECS <i class="fas fa-angle-down"></i>
+                                    </a>
+                                </div>
+                            @endif
+                            @if($index % 2 == 0)
+                                @if(isset($Specs[$index]))
+                                    <div class="col-12 col-md-6 mb-2 pe-md-2 @if($index >= 4) more-specs d-none @endif">
+                                        <div class="custom-card">
+                                            <div class="text-center">
+                                                <p class="mb-2">{{$Specs[$index]->title}}</p>
+                                                <p class="mb-0">{{$Specs[$index]->value}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if(isset($Specs[$index + 1]))
+                                    <div class="col-12 col-md-6 mb-2 ps-md-0 @if($index >= 4) more-specs d-none @endif">
+                                        <div class="custom-card">
+                                            <div class="text-center">
+                                                <p class="mb-2">{{$Specs[$index + 1]->title}}</p>
+                                                <p class="mb-0">{{$Specs[$index + 1]->value}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
+                                @if(sizeof($Specs) == $index + 1 && $index >= 4)
+                                    <div class="col-12 text-center mb-2 d-none" id="less-specs">
+                                        <a href="javascript:HideMoreSpecs();" class="fs-13 text-custom-bla fw-600 mb-0 cursor-pointer">
+                                            SHOW LESS <i class="fas fa-angle-up"></i>
+                                        </a>
+                                    </div>
+                                @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            {{-- Specs --}}
+
+            {{-- Capacity --}}
+            <div class="row mb-3 product-specs-section">
+                <div class="col-12">
+                    <div class="text-black fs-20 fw-bolder">
+                        CAPACITY(L)
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped w-100">
+                            <tbody>
+                            @foreach($Capacities as $index => $item)
+                                @if($index % 2 == 0)
+                                    <tr>
+                                        <td class="w-25">
+                                            <b>@if(isset($Capacities[$index])) {{$Capacities[$index]->title}} @endif</b>
+                                        </td>
+                                        <td class="w-25">
+                                            @if(isset($Capacities[$index])) {{$Capacities[$index]->value}} @endif
+                                        </td>
+                                        <td class="w-25">
+                                            <b>@if(isset($Capacities[$index + 1])) {{$Capacities[$index + 1]->title}} @endif</b>
+                                        </td>
+                                        <td class="w-25">
+                                            @if(isset($Capacities[$index + 1])) {{$Capacities[$index + 1]->value}} @endif
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- Capacity --}}
+
+            {{-- Dimensions --}}
+            <div class="row mb-3 product-specs-section">
+                <div class="col-12">
+                    <div class="text-black fs-20 fw-bolder">
+                        DIMENSIONS
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped w-100">
+                            <tbody>
+                            @foreach($Dimensions as $index => $item)
+                                @if($index % 2 == 0)
+                                    <tr>
+                                        <td class="w-25">
+                                            <b>@if(isset($Dimensions[$index])) {{$Dimensions[$index]->title}} @endif</b>
+                                        </td>
+                                        <td class="w-25">
+                                            @if(isset($Dimensions[$index])) {{$Dimensions[$index]->value}} @endif
+                                        </td>
+                                        <td class="w-25">
+                                            <b>@if(isset($Dimensions[$index + 1])) {{$Dimensions[$index + 1]->title}} @endif</b>
+                                        </td>
+                                        <td class="w-25">
+                                            @if(isset($Dimensions[$index + 1])) {{$Dimensions[$index + 1]->value}} @endif
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- Dimensions --}}
+
+            {{-- Features --}}
+            <div class="row mb-3 product-specs-section">
+                <div class="col-12">
+                    <div class="text-black fs-20 fw-bolder">
+                        GENERAL FEATURES
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped w-100">
+                            <tbody>
+                            @foreach($Features as $index => $item)
+                                @if($index % 2 == 0)
+                                    <tr>
+                                        <td class="w-25">
+                                            <b>@if(isset($Features[$index])) {{$Features[$index]->title}} @endif</b>
+                                        </td>
+                                        <td class="w-25">
+                                            @if(isset($Features[$index])) {{$Features[$index]->value}} @endif
+                                        </td>
+                                        <td class="w-25">
+                                            <b>@if(isset($Features[$index + 1])) {{$Features[$index + 1]->title}} @endif</b>
+                                        </td>
+                                        <td class="w-25">
+                                            @if(isset($Features[$index + 1])) {{$Features[$index + 1]->value}} @endif
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- Features --}}
 
             {{-- Product Reviews --}}
             <div class="row mb-3">
@@ -649,7 +809,7 @@
             {{-- Product Reviews --}}
 
             {{-- Related Products --}}
-            <div class="row mt-3 mb-3">
+            <div class="row mb-3">
                 <div class="col-md-12">
                     <p class="text-custom-primary fs-large fw-600 mb-0">
                         Related Products

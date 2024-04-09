@@ -264,6 +264,10 @@
     .pdf-list-buttons br {
         display: block;
     }
+
+    .product-specs-section table {
+        white-space: nowrap;
+    }
     /* Product Details */
 }
 
@@ -393,6 +397,10 @@
     .ltn__product-gallery-slider .slick-next {
         top: 10px;
         right: -40px;
+    }
+
+    .product-specs-section table {
+        white-space: nowrap;
     }
     /* Product Details */
 }
