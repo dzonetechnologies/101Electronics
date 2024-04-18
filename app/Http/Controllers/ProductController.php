@@ -402,6 +402,7 @@ class ProductController extends Controller
             $Affected = ProductDetail::create([
                 'product_id' => $request['product_id'],
                 'spec_summaries' => !empty($request['spec_summaries']) ? json_encode($request['spec_summaries']) : null,
+                'section_heading' => !empty($request['section_heading']) ? $request['section_heading'] : null,
                 'capacities' => !empty($request['capacities']) ? json_encode($request['capacities']) : null,
                 'dimensions' => !empty($request['dimensions']) ? json_encode($request['dimensions']) : null,
                 'general_features' => !empty($request['general_features']) ? json_encode($request['general_features']) : null,
@@ -411,6 +412,7 @@ class ProductController extends Controller
         } else {
             $Affected = ProductDetail::where('product_id', $request['product_id'])->update([
                 'spec_summaries' => !empty($request['spec_summaries']) ? json_encode($request['spec_summaries']) : null,
+                'section_heading' => !empty($request['section_heading']) ? $request['section_heading'] : null,
                 'capacities' => !empty($request['capacities']) ? json_encode($request['capacities']) : null,
                 'dimensions' => !empty($request['dimensions']) ? json_encode($request['dimensions']) : null,
                 'general_features' => !empty($request['general_features']) ? json_encode($request['general_features']) : null,

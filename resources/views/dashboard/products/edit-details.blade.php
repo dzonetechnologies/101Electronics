@@ -9,7 +9,7 @@
             padding: 9px;
         }
     </style>
-    <div class="page-content" id="product-add">
+    <div class="page-content">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -37,7 +37,7 @@
                             <input type="hidden" name="product_id" id="id" value="{{ $ProductId }}">
                             <div class="row spec-summary-section">
                                 <div class="col-md-12">
-                                    <h5 class="mb-2">SPEC SUMMARY</h5>
+                                    <h5 class="mb-2">SECTION I - SPEC SUMMARY</h5>
                                     <div class="repeater-custom-show-hide">
                                         <div data-repeater-list="spec_summaries">
                                             @if(!empty($spec_summaries))
@@ -114,10 +114,10 @@
                                 </div>
                             </div>
 
-
                             <div class="row capacity-section">
                                 <div class="col-md-12">
-                                    <h5 class="mb-2">CAPACITY</h5>
+                                    <h5 class="mb-2">SECTION II</h5>
+                                    <input type="text" class="form-control mb-3" name="section_heading" id="section_heading" placeholder="Section Heading">
                                     <div class="repeater-custom-show-hide">
                                         <div data-repeater-list="capacities">
                                             @if(!empty($capacities))
@@ -195,7 +195,7 @@
                             </div>
                             <div class="row dimension-section">
                                 <div class="col-md-12">
-                                    <h5 class="mb-2">DIMENSION</h5>
+                                    <h5 class="mb-2">SECTION III - DIMENSION</h5>
                                     <div class="repeater-custom-show-hide">
                                         <div data-repeater-list="dimensions">
                                             @if(!empty($dimensions))
@@ -273,7 +273,7 @@
                             </div>
                             <div class="row general-feature-section">
                                 <div class="col-md-12">
-                                    <h5 class="mb-2">GENERAL FEATURE</h5>
+                                    <h5 class="mb-2">SECTION IV - GENERAL FEATURE</h5>
                                     <div class="repeater-custom-show-hide">
                                         <div data-repeater-list="general_features">
                                             @if(!empty($general_features))
@@ -356,7 +356,6 @@
                                 <button class="btn btn-primary w-10" type="submit" id="saveProducts">Save
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>

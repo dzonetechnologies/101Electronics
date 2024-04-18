@@ -596,7 +596,7 @@ body {
 
 /*Product Details Page*/
 .product-gallery-container {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     height: 400px;
     width: 100%;
     padding: 1.5rem;

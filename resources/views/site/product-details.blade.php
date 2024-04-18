@@ -258,6 +258,7 @@
     $ReviewsData = \App\Helpers\SiteHelper::GetAverageRating($Product[0]->id);
     $Reviews = $ReviewsData['reviews'];
     $Specs = isset($ProductDetails->spec_summaries) ? json_decode($ProductDetails->spec_summaries) : [];
+    $SectionTitle = isset($ProductDetails->section_heading) ? $ProductDetails->section_heading : "";
     $Capacities = isset($ProductDetails->capacities) ? json_decode($ProductDetails->capacities) : [];
     $Dimensions = isset($ProductDetails->dimensions) ? json_decode($ProductDetails->dimensions) : [];
     $Features = isset($ProductDetails->general_features) ? json_decode($ProductDetails->general_features) : [];
@@ -593,7 +594,7 @@
             <div class="row mb-3 product-specs-section">
                 <div class="col-12">
                     <div class="text-black fs-20 fw-bolder">
-                        CAPACITY(L)
+                        {{$SectionTitle}}
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped w-100">
@@ -690,6 +691,95 @@
                 </div>
             </div>
             {{-- Features --}}
+
+            {{-- *** Packaging Details *** --}}
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="text-dark fs-15 fw-500 mb-0">
+                                Size and Packaging Details
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row">
+                                        <div class="col-8 col-md-7 pr-0">
+                                            @if(sizeof($ProductSizes) > 0)
+                                                <p class="text-custom-primary fs-12 mb-0"
+                                                   id="unit{{$ProductSizes[0]->UnitName}}DepthWidth"
+                                                   style="display: none;">
+                                                    <span>
+                                                        <b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[0]->depth . ' ' . $ProductSizes[0]->UnitName}}
+                                                    </span>
+                                                    &nbsp;&nbsp;
+                                                    <span>
+                                                        <b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if(sizeof($ProductSizes) > 1)
+                                                <p class="text-custom-primary fs-12 mb-0"
+                                                   id="unit{{$ProductSizes[1]->UnitName}}DepthWidth"
+                                                   style="display: none;">
+                                                    <span>
+                                                        <b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[1]->depth . ' ' . $ProductSizes[1]->UnitName}}
+                                                    </span>
+                                                    &nbsp;&nbsp;
+                                                    <span>
+                                                        <b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if(sizeof($SizePackagingDetails) > 0 && $SizePackagingDetails[0]->image != "")
+                                                <img src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
+                                                        alt="PRODUCT DETAILS 2" class="img-fluid" /> {{-- style="max-width:267px;" --}}
+                                            @else
+                                                <img src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
+                                                     alt="PRODUCT DETAILS 2" class="img-fluid" /> {{-- style="max-width:267px;" --}}
+                                            @endif
+                                        </div>
+                                        <div class="col-4 col-md-5">
+                                            <div class="d-flex align-items-center h-100 text-custom-primary fs-12">
+                                                @if(sizeof($ProductSizes) > 0)
+                                                    <span id="unit{{$ProductSizes[0]->UnitName}}Height"
+                                                          style="display: none;"><b>Height:</b><br>{{$ProductSizes[0]->height . ' ' . $ProductSizes[0]->UnitName}}</span>
+                                                @endif
+                                                @if(sizeof($ProductSizes) > 1)
+                                                    <span id="unit{{$ProductSizes[1]->UnitName}}Height"
+                                                          style="display: none;"><b>Height:</b><br>{{$ProductSizes[1]->height . ' ' . $ProductSizes[1]->UnitName}}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-8 col-md-3 text-center d-flex align-items-center mt-3">
+                                            <div class="m-auto">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="mr-2">Millimeters</span>
+                                                    <label class="switch" for="checkbox">
+                                                        <input type="checkbox" id="checkbox"
+                                                               onchange="ChangeProductSizeUnits(this, this.checked);"/>
+                                                        <div class="slider round"></div>
+                                                    </label>
+                                                    <span class="ml-2">Inches</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 text-center">
+                                    @if($Product[0]->size_packaging_img != "")
+                                        <img
+                                                src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
+                                                alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid" style="width: 75%;" /> {{-- style="max-width:500px;max-height:1000px;" --}}
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- *** Packaging Details *** --}}
 
             {{-- Product Reviews --}}
             <div class="row mb-3">
@@ -863,89 +953,6 @@
                 </div>
             </div>--}}
             {{-- *** Product Dscription *** --}}
-
-            {{-- *** Packaging Details *** --}}
-            {{--<div class="row mb-3">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <p class="text-dark fs-15 fw-500 mb-0">
-                                Size and Packaging Details
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        <div class="col-8 col-md-7 pr-0">
-                                            @if(sizeof($ProductSizes) > 0)
-                                                <p class="text-custom-primary fs-12 mb-0"
-                                                   id="unit{{$ProductSizes[0]->UnitName}}DepthWidth"
-                                                   style="display: none;">
-                                                    <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[0]->depth . ' ' . $ProductSizes[0]->UnitName}}</span><span
-                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[0]->width . ' ' . $ProductSizes[0]->UnitName}}</span>
-                                                </p>
-                                            @endif
-                                            @if(sizeof($ProductSizes) > 1)
-                                                <p class="text-custom-primary fs-12 mb-0"
-                                                   id="unit{{$ProductSizes[1]->UnitName}}DepthWidth"
-                                                   style="display: none;">
-                                                    <span><b>Depth:</b>&nbsp;&nbsp;{{$ProductSizes[1]->depth . ' ' . $ProductSizes[1]->UnitName}}</span><span
-                                                            class="ml-5"><b>Width:</b>&nbsp;&nbsp;{{$ProductSizes[1]->width . ' ' . $ProductSizes[1]->UnitName}}</span>
-                                                </p>
-                                            @endif
-                                            @if(sizeof($SizePackagingDetails) > 0 && $SizePackagingDetails[0]->image != "")
-                                                <img
-                                                        src="{{asset('public/storage/size-packaging/' . $SizePackagingDetails[0]->image)}}"
-                                                        alt="PRODUCT DETAILS 2" class="img-fluid"
-                                                        style="max-width:267px;"/>
-                                            @else
-                                                <img src="{{asset('public/storage/size-packaging/placeholder.jpg')}}"
-                                                     alt="PRODUCT DETAILS 2" class="img-fluid"
-                                                     style="max-width:267px;"/>
-                                            @endif
-                                        </div>
-                                        <div class="col-4 col-md-5 pl-0">
-                                            <div class="d-flex align-items-center h-100 text-custom-primary fs-12">
-                                                @if(sizeof($ProductSizes) > 0)
-                                                    <span id="unit{{$ProductSizes[0]->UnitName}}Height"
-                                                          style="display: none;"><b>Height:</b><br>{{$ProductSizes[0]->height . ' ' . $ProductSizes[0]->UnitName}}</span>
-                                                @endif
-                                                @if(sizeof($ProductSizes) > 1)
-                                                    <span id="unit{{$ProductSizes[1]->UnitName}}Height"
-                                                          style="display: none;"><b>Height:</b><br>{{$ProductSizes[1]->height . ' ' . $ProductSizes[1]->UnitName}}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-8 col-md-3 text-center d-flex align-items-center mt-3">
-                                            <div class="m-auto">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="mr-2">Millimeters</span>
-                                                    <label class="switch" for="checkbox">
-                                                        <input type="checkbox" id="checkbox"
-                                                               onchange="ChangeProductSizeUnits(this, this.checked);"/>
-                                                        <div class="slider round"></div>
-                                                    </label>
-                                                    <span class="ml-2">Inches</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    @if($Product[0]->size_packaging_img != "")
-                                        <img
-                                                src="{{asset('public/storage/products/'. $Product[0]->size_packaging_img)}}"
-                                                alt="PRODUCT SIZE AND PACKAGING IMAGE" class="img-fluid"
-                                                style="max-width:500px;max-height:1000px;"/>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--}}
-            {{-- *** Packaging Details *** --}}
         </div>
     </section>
 
