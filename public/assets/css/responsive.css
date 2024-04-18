@@ -222,11 +222,53 @@
     .custom-banner-card .banner-btn {
         padding: 0.3rem 0.6rem;
     }
+
     /* Custom Banner Card */
     .pay-latter-card {
         margin-top: 10px;
         height: 364px !important;
     }
+
+    /* Product Details */
+    .product-gallery-container {
+        height: 250px;
+        padding: 0.75rem;
+    }
+
+    .product-images-circle {
+        height: 60px;
+        margin: 0 6px;
+        padding: 4px;
+    }
+
+    .ltn__product-gallery-slider .slick-prev {
+        top: 15px;
+        left: -30px;
+        font-size: 1.5rem;
+    }
+
+    .ltn__product-gallery-slider .slick-next {
+        top: 15px;
+        right: -30px;
+        font-size: 1.5rem;
+    }
+
+    .features-buttons {
+        line-height: 2.3;
+    }
+
+    .features-buttons br {
+        display: block;
+    }
+
+    .pdf-list-buttons br {
+        display: block;
+    }
+
+    .product-specs-section table {
+        white-space: nowrap;
+    }
+    /* Product Details */
 }
 
 /* SM Devices */
@@ -328,11 +370,39 @@
     .custom-banner-card .banner-btn {
         padding: 0.3rem 0.6rem;
     }
+
     /* Custom Banner Card */
     .pay-latter-card {
         margin-top: 10px;
         height: 364px !important;
     }
+
+    /* Product Details */
+    .product-gallery-container {
+        height: 300px;
+        padding: 1rem;
+    }
+
+    .product-images-circle {
+        height: 70px;
+        margin: 0 6px;
+        padding: 4px;
+    }
+
+    .ltn__product-gallery-slider .slick-prev {
+        top: 10px;
+        left: -40px;
+    }
+
+    .ltn__product-gallery-slider .slick-next {
+        top: 10px;
+        right: -40px;
+    }
+
+    .product-specs-section table {
+        white-space: nowrap;
+    }
+    /* Product Details */
 }
 
 /* MD Devices */
@@ -434,11 +504,35 @@
     .custom-banner-card .banner-btn {
         padding: 0.3rem 0.6rem;
     }
+
     /* Custom Banner Card */
     .pay-latter-card {
         margin-top: 25px;
         height: 314px !important;
     }
+
+    /* Product Details */
+    .product-gallery-container {
+        height: 350px;
+        padding: 1rem;
+    }
+
+    .product-images-circle {
+        height: 75px;
+        margin: 0 6px;
+        padding: 4px;
+    }
+
+    .ltn__product-gallery-slider .slick-prev {
+        top: 15px;
+        left: -40px;
+    }
+
+    .ltn__product-gallery-slider .slick-next {
+        top: 15px;
+        right: -40px;
+    }
+    /* Product Details */
 }
 
 /* LG Devices */
@@ -548,6 +642,29 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
+
+    /* Product Details */
+    .product-gallery-container {
+        height: 350px;
+        padding: 1rem;
+    }
+
+    .product-images-circle {
+        height: 75px;
+        margin: 0 6px;
+        padding: 4px;
+    }
+
+    .ltn__product-gallery-slider .slick-prev {
+        top: 15px;
+        left: -40px;
+    }
+
+    .ltn__product-gallery-slider .slick-next {
+        top: 15px;
+        right: -40px;
+    }
+    /* Product Details */
 }
 
 /* XL Devices */
@@ -657,6 +774,29 @@
         padding: 0.3rem 0.6rem;
     }
     /* Custom Banner Card */
+
+    /* Product Details */
+    .product-gallery-container {
+        height: 350px;
+        padding: 1rem;
+    }
+
+    .product-images-circle {
+        height: 75px;
+        margin: 0 6px;
+        padding: 4px;
+    }
+
+    .ltn__product-gallery-slider .slick-prev {
+        top: 15px;
+        left: -40px;
+    }
+
+    .ltn__product-gallery-slider .slick-next {
+        top: 15px;
+        right: -40px;
+    }
+    /* Product Details */
 }
 
 @media (min-width: 1200px) and (max-width: 1399px)  {

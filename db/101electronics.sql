@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 10:14 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.3
+-- Generation Time: Apr 09, 2024 at 01:06 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -338,7 +338,12 @@ CREATE TABLE `customer_reviews` (
 
 INSERT INTO `customer_reviews` (`id`, `user_id`, `product_id`, `rating`, `message`, `recommendation`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 4, 5, 'this model was fantastic', 1, '2023-03-10 19:52:12', '2023-03-10 19:52:35', '2023-03-10 19:52:35'),
-(2, 1, 294, 5, 'I recommend this product', 1, '2023-09-24 22:36:58', '2023-09-24 22:37:09', '2023-09-24 22:37:09');
+(2, 1, 294, 5, 'I recommend this product', 1, '2023-09-24 22:36:58', '2023-09-24 22:37:09', '2023-09-24 22:37:09'),
+(3, 1, 367, 4, 'Thank You!', 1, '2024-04-08 10:06:55', '2024-04-08 10:06:55', NULL),
+(4, 1, 367, 5, 'Thank You very much!', 1, '2024-04-08 10:08:59', '2024-04-08 10:08:59', NULL),
+(5, 1, 367, 3, 'Average experience!', 0, '2024-04-08 10:54:05', '2024-04-08 10:54:05', NULL),
+(6, 1, 367, 2, 'Fair product!', 0, '2024-04-08 10:54:42', '2024-04-08 10:54:42', NULL),
+(7, 1, 367, 1, 'Poor experience!', 0, '2024-04-08 10:55:07', '2024-04-08 10:55:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -1280,7 +1285,7 @@ INSERT INTO `products` (`id`, `order_no`, `name`, `code`, `brand`, `category`, `
 (364, 24, 'LG Free Standing Dishwasher DFB425FP', 'Place settings: 14', '1', 6, 59, 177, 0, 4.8, 29, 1, '<p>QuadWash&nbsp;</p><p>TrueSteam</p><p>Inverter Direct Drive</p><p>ThinQ (Wi-Fi Enabled)</p><p>EasyRack Plus (Better)</p>', '<p>QuadWash&nbsp;</p><p>TrueSteam</p><p>Inverter Direct Drive</p><p>ThinQ (Wi-Fi Enabled)</p><p>EasyRack Plus (Better)</p>', '<p>QuadWash&nbsp;</p><p>TrueSteam</p><p>Inverter Direct Drive</p><p>ThinQ (Wi-Fi Enabled)</p><p>EasyRack Plus (Better)</p>', 'ProductPrimaryImage_20231227-155228.webp', 'ProductSizePackagingImage_20231227-155229.webp', NULL, NULL, 'LG Free Standing Dishwasher DFB425FP - LG Dishwasher Price - 101Electronics', 'Discover advanced cleaning with the LG Free Standing Dishwasher DFB425FP. Compare LG Dishwasher Prices at 101Electronics for unbeatable deals. Upgrade your kitchen today!', 'LG Dishwasher Price', 'ProductMetaImage_20231227-155229.webp', NULL, 249999, 249999, 0, 0, 0, 0, 249999, 249999, 10, 1, 2000, 0, 1, 1, 0, NULL, 'lg-free-standing-dishwashe-dfb425fp', 0, 1, '2023-12-27 14:52:29', '2024-02-07 15:04:24', NULL),
 (365, 25, 'LG Free Standing Dishwasher DFB512FP', 'Place settings:14', '1', 6, 59, 177, 0, 4.3, 35, 1, '<p>ThinQ™</p><p>Turbo Cycle</p><p>QuadWash™</p><p>Dual Zone Wash</p><p>Inverter Direct Drive</p>', '<p>ThinQ™</p><p>Turbo Cycle</p><p>QuadWash™</p><p>Dual Zone Wash</p><p>Inverter Direct Drive</p>', '<p>ThinQ™</p><p>Turbo Cycle</p><p>QuadWash™</p><p>Dual Zone Wash</p><p>Inverter Direct Drive</p>', 'ProductPrimaryImage_20231227-160854.webp', 'ProductSizePackagingImage_20231227-160854.webp', NULL, NULL, 'LG Free Standing Dishwasher DFB512FP - LG Dishwasher - 101Electronics', 'Upgrade your kitchen with the LG Free Standing Dishwasher DFB512FP. Explore efficient LG Dishwashers at 101Electronics. Discover performance and style today!', 'LG Dishwasher', 'ProductMetaImage_20231227-160854.webp', NULL, 215000, 215000, 0, 0, 0, 0, 215000, 215000, 10, 1, 2000, 0, 1, 1, 0, NULL, 'lg-free-standing-dishwashe-dfb512fp', 0, 1, '2023-12-27 15:08:54', '2023-12-30 13:04:53', NULL),
 (366, 26, 'LG Free Standing Dishwasher DFB512FW', 'Place Setting: 14', '1', 6, 59, 177, 0, 4.6, 35, 1, '<p>QuadWash™</p><p>SmartThinQ™</p><p>Smart LG ThinQ</p><p>EasyRack™ Plus</p><p>Inverter Direct Drive</p>', '<p>QuadWash™</p><p>SmartThinQ™</p><p>Smart LG ThinQ</p><p>EasyRack™ Plus</p><p>Inverter Direct Drive</p>', '<p>QuadWash™</p><p>SmartThinQ™</p><p>Smart LG ThinQ</p><p>EasyRack™ Plus</p><p>Inverter Direct Drive</p>', 'ProductPrimaryImage_20231227-161646.webp', 'ProductSizePackagingImage_20231227-161646.webp', NULL, NULL, 'LG Free Standing Dishwasher DFB512FW - LG Dishwasher Price - 101Electronics', 'Discover cutting-edge cleaning with the LG Free Standing Dishwasher DFB512FW. Find competitive LG Dishwasher prices at 101Electronics. Elevate your kitchen now!', 'LG Dishwasher Price', 'ProductMetaImage_20231227-161646.webp', NULL, 219999, 219999, 0, 0, 0, 0, 219999, 219999, 10, 1, 2000, 0, 1, 1, 0, NULL, 'lg-free-standing-dishwashe-dfb512fw', 0, 1, '2023-12-27 15:16:46', '2024-02-07 15:04:04', NULL),
-(367, 27, 'Samsung 65\'\' QLED 4k 65Q70B', '65 inches QLED', '3', 2, 45, 124, 0, 4, 35, 1, '<p>Smart Hub</p><p>Sleek and Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Smart Hub</p><p>Sleek and Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Smart Hub</p><p>Sleek and Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', 'ProductPrimaryImage_20231227-183550.webp', 'ProductSizePackagingImage_20231227-183550.webp', NULL, NULL, 'Samsung 65\'\' QLED 4k 65Q70B - 4k Samsung QLED - 101Electronics', 'Immerse in stunning visuals with the Samsung 65\'\' QLED 4K 65Q70B. Explore the pinnacle of 4K Samsung QLED technology at 101Electronics. Elevate your viewing experience!', '4k Samsung QLED', 'ProductMetaImage_20231227-183550.webp', NULL, 379900, 379900, 0, 0, 0, 0, 379900, 379900, 10, 1, 2000, 0, 1, 1, 0, NULL, 'samsung-65-qled-4k-65q70', 0, 1, '2023-12-27 17:35:50', '2024-02-03 15:41:36', NULL),
+(367, 27, 'Samsung 65\'\' QLED 4k 65Q70B', '65 inches QLED', '3', 2, 45, 124, 0, 4, 35, 1, '<p>Smart Hub</p><p>Sleek and Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Smart Hub</p><p>Sleek and Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Smart Hub</p><p>Sleek and Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', 'ProductPrimaryImage_20231227-183550.webp', 'ProductSizePackagingImage_20231227-183550.webp', 'https://www.youtube.com/embed/atPLXI1spUs?si=R2N5F9e3oZn4cUYg', 'my-video.mp4', 'Samsung 65\'\' QLED 4k 65Q70B - 4k Samsung QLED - 101Electronics', 'Immerse in stunning visuals with the Samsung 65\'\' QLED 4K 65Q70B. Explore the pinnacle of 4K Samsung QLED technology at 101Electronics. Elevate your viewing experience!', '4k Samsung QLED', 'ProductMetaImage_20231227-183550.webp', NULL, 379900, 379900, 0, 0, 5, 18995, 379900, 360905, 10, 1, 2000, 0, 1, 1, 0, 'Silver-7902194.pdf', 'samsung-65-qled-4k-65q70', 0, 1, '2023-12-27 17:35:50', '2024-02-03 15:41:36', NULL),
 (368, 28, 'Samsung 75\" QLED 4K 75Q70B', '75 inches QLED', '3', 2, 45, 125, 0, 4.5, 39, 1, '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', 'ProductPrimaryImage_20231227-185256.webp', 'ProductSizePackagingImage_20231227-185256.webp', NULL, NULL, 'Samsung 75 4k QLED - Samsung QLED TV Price - 101Electronics', 'Experience brilliance with the Samsung 75\'\' 4K QLED. Find unbeatable Samsung QLED TV prices at 101Electronics. Elevate your home entertainment today!', 'Samsung 75 4k QLED', 'ProductMetaImage_20231227-185256.webp', NULL, 646900, 646900, 0, 0, 0, 0, 646900, 646900, 10, 1, 2000, 0, 1, 1, 0, NULL, 'samsung-75-qled-4k-75q70', 0, 1, '2023-12-27 17:52:56', '2024-02-03 15:41:19', NULL),
 (369, 29, 'Samsung 85\" QLED 4K 85Q70B', '85 inches QLED', '3', 2, 45, 126, 0, 4.5, 39, 1, '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', 'ProductPrimaryImage_20231227-191004.webp', 'ProductSizePackagingImage_20231227 at 191004.webp', NULL, NULL, 'Samsung 85\" QLED 4K 85Q70B - Samsung QLED 4k - 101Electronics', 'Elevate your viewing with the Samsung 85\'\' QLED 4K 85Q70B. Immerse in stunning Samsung QLED 4K technology. Explore top-notch visuals at 101Electronics!', 'Samsung 85\" QLED 4K 85Q70B', NULL, NULL, 881900, 881900, 0, 0, 0, 0, 881900, 881900, 10, 1, 2000, 0, 1, 1, 0, NULL, 'samsung-85-qled-4k-85q70', 0, 1, '2023-12-27 17:55:27', '2024-02-03 15:41:07', NULL),
 (370, 30, 'Samsung 55\" QLED 4K 55Q70C', '55 inches QLED', '3', 2, 45, 123, 0, 4.5, 39, 1, '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', '<p>Q-Symphony</p><p>Sleek And Slim</p><p>FreeSync Premium Pro</p><p>Quantum Processor 4K</p><p>Motion Xcelerator Turbo+</p>', 'ProductPrimaryImage_20231228-131220.webp', 'ProductSizePackagingImage_20231228 at 131220.webp', NULL, NULL, 'Samsung QLED 4k TV 55 Inch - Samsung 4k QLED TV - 101Electronics', 'Experience vibrant visuals on the Samsung QLED 4K TV 55 Inch. Uncover the brilliance of Samsung 4K QLED technology at 101Electronics. Elevate your home entertainment!', 'Samsung QLED 4k TV 55 Inch', NULL, NULL, 299900, 299900, 0, 0, 0, 0, 299900, 299900, 10, 1, 2000, 0, 1, 1, 0, NULL, 'samsung-55-qled-4k-85q70b', 0, 1, '2023-12-28 12:04:59', '2024-02-03 15:40:36', NULL),
@@ -1466,8 +1471,9 @@ CREATE TABLE `product_details` (
 --
 
 INSERT INTO `product_details` (`id`, `product_id`, `spec_summaries`, `capacities`, `dimensions`, `general_features`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 454, '[{\"title\":\"In aut laboriosam q\",\"value\":\"Vel in omnis excepte\"},{\"title\":\"Vel distinctio Volu\",\"value\":\"Enim nostrum debitis\"},{\"title\":\"Officia sunt accusam\",\"value\":\"Quod sequi et odio q\"}]', '[{\"title\":\"Sint voluptatem moll\",\"value\":\"Praesentium consecte\"},{\"title\":\"Sit occaecat dicta e\",\"value\":\"Aliquid possimus eu\"},{\"title\":\"Neque eius voluptate\",\"value\":\"Eos ut sint ullamco\"}]', '[{\"title\":\"Rem earum error sed\",\"value\":\"Commodo nostrud expe\"},{\"title\":\"Non laboris nostrum\",\"value\":\"Mollitia et sed mole\"},{\"title\":\"Nam praesentium sint\",\"value\":\"Ut minima quia disti\"}]', '[{\"title\":\"Adipisicing proident\",\"value\":\"Quidem dolor nesciun\"}]', '2024-04-05 07:02:23', '2024-04-05 08:12:16', NULL),
-(3, 453, '[{\"title\":\"Sed a consequatur F\",\"value\":\"Incididunt beatae in\"}]', '[{\"title\":\"Quia ratione obcaeca\",\"value\":\"Eu eius ipsam dolore\"}]', '[{\"title\":\"Vitae voluptate obca\",\"value\":\"Ipsum rerum aperiam\"}]', '[{\"title\":\"In dignissimos fugit\",\"value\":\"Dolor ut magna persp\"}]', '2024-04-05 08:11:33', '2024-04-05 08:11:33', NULL);
+(1, 454, '[{\"title\":\"Aut inventore enim i\",\"value\":\"Autem et cupiditate\"},{\"title\":\"Qui reiciendis quia\",\"value\":\"Odit ut et animi be\"},{\"title\":\"Inventore adipisicin\",\"value\":\"Enim vel qui sint a\"}]', '[{\"title\":\"In eos et officia s\",\"value\":\"Aut ad fugiat facil\"},{\"title\":\"Ut dolor eiusmod eaq\",\"value\":\"Sed quod consectetur\"},{\"title\":\"Molestiae eveniet s\",\"value\":\"Praesentium quae nec\"}]', '[{\"title\":\"Voluptatem officia v\",\"value\":\"Ducimus saepe sit q\"},{\"title\":\"Esse itaque ea sequ\",\"value\":\"Ut qui error et omni\"},{\"title\":\"Eligendi qui iusto u\",\"value\":\"Sequi quasi ducimus\"}]', '[{\"title\":\"Nostrud amet ad exp\",\"value\":\"Ex vero ratione in v\"}]', '2024-04-05 07:02:23', '2024-04-05 10:22:11', NULL),
+(3, 453, '[{\"title\":\"Sed a consequatur F\",\"value\":\"Incididunt beatae in\"}]', '[{\"title\":\"Quia ratione obcaeca\",\"value\":\"Eu eius ipsam dolore\"}]', '[{\"title\":\"Vitae voluptate obca\",\"value\":\"Ipsum rerum aperiam\"}]', '[{\"title\":\"In dignissimos fugit\",\"value\":\"Dolor ut magna persp\"}]', '2024-04-05 08:11:33', '2024-04-05 08:11:33', NULL),
+(4, 367, '[{\"title\":\"CAPACITY\",\"value\":\"423 Litre\"},{\"title\":\"Dimensions (W x H x D) MM\",\"value\":\"835 x 1787 x 734\"},{\"title\":\"MAIN TECHNOLOGY\",\"value\":\"InstaView Door-in-Door (TM)\"},{\"title\":\"ADDITIONAL BENEFIT\",\"value\":\"Hygiene FRESH+ (TM)\"},{\"title\":\"Specs Demo 1\",\"value\":\"123456\"},{\"title\":\"Specs Demo 2\",\"value\":\"123456\"},{\"title\":\"Specs Demo 3\",\"value\":\"123456\"},{\"title\":\"Specs Demo 4\",\"value\":\"123456\"},{\"title\":\"Specs Demo 5\",\"value\":\"123456\"},{\"title\":\"Specs Demo 6\",\"value\":\"123456\"},{\"title\":\"Specs Demo 7\",\"value\":\"123456\"}]', '[{\"title\":\"Net Volume (ISO Storage Volume)\",\"value\":\"423L\"},{\"title\":\"Gross Volume (Gross Capacity)\",\"value\":\"570L\"},{\"title\":\"Total Volume\",\"value\":\"850L\"}]', '[{\"title\":\"Dimensions Width x Height X Depth (mm)\",\"value\":\"835 x 1787 x 734\"}]', '[{\"title\":\"Door Type\",\"value\":\"4-Door\"},{\"title\":\"Inverter Linear Compressor\",\"value\":\"Yes\"},{\"title\":\"Color\",\"value\":\"Matte Black\"},{\"title\":\"Display\",\"value\":\"Touch 88 LED (White)\"}]', '2024-04-09 11:07:37', '2024-04-09 13:03:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -1732,7 +1738,7 @@ INSERT INTO `product_galleries` (`id`, `product_id`, `gallery`, `created_at`, `u
 (6074, 355, 'ProductGalleryImage_6 20231227-125214.webp', '2024-02-07 15:02:47', '2024-02-07 15:02:47'),
 (6075, 355, 'ProductGalleryImage_7 20231227-125214.webp', '2024-02-07 15:02:47', '2024-02-07 15:02:47'),
 (6076, 355, 'ProductGalleryImage_8 20231227-125214.webp', '2024-02-07 15:02:47', '2024-02-07 15:02:47'),
-(6077, 356, 'ProductGalleryImage_1 20231227-130918.webp', '2024-02-07 15:03:10', '2024-02-07 15:03:10'),
+(6077, 356, 'ProductGalleryImage_1-20231227-130918.jpg', '2024-02-07 15:03:10', '2024-02-07 15:03:10'),
 (6078, 356, 'ProductGalleryImage_2 20231227-130918.webp', '2024-02-07 15:03:10', '2024-02-07 15:03:10'),
 (6079, 356, 'ProductGalleryImage_3 20231227-130918.webp', '2024-02-07 15:03:10', '2024-02-07 15:03:10'),
 (6080, 356, 'ProductGalleryImage_4 20231227-130918.webp', '2024-02-07 15:03:10', '2024-02-07 15:03:10'),
@@ -2559,7 +2565,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'Pc1beQgdGm5mkgVW1vLRBvaN7ZSFzEvKZBv5Z9oz3ZXgjuiXwEAUEtDRxoq5', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
+(1, '101 Electronics', 'admin@101electronics.pk', NULL, '$2y$10$mQ3zxkMHTZeIqnkCp0Nla.g3bQUyicDt2lmucYv0NFC6lBXPtn3ia', 'g0FZbzFGErBeHetIaNh4yiQYErOoB8F9OB2byIAG4z9lkkk1uBvBj1YcyG06', 1, 1, '2021-12-03 19:00:00', '2023-02-02 11:31:37'),
 (9, 'Ammad', 'ammadhassan029@gmail.com', NULL, '$2y$10$v2YxqRTyv9ugEQWJzDMJt.pQAa89kzZyVpFIq6uUDzyuXCQumHv6G', '7iiiE0lfmNWsJOhGfrA6aJvEZ9ox0mRW7yRfRLDVQqKwDAnd67pYVu9gy0Xl', 2, 1, '2022-04-17 05:31:31', '2022-04-17 05:32:37'),
 (10, 'Faizan', 'faizan.javaid330@gmail.com', NULL, '$2y$10$Th20Tp7L/nCJqorOwwTMo.3wfaXMC3tyG.0.PcjGKUT1bBT5LpD5O', NULL, 2, 1, '2024-01-20 13:49:48', '2024-01-20 13:49:48'),
 (11, 'Hamza', 'hamzaafzal032@gmail.com', NULL, '$2y$10$s5aYcClyntDpouc9FVonDelep3II53Fkw/rvblquMepWq8Ab41Kb6', NULL, 2, 1, '2024-03-22 09:47:28', '2024-03-22 09:47:28');
@@ -2905,7 +2911,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `customer_reviews`
 --
 ALTER TABLE `customer_reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `delivery_parts_designs`
@@ -3019,7 +3025,7 @@ ALTER TABLE `product_colors`
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product_galleries`

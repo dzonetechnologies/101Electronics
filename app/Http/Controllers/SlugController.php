@@ -80,28 +80,28 @@ class SlugController extends Controller
             ->where('products.deleted_at',null)
             ->select('products.*', 'brands.title AS BrandTitle', 'brands.image AS BrandImage')
             ->get();
-
         if (sizeof($Product) == 0) {
             return redirect()->route('HomeRoute');
         }
-
         $Title = $Product[0]->meta_title;
         $Description = $Product[0]->meta_desc;
         $ProductGalleryImages = DB::table('product_galleries')
             ->where('product_id', '=', $Product[0]->id)
             ->get();
-
         $ProductColors = DB::table('product_colors')
             ->leftJoin('colors', 'product_colors.color_id', '=', 'colors.id')
             ->where('product_colors.product_id', '=', $Product[0]->id)
             ->select('product_colors.*', 'colors.name AS ColorName', 'colors.code AS ColorCode')
             ->get();
-
         $ProductSizes = DB::table('product_sizes')
             ->leftJoin('units', 'product_sizes.unit_id', '=', 'units.id')
             ->where('product_id', '=', $Product[0]->id)
             ->select('product_sizes.*', 'units.name AS UnitName')
             ->get();
+        $ProductDetails = DB::table('product_details')
+            ->where("product_id", "=", $Product[0]->id)
+            ->where("deleted_at", "=", null)
+            ->first();
         // Delivery Options, Return Cancellations, Discount Voucher Pages Details
         $GeneralPages = DB::table('general_pages')
             ->whereIn('id', array(2, 4, 6, 10))
@@ -118,21 +118,16 @@ class SlugController extends Controller
         $SizePackagingDetails = DB::table('size_packaging_images')
             ->where('category', $Product[0]->category)
             ->get();
-
         //social share buttons code
-
         $shareButtons = \Share::page('https://localhost/101Electronics/'.$slug)
             ->facebook()
             ->twitter()
             ->linkedin()
-            ->whatsapp()
-        ;
-
+            ->whatsapp();
         $DiscountQuestions = DB::table('discount_questions')
             ->where('deleted_at',null)
             ->get();
-
-        return view('site.product-details', compact('Product', 'ProductGalleryImages', 'ProductSizes', 'Title', 'Description', 'GeneralPages', 'DiscountVouchers', 'SizePackagingDetails','shareButtons','DiscountQuestions', 'ProductColors'));
+        return view('site.product-details', compact('Product', 'ProductGalleryImages', 'ProductSizes', 'ProductDetails', 'Title', 'Description', 'GeneralPages', 'DiscountVouchers', 'SizePackagingDetails','shareButtons','DiscountQuestions', 'ProductColors'));
     }
 
     function subSubcategory($Slug1, $Slug2, $Slug3)
