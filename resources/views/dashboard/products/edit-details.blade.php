@@ -117,7 +117,7 @@
                             <div class="row capacity-section">
                                 <div class="col-md-12">
                                     <h5 class="mb-2">SECTION II</h5>
-                                    <input type="text" class="form-control mb-3" name="section_heading" id="section_heading" placeholder="Section Heading">
+                                    <input type="text" class="form-control mb-3" name="section_heading" id="section_heading" value="{{$SectionHeading}}" placeholder="Section Heading">
                                     <div class="repeater-custom-show-hide">
                                         <div data-repeater-list="capacities">
                                             @if(!empty($capacities))

@@ -389,10 +389,11 @@ class ProductController extends Controller
     {
         $productDetails = ProductDetail::where('product_id', $ProductId)->first();
         $spec_summaries = !empty($productDetails['spec_summaries']) ? json_decode($productDetails['spec_summaries']) : null;
+        $SectionHeading = !empty($productDetails['section_heading']) ? $productDetails['section_heading'] : null;
         $capacities = !empty($productDetails['capacities']) ? json_decode($productDetails['capacities']) : null;
         $dimensions = !empty($productDetails['dimensions']) ? json_decode($productDetails['dimensions']) : null;
         $general_features = !empty($productDetails['general_features']) ? json_decode($productDetails['general_features']) : null;
-        return view('dashboard.products.edit-details', compact('ProductId','spec_summaries','capacities','dimensions','general_features'));
+        return view('dashboard.products.edit-details', compact('ProductId','spec_summaries', 'SectionHeading', 'capacities','dimensions','general_features'));
     }
 
     function updateDetails(Request $request)
